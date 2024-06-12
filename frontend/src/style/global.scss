@@ -1,0 +1,15 @@
+@import "./settings.scss";
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  color: $color-main-font;
+  font-family: $font-basic;
+  background: rgb(0, 0, 47);
+  background: linear-gradient(
+    140deg,
+    rgba($color-dark-blue, 1),
+    rgba($color-light-blue, 0.9)
+  );
+}
