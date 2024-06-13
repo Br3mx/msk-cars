@@ -1,0 +1,53 @@
+@import "../../../style/settings.scss";
+
+.container {
+  .content {
+    background-color: transparent;
+    backdrop-filter: blur(20px);
+    box-shadow: 0px 5px 20px rgba($color-main-font, 0.3);
+    padding: 0 25rem;
+    display: flex;
+    gap: 50px;
+    justify-content: center;
+    align-items: center;
+  }
+}
+.link {
+  white-space: nowrap;
+  font-size: 20px;
+  text-decoration: none;
+  color: $color-main-font;
+  font-family: $font-basic;
+  position: relative;
+  transition: color 0.5s ease;
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -3px;
+    width: 0;
+    height: 2px;
+    background-color: $color-main-font;
+    transition: all 0.2s ease;
+  }
+
+  &:hover::after {
+    left: 0;
+    width: 100%;
+  }
+}
+
+.logo {
+  display: grid;
+  place-items: center;
+
+  img {
+    width: 100px;
+    height: auto;
+    transition: all 0.3s ease;
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+}

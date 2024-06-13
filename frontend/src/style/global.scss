@@ -1,11 +1,11 @@
 @import "./settings.scss";
-
+@import "./config.scss";
 body {
   margin: 0;
   padding: 0;
   height: 100vh;
-  color: $color-main-font;
-  font-family: $font-basic;
+  color: $color-main-font !important;
+  font-family: $font-basic !important;
   background: rgb(0, 0, 47);
   background: linear-gradient(
     140deg,
