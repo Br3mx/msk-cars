@@ -1,6 +1,7 @@
 import React from "react";
 import style from "./NavBar.module.scss";
 import { Link } from "react-router-dom";
+import { FaHome } from "react-icons/fa";
 const NavBar = () => {
   return (
     <>

@@ -1,0 +1,126 @@
+@import "../../../../style/settings.scss";
+
+.container {
+  padding-top: 10rem;
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  background-image: url("../../../../assets/img/hyundai1.jpg");
+  background-size: cover;
+  background-position: center;
+  animation: bgChange 20s linear infinite;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1;
+  }
+  .content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+  }
+}
+
+.contPhones {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  font-size: 25px;
+  align-items: flex-end;
+  gap: 50px;
+}
+.contText {
+  align-self: flex-start;
+  padding: 20px;
+  font-size: 40px;
+  h5 {
+    font-size: 30px;
+    border-bottom: dotted 5px $color-light-blue;
+    padding-bottom: 10px;
+  }
+  span {
+    font-weight: bold;
+    font-style: italic;
+  }
+}
+.contBtn {
+  align-self: flex-end;
+  position: absolute;
+  z-index: 2;
+  bottom: 0;
+  right: 20px;
+  padding: 5rem 7rem;
+}
+
+.btn {
+  display: inline-block;
+  background-color: $color-light-blue;
+  border-radius: 10px;
+  padding: 10px 20px;
+  text-align: center;
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    background-color: $color-dark-blue;
+    border-radius: 0px;
+    transform: scale(1.1);
+    color: $color-light-blue;
+  }
+}
+
+.phoneIcon {
+  transform: rotate(90deg);
+  background-color: $color-light-blue;
+  font-size: 40px;
+  margin-right: 30px;
+  border-radius: 50%;
+  padding: 12px;
+  transition: all 0.2s ease-in-out;
+}
+.contPhone {
+  a {
+    text-decoration: none;
+    color: white;
+    transition: all 0.2s ease-in-out;
+    &:hover {
+      color: $color-light-blue;
+      .phoneIcon {
+        transform: scale(1.1);
+      }
+    }
+    .phoneIcon {
+      color: white;
+    }
+  }
+}
+
+@keyframes bgChange {
+  0% {
+    background-image: url("../../../../assets/img/hyundai1.jpg");
+  }
+  33% {
+    background-image: url("../../../../assets/img/hyundai2.jpg");
+  }
+  66% {
+    background-image: url("../../../../assets/img/hyundai3.jpg");
+  }
+}
