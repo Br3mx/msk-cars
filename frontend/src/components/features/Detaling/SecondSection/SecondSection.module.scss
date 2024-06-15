@@ -1,11 +1,13 @@
-@import "../../../style/settings.scss";
+@import "../../../../style/settings.scss";
+.container {
+  margin-top: 2rem;
+  height: 100vh;
+}
 
-.contLogo {
-  display: grid;
-  place-items: center;
-  img {
-    height: 100%;
-    width: 200px;
+.contText {
+  text-align: center;
+  h4 {
+    padding-top: 1rem;
   }
 }
 
@@ -34,10 +36,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: url(../../../assets/img/hyundai1.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
+
     border-radius: inherit; /* Dziedziczy border-radius od rodzica */
     transition: transform 0.5s ease-in-out;
     z-index: -1; /* Umożliwia umieszczenie tła pod zawartością karty */
@@ -63,12 +62,7 @@
   &:hover::after {
     height: 100%;
   }
-  &:nth-of-type(2n) {
-    &::before {
-      background-image: url(../../../assets/img/laweta.jpg);
-      background-position: top calc(100% + 50px);
-    }
-  }
+
   .contText {
     position: absolute;
     bottom: 0;

@@ -7,7 +7,6 @@
   position: relative;
   left: 50%;
   transform: translateX(-50%);
-  background-image: url("../../../../assets/img/hyundai1.jpg");
   background-size: cover;
   background-position: center;
   animation: bgChange 20s linear infinite;
@@ -62,6 +61,9 @@
   bottom: 0;
   right: 20px;
   padding: 5rem 7rem;
+  a {
+    text-decoration: none;
+  }
 }
 
 .btn {
@@ -115,12 +117,34 @@
 
 @keyframes bgChange {
   0% {
+    background-image: url("../../../../assets/img/hyundai4.jpg");
+    background-position: center calc(100% - 40%);
+  }
+  20% {
+    background-image: url("../../../../assets/img/hyundai4.jpg");
+  }
+  20.01% {
     background-image: url("../../../../assets/img/hyundai1.jpg");
   }
-  33% {
+  40% {
+    background-image: url("../../../../assets/img/hyundai1.jpg");
+  }
+  40.01% {
     background-image: url("../../../../assets/img/hyundai2.jpg");
   }
-  66% {
+  60% {
+    background-image: url("../../../../assets/img/hyundai2.jpg");
+  }
+  60.01% {
+    background-image: url("../../../../assets/img/hyundai5.jpg");
+  }
+  80% {
+    background-image: url("../../../../assets/img/hyundai5.jpg");
+  }
+  80.01% {
+    background-image: url("../../../../assets/img/hyundai3.jpg");
+  }
+  100% {
     background-image: url("../../../../assets/img/hyundai3.jpg");
   }
 }

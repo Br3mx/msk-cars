@@ -34,9 +34,11 @@ const FirstSection = () => {
           </div>
         </div>
         <div className={style.contBtn}>
-          <button className={style.btn} type="button">
-            SPRAWDŹ NAS <FaArrowRight />
-          </button>
+          <a target="_blank" href="https://www.facebook.com/mskrally">
+            <button className={style.btn} type="button">
+              SPRAWDŹ NAS <FaArrowRight />
+            </button>
+          </a>
         </div>
       </Container>
     </div>
