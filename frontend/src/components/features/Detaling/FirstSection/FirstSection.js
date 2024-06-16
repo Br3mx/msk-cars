@@ -1,10 +1,11 @@
 import React from "react";
 import style from "./FirstSection.module.scss";
-import { FaArrowRight, FaPhone } from "react-icons/fa";
-import { Container } from "react-bootstrap";
+import { FaArrowAltCircleDown, FaArrowRight, FaPhone } from "react-icons/fa";
+import { Container, Navbar } from "react-bootstrap";
+import { Link } from "react-scroll";
 const FirstSection = () => {
   return (
-    <div className={style.container}>
+    <div className={style.container} id="firstsectiondetaling">
       <Container>
         <div className={style.content}>
           <div className={style.contText}>
@@ -39,6 +40,19 @@ const FirstSection = () => {
               SPRAWDŹ NAS <FaArrowRight />
             </button>
           </a>
+        </div>
+        <div className={style.contBtnScroll}>
+          <Link
+            to="secondsectiondetaling"
+            spy={true}
+            offset={0} // dostosuj offset w razie potrzeby
+            duration={700}
+            smooth={true}
+            className={style.navbarBrand}
+            style={{ textDecoration: "none", cursor: "pointer" }}
+          >
+            <FaArrowAltCircleDown className={style.arrowIcon} />
+          </Link>
         </div>
       </Container>
     </div>

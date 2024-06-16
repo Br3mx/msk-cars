@@ -3,7 +3,7 @@ import style from "./SecondSection.module.scss";
 import { Link } from "react-router-dom";
 const SecondSection = () => {
   return (
-    <div className={style.container}>
+    <div className={style.container} id="secondsectiondetaling">
       <div className={style.content}>
         <div className={style.contText}>
           <h1>Czy Twój samochód zasługuje na luksusową pielęgnację?</h1>
