@@ -1,0 +1,16 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+  .content {
+    font-size: 70px;
+    h1 {
+      font-size: 100px;
+    }
+    h2 {
+      font-size: 50px;
+    }
+  }
+}

@@ -6,13 +6,14 @@ import Contact from "./components/pages/Detaling/Contact/Contact";
 import Offer from "./components/pages/Detaling/Offer/Offer";
 import Realization from "./components/pages/Detaling/Realization/Realization";
 import { Routes, Route, useLocation } from "react-router-dom";
-import NotFound from "./components/pages/Detaling/NotFound/NotFound";
 import WelcomePages from "./components/pages/WelcomePages/WelcomePages";
+import { SectionProvider } from "./components/common/SectionContext";
+import NotFound from "./components/pages/NotFound/NotFound";
 const App = () => {
   const location = useLocation();
 
   return (
-    <main>
+    <SectionProvider>
       {location.pathname === "/" ? (
         <Routes>
           <Route path="/" element={<WelcomePages />} />
@@ -31,7 +32,7 @@ const App = () => {
           </Routes>
         </MainLayout>
       )}
-    </main>
+    </SectionProvider>
   );
 };
 
