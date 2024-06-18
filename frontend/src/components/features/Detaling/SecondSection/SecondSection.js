@@ -1,6 +1,8 @@
 import React from "react";
 import style from "./SecondSection.module.scss";
 import { Link } from "react-router-dom";
+import { FaArrowAltCircleDown } from "react-icons/fa";
+import BtnScroll from "../../../common/BtnScroll/BtnScroll";
 const SecondSection = () => {
   return (
     <div className={style.container} id="secondsectiondetaling">
@@ -24,6 +26,7 @@ const SecondSection = () => {
           </div>
         </div>
       </div>
+      <BtnScroll targetId="thirdsectiondetaling" />
     </div>
   );
 };

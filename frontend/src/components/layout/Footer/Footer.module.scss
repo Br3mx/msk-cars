@@ -1,0 +1,42 @@
+@import "../../../style/settings.scss";
+
+.container {
+  padding: 0 10rem;
+  background-color: $color-dark-blue;
+  .content {
+    gap: 5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    .nav {
+      .link {
+        margin-right: 30px;
+        white-space: nowrap;
+        color: $color-main-font;
+        text-decoration: none;
+        &:hover {
+          color: $color-light-blue;
+        }
+      }
+    }
+    .contentCopyright {
+      transform: translateX(-56%);
+      .logo {
+        img {
+          height: 100%;
+          width: 80px;
+        }
+      }
+    }
+    .contentSocial {
+      display: inline-flex;
+      gap: 2rem;
+      .social {
+        .icon {
+          font-size: 30px;
+        }
+      }
+    }
+  }
+}

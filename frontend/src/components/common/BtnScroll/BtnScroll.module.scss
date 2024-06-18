@@ -1,0 +1,18 @@
+@import "../../../style/settings.scss";
+
+.contBtnScroll {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  font-size: 50px;
+  transform: translateX(-50%);
+  z-index: 2;
+  .arrowIcon {
+    cursor: pointer !important;
+    color: $color-main-font;
+    transition: all 0.2s ease-in-out;
+    &:hover {
+      color: $color-light-blue;
+    }
+  }
+}
