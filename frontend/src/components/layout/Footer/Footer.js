@@ -54,9 +54,13 @@ const Footer = () => {
         <div className={style.contentSocial}>
           <p>Sprawdź nasze sociale:</p>
           <div className={style.social}>
-            <Link to={"/"} className={style.link}>
+            <a
+              href="https://www.facebook.com/mskrally"
+              target="_blank"
+              className={style.link}
+            >
               <FaFacebook className={style.icon} />
-            </Link>
+            </a>
           </div>
         </div>
       </div>

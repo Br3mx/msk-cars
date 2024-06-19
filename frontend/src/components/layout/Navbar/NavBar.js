@@ -32,6 +32,7 @@ const NavBar = () => {
           <Link to={"/"} className={style.logo}>
             <img src="/img/logo.png" alt="logo" />
           </Link>
+
           <Link
             to={
               section === "detailing"
