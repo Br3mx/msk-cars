@@ -1,0 +1,18 @@
+@import "../../../../style/settings.scss";
+
+.container {
+  height: 100vh;
+}
+.content {
+  text-align: center;
+  .list {
+    text-align: left;
+    font-size: 30px;
+    line-height: 50px;
+    li {
+      list-style: inside;
+      padding-left: 50px;
+      background-size: 40px 40px;
+    }
+  }
+}
