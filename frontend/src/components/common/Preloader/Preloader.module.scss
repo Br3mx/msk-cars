@@ -1,0 +1,37 @@
+/**
+  * Double up
+  *
+  * @author jh3y - jhey.dev
+*/
+.preloader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  height: 100vh;
+}
+.preloader:before {
+  display: block;
+  content: "";
+  height: 50px;
+  width: 50px;
+  -webkit-animation: spin 0.5s infinite linear;
+  animation: spin 0.5s infinite linear;
+  border: 10px var(--primary) double;
+  border-left-style: solid;
+  border-radius: 100%;
+}
+
+@-webkit-keyframes spin {
+  to {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  to {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}

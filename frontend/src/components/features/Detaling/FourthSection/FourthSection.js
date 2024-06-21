@@ -1,6 +1,6 @@
 import React from "react";
 import style from "./FourthSection.module.scss";
-import { FaMapPin } from "react-icons/fa";
+import { FaMapPin, FaPhone } from "react-icons/fa";
 import { Container } from "react-bootstrap";
 const FourthSection = () => {
   return (
@@ -26,13 +26,26 @@ const FourthSection = () => {
             </li>
           </ul>
           <div className={style.lokalization}>
-            <div className={style.text}>
-              <h2>Znajdź nas</h2>
-              <div className={style.place}>
-                <FaMapPin className={style.icon} />
-                <span className={style.placeText}>
-                  57-200 Ząbkowice Śląskie <br /> ul. Kolejowa 1
-                </span>
+            <div className={style.contText}>
+              <div className={style.text}>
+                <h2>Znajdź nas</h2>
+                <div className={style.place}>
+                  <FaMapPin className={style.icon} />
+                  <span className={style.placeText}>
+                    57-200 Ząbkowice Śląskie <br /> ul. Kolejowa 1
+                  </span>
+                </div>
+              </div>
+              <div className={style.text}>
+                <h2>Umów Wizytę</h2>
+                <div className={style.phoneNumber}>
+                  <span className={style.phone}>
+                    <a href="tel:+48504598563">(+48) 504-598-563</a>
+                  </span>
+                  <span className={style.phone}>
+                    <a href="tel:+48533073301">(+48) 533-073-301</a>
+                  </span>
+                </div>
               </div>
             </div>
             <div className={style.contMap}>

@@ -6,7 +6,7 @@
   left: 50%;
   font-size: 50px;
   transform: translateX(-50%);
-  z-index: 2;
+  z-index: 999;
   .arrowIcon {
     cursor: pointer !important;
     color: $color-main-font;

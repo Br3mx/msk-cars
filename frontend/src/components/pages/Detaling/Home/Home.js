@@ -3,7 +3,7 @@ import FirstSection from "../../../features/Detaling/FirstSection/FirstSection";
 import SecondSection from "../../../features/Detaling/SecondSection/SecondSection";
 import ThirdSection from "../../../features/Detaling/ThirdSection/ThirdSection";
 import FourthSection from "../../../features/Detaling/FourthSection/FourthSection";
-
+import style from "./Home.module.scss";
 const Home = () => {
   return (
     <>
