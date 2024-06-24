@@ -2,13 +2,15 @@
 
 .container {
   height: 100vh;
-  padding-top: 8rem;
+  padding-top: 6rem;
   position: relative;
   width: 100vw;
   background-image: url(../../../../assets/img/hyundai1.jpg);
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+  display: grid;
+  place-items: center;
   left: 50%;
   transform: translateX(-50%);
   &::before {
@@ -18,16 +20,21 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba($color-dark-blue, 0.9);
+    background-color: rgba($color-dark-blue, 0.8);
     backdrop-filter: blur(5px);
     z-index: 1;
   }
   .content {
+    padding: 20px 0 0 0;
     position: relative;
     z-index: 1;
     color: $color-light-blue;
     text-align: center;
     line-height: 40px;
+    box-shadow: 0px 0px 50px rgba($color-main-font, 0.5);
+    border-radius: 10px;
+    width: 45%;
+
     .contText {
       display: grid;
       place-items: center;
@@ -42,11 +49,23 @@
           font-weight: 900;
         }
         ul {
-          display: grid;
-          place-items: center;
+          padding: 0;
+          display: flex;
+          list-style: none;
+          flex-direction: column;
+          align-items: center;
 
           li {
-            list-style: none;
+            font-size: 25px;
+            margin: 10px;
+          }
+          li::before {
+            content: "*";
+            position: absolute;
+            left: 10%;
+            color: $color-main-font;
+            font-size: 50px;
+            padding-top: 13px;
           }
         }
         &::after {
