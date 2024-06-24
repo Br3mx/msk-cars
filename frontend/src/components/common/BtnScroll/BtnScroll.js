@@ -3,7 +3,7 @@ import { FaArrowAltCircleDown } from "react-icons/fa";
 import { Link } from "react-scroll";
 import style from "./BtnScroll.module.scss";
 
-const BtnScroll = ({ targetId }) => {
+const BtnScroll = ({ targetId, icon: Icon = FaArrowAltCircleDown }) => {
   return (
     <div className={style.contBtnScroll}>
       <Link
@@ -15,7 +15,7 @@ const BtnScroll = ({ targetId }) => {
         className={style.navbarBrand}
         style={{ textDecoration: "none", cursor: "pointer" }}
       >
-        <FaArrowAltCircleDown className={style.arrowIcon} />
+        <Icon className={style.arrowIcon} />
       </Link>
     </div>
   );

@@ -11,6 +11,14 @@ const NavBar = () => {
         <div className={style.content}>
           <Link
             to={
+              section === "detailing" ? "/home-detaling" : "/home-cars-to-order"
+            }
+            className={style.link}
+          >
+            <FaHome />
+          </Link>
+          <Link
+            to={
               section === "detailing"
                 ? "/about-detaling"
                 : "/about-cars-to-order"

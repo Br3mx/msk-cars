@@ -4,16 +4,23 @@ import { FaArrowAltCircleDown, FaArrowRight, FaPhone } from "react-icons/fa";
 import { Container, Navbar } from "react-bootstrap";
 import { Link } from "react-scroll";
 import BtnScroll from "../../../common/BtnScroll/BtnScroll";
+import { getFirstSection } from "../../../../redux/Detailing/detailingReducer";
+import { useSelector } from "react-redux";
+import { getPhone } from "../../../../redux/commonRedux";
+import Button from "../../../common/Button/Button";
+
 const FirstSection = () => {
+  const firstSection = useSelector(getFirstSection);
+  const phoneNumber = useSelector(getPhone);
   return (
     <div className={style.container} id="firstsectiondetaling">
       <Container>
         <div className={style.content}>
           <div className={style.contText}>
-            <h5>ODKRYJ PERFEKCJĘ TWOJEGO SAMOCHODU!</h5>
+            <h5>{firstSection.title}</h5>
             <p>
-              Profesjonalny autodetaling na <br />
-              <span>NAJWYŻSZYM POZIOMIE!</span>
+              {firstSection.subtitle} <br />
+              <span>{firstSection.strong}</span>
             </p>
           </div>
           <div className={style.contPhones}>
@@ -21,7 +28,7 @@ const FirstSection = () => {
               <span>
                 <a href="tel:+48533073301">
                   <FaPhone className={style.phoneIcon} />
-                  (+48) 533-073-301
+                  {phoneNumber.phone1}
                 </a>
               </span>
             </div>
@@ -29,7 +36,7 @@ const FirstSection = () => {
               <span>
                 <a href="tel:+48504598563">
                   <FaPhone className={style.phoneIcon} />
-                  (+48) 504-598-563
+                  {phoneNumber.phone2}
                 </a>
               </span>
             </div>
@@ -37,9 +44,9 @@ const FirstSection = () => {
         </div>
         <div className={style.contBtn}>
           <a target="_blank" href="https://www.facebook.com/mskrally">
-            <button className={style.btn} type="button">
+            <Button>
               SPRAWDŹ NAS <FaArrowRight />
-            </button>
+            </Button>
           </a>
         </div>
         <BtnScroll targetId="secondsectiondetaling" />

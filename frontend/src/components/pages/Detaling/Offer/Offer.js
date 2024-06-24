@@ -1,43 +1,37 @@
 import React from "react";
 import { Container } from "react-bootstrap";
 import style from "./Offer.module.scss";
+import { useSelector } from "react-redux";
+import { getOffer } from "../../../../redux/Detailing/detailingReducer";
 const Offer = () => {
+  const offer = useSelector(getOffer);
   return (
     <div className={style.container}>
       <div className={style.content}>
         <div className={style.contText}>
           <h2>
-            <strong>Auto Detailing</strong>
+            <strong>{offer.title}</strong>
           </h2>
           <div className={style.card}>
             <ul>
-              <li>Powłoki ceramiczne</li>
-              <li>Korekta lakieru</li>
-              <li>Czyszczenie wnętrza</li>
-              <li>Pranie tapicerki</li>
+              {offer.list.map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
             </ul>
           </div>
           <div className={style.card}>
             <h2>
-              <strong>
-                Regeneracja
-                <br />
-                reflektorów
-              </strong>
+              <strong>{offer.title2}</strong>
             </h2>
           </div>
           <div className={style.card}>
             <h2>
-              <strong>Folie ochronne</strong>
+              <strong>{offer.title3}</strong>
             </h2>
           </div>
           <div className={style.card}>
             <h2>
-              <strong>
-                Przyciemnianie
-                <br />
-                szyb i lamp
-              </strong>
+              <strong>{offer.title4}</strong>
             </h2>
           </div>
         </div>

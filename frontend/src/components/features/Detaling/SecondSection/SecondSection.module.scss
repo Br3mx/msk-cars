@@ -101,23 +101,4 @@
     text-align: center;
     background-color: rgba(black, 0.5);
   }
-  .btn {
-    display: inline-block;
-    background-color: $color-light-blue;
-    border-radius: 10px;
-    padding: 10px 20px;
-    text-align: center;
-    color: white;
-    text-decoration: none;
-    font-size: 16px;
-    cursor: pointer;
-    border: none;
-    transition: all 0.2s ease-in-out;
-    &:hover {
-      background-color: $color-dark-blue;
-      border-radius: 0px;
-      transform: scale(1.1);
-      color: $color-light-blue;
-    }
-  }
 }

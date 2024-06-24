@@ -1,56 +1,50 @@
 import React from "react";
 import style from "./FourthSection.module.scss";
-import { FaMapPin, FaPhone } from "react-icons/fa";
+import { FaArrowAltCircleUp, FaHome, FaMapPin, FaPhone } from "react-icons/fa";
 import { Container } from "react-bootstrap";
+import { useSelector } from "react-redux";
+import { getFourthSection } from "../../../../redux/Detailing/detailingReducer";
+import { getPhone } from "../../../../redux/commonRedux";
+import BtnScroll from "../../../common/BtnScroll/BtnScroll";
 const FourthSection = () => {
+  const fourthSection = useSelector(getFourthSection);
+  const phoneNumber = useSelector(getPhone);
   return (
     <div className={style.container} id="fourthsectiondetaling">
       <Container>
         <div className={style.content}>
-          <h1 className={style.title}>Dlaczego MSK CARS?</h1>
+          <h1 className={style.title}>{fourthSection.title}</h1>
           <ul className={style.list}>
-            <li>
-              {" "}
-              Najwyższej Jakości Produkty: Używamy tylko sprawdzonych i
-              renomowanych produktów.
-            </li>
-            <li>
-              {" "}
-              Indywidualne Podejście: Każdy samochód traktujemy z najwyższą
-              starannością, dostosowując usługi do Twoich potrzeb.
-            </li>
-            <li>
-              {" "}
-              Satysfakcja Gwarantowana: Twoje zadowolenie to nasz priorytet!
-              Zaufaj nam i przekonaj się sam.
-            </li>
+            {fourthSection.list.map((item, index) => (
+              <li key={index}>{item}</li>
+            ))}
           </ul>
           <div className={style.lokalization}>
             <div className={style.contText}>
               <div className={style.text}>
-                <h2>Znajdź nas</h2>
+                <h2>{fourthSection.title2}</h2>
                 <div className={style.place}>
                   <FaMapPin className={style.icon} />
                   <span className={style.placeText}>
-                    57-200 Ząbkowice Śląskie <br /> ul. Kolejowa 1
+                    {fourthSection.address}
                   </span>
                 </div>
               </div>
               <div className={style.text}>
-                <h2>Umów Wizytę</h2>
+                <h2>{fourthSection.title3}</h2>
                 <div className={style.phoneNumber}>
                   <span className={style.phone}>
-                    <a href="tel:+48504598563">(+48) 504-598-563</a>
+                    <a href="tel:+48504598563">{phoneNumber.phone1}</a>
                   </span>
                   <span className={style.phone}>
-                    <a href="tel:+48533073301">(+48) 533-073-301</a>
+                    <a href="tel:+48533073301">{phoneNumber.phone2}</a>
                   </span>
                 </div>
               </div>
             </div>
             <div className={style.contMap}>
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2532.614997195598!2d16.808683476230733!3d50.5971088767936!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470e252e72615e9f%3A0x6394d02562c853ba!2zS29sZWpvd2EgMSwgNTctMjAwIFrEhWJrb3dpY2UgxZpsxIVza2ll!5e0!3m2!1sen!2spl!4v1718812657384!5m2!1sen!2spl"
+                src={fourthSection.map}
                 width="400"
                 height="300"
                 className={style.map}
@@ -62,6 +56,7 @@ const FourthSection = () => {
             </div>
           </div>
         </div>
+        <BtnScroll targetId="firstsectiondetaling" icon={FaArrowAltCircleUp} />
       </Container>
     </div>
   );

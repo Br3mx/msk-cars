@@ -10,6 +10,8 @@ import WelcomePages from "./components/pages/WelcomePages/WelcomePages";
 import { SectionProvider } from "./components/common/SectionContext";
 import NotFound from "./components/pages/NotFound/NotFound";
 import Preloader from "./components/common/Preloader/Preloader";
+import SingleRealization from "./components/pages/Detaling/SingleRealization/SingleRealization";
+import ScrollToTop from "./utils/ScrollToTop";
 const App = () => {
   const location = useLocation();
   const [loading, setLoading] = useState(true);
@@ -22,28 +24,37 @@ const App = () => {
   return (
     <SectionProvider>
       {loading ? (
-        <Preloader /> // Render Preloader when loading is true
+        <Preloader />
       ) : (
-        <>
-          {location.pathname === "/" ? (
-            <Routes>
-              <Route path="/" element={<WelcomePages />} />
-            </Routes>
-          ) : (
-            <MainLayout>
+        <ScrollToTop>
+          <>
+            {location.pathname === "/" ? (
               <Routes>
-                {/* Detaling */}
-                <Route path="/home-detaling" element={<Home />} />
-                <Route path="/about-detaling" element={<About />} />
-                <Route path="/contact-detaling" element={<Contact />} />
-                <Route path="/offer-detaling" element={<Offer />} />
-                <Route path="/realization-detaling" element={<Realization />} />
-                <Route path="*" element={<NotFound />} />
-                {/* SPROWADZANIE SAMOCHODÓW */}
+                <Route path="/" element={<WelcomePages />} />
               </Routes>
-            </MainLayout>
-          )}
-        </>
+            ) : (
+              <MainLayout>
+                <Routes>
+                  {/* Detaling */}
+                  <Route path="/home-detaling" element={<Home />} />
+                  <Route path="/about-detaling" element={<About />} />
+                  <Route path="/contact" element={<Contact />} />
+                  <Route path="/offer-detaling" element={<Offer />} />
+                  <Route
+                    path="/realization-detaling"
+                    element={<Realization />}
+                  />
+                  <Route
+                    path="/realization-detaling/:id"
+                    element={<SingleRealization />}
+                  />
+                  <Route path="*" element={<NotFound />} />
+                  {/* SPROWADZANIE SAMOCHODÓW */}
+                </Routes>
+              </MainLayout>
+            )}
+          </>
+        </ScrollToTop>
       )}
     </SectionProvider>
   );
