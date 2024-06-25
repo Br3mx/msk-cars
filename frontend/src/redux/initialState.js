@@ -4,6 +4,10 @@ const initialState = {
       phone1: "(+48) 533-073-301",
       phone2: "(+48) 504-598-563",
     },
+    address: {
+      map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2532.614997195598!2d16.808683476230733!3d50.5971088767936!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470e252e72615e9f%3A0x6394d02562c853ba!2zS29sZWpvd2EgMSwgNTctMjAwIFrEhWJrb3dpY2UgxZpsxIVza2ll!5e0!3m2!1sen!2spl!4v1718812657384!5m2!1sen!2spl",
+      lokalization: "57-200 Ząbkowice Śląskie ul. Kolejowa 1",
+    },
   },
   detailing: {
     firstSection: {
@@ -48,9 +52,7 @@ const initialState = {
         "Satysfakcja Gwarantowana: Twoje zadowolenie to nasz priorytet! Zaufaj nam i przekonaj się sam.",
       ],
       title2: "Znajdź nas",
-      address: "57-200 Ząbkowice Śląskie ul. Kolejowa 1",
       title3: "Umów Wizytę",
-      map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2532.614997195598!2d16.808683476230733!3d50.5971088767936!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470e252e72615e9f%3A0x6394d02562c853ba!2zS29sZWpvd2EgMSwgNTctMjAwIFrEhWJrb3dpY2UgxZpsxIVza2ll!5e0!3m2!1sen!2spl!4v1718812657384!5m2!1sen!2spl",
     },
     offer: {
       title: "Auto Detailing",
