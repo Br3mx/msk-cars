@@ -1,16 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import style from "./Contact.module.scss";
 import { Container } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { getAddress, getPhone } from "../../../../redux/commonRedux";
 import { FaMapPin, FaPhoneAlt } from "react-icons/fa";
+import Button from "../../../common/Button/Button";
 const Contact = () => {
   const phoneNumber = useSelector(getPhone);
   const address = useSelector(getAddress);
+  const [phone, setPhone] = useState("");
+
+  const handleInputChange = (e) => {
+    const formattedPhoneNumber = e.target.value.replace(/[^0-9-()\s]/g, "");
+    setPhone(formattedPhoneNumber);
+  };
   return (
     <div className={style.container}>
-      <div className={style.content}>
-        <Container>
+      <Container>
+        <div className={style.content}>
           <aside className={style.contact}>
             <div className={style.phone}>
               <h2>Telefon</h2>
@@ -45,8 +52,59 @@ const Contact = () => {
               </div>
             </div>
           </aside>
-        </Container>
-      </div>
+          <asside className={style.mailForm}>
+            <h2>Napisz do nas</h2>
+            <form>
+              <span>
+                <h6 className={style.title}>Imię (obowiązkowe)</h6>
+                <input type="text" placeholder="np. Jan" />
+              </span>
+              <span>
+                <h6 className={style.title}>Nazwisko (obowiązkowe)</h6>
+                <input type="text" placeholder="np. Kowalski" />
+              </span>
+              <div className={style.mailPhone}>
+                <span>
+                  <h6 className={style.title}>Adres email (obowiązkowe)</h6>
+                  <input
+                    type="email"
+                    placeholder="np. jan.kowalski@example.com"
+                  />
+                </span>
+                <span>
+                  <h6 className={style.title}>Numer Telefonu (obowiązkowe)</h6>
+                  <input
+                    type="text"
+                    value={phone}
+                    onChange={handleInputChange}
+                    placeholder="np. 123-456-789"
+                  />
+                </span>
+              </div>
+              <span>
+                <select id="title" className={style.titleSelect}>
+                  <option value="">Wybierz Tytuł</option>
+                  <option value="1">Powłoki ceramiczne</option>
+                  <option value="2">Korekta lakieru</option>
+                  <option value="3">Czyszczenie wnętrza</option>
+                  <option value="4">Pranie tapicerki</option>
+                  <option value="5">Regeneracja Reflektotów</option>
+                  <option value="6">Folie ochronne</option>
+                  <option value="7">Przyciemnianie szyb i lamp</option>
+                  <option value="8">Inne</option>
+                </select>
+              </span>
+              <span>
+                <h6>Dodatkowe pytanie i uwagi (obowiązkowe)</h6>
+                <textarea placeholder="" />
+              </span>
+              <span className={style.contButton}>
+                <Button type="submit">Wyślij</Button>
+              </span>
+            </form>
+          </asside>
+        </div>
+      </Container>
     </div>
   );
 };

@@ -10,6 +10,7 @@
   background-size: cover;
   left: 50%;
   transform: translateX(-50%);
+
   &::before {
     content: "";
     position: absolute;
@@ -22,18 +23,22 @@
   .content {
     z-index: 2;
     position: relative;
+    display: flex;
+    justify-content: space-between; // Wyrównanie do końca
+    align-items: flex-start;
+    gap: 70px;
     .contact {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
       text-align: center;
-      width: fit-content;
+      width: 100%;
       background-color: transparent;
       backdrop-filter: blur(10px);
+      flex: 1;
       border-radius: 10px;
       border: 2px solid $color-main-font;
       padding: 2rem;
-      gap: 0rem;
       .phone {
         display: grid;
         place-items: center;
@@ -60,7 +65,7 @@
     }
     .address {
       background-color: rgba($color-dark-blue, 0.5);
-      padding: 20px;
+      padding: 0 20px 20px 20px;
       border-radius: 10px;
       border: 2px solid $color-main-font;
       .contLok {
@@ -68,10 +73,62 @@
         place-items: center;
         font-size: 19px;
         color: rgba($color-light-blue, 1);
-        height: 60px;
+        height: 50px;
       }
       .map {
         border-radius: 10px;
+      }
+    }
+    .mailForm {
+      display: grid;
+      place-items: end;
+      width: 100%;
+      flex-wrap: wrap;
+      .mailPhone {
+        display: flex;
+        justify-content: space-between;
+
+        input {
+          width: 360px;
+        }
+      }
+      form {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+
+        gap: 15px;
+        .contButton {
+          display: grid;
+          place-items: center;
+          Button {
+            display: inherit;
+            width: 30%;
+          }
+        }
+        span {
+          input {
+            width: 750px;
+            height: 3rem;
+            padding: 0 20px;
+            caret-color: rgba($color-light-blue, 1);
+            border: none;
+            font-size: 18px;
+            color: rgba($color-light-blue, 1);
+            &:focus {
+              color: rgba($color-light-blue, 1);
+            }
+          }
+          textarea {
+            width: 750px;
+            height: 150px;
+            resize: none;
+          }
+          select {
+            height: 40px;
+            text-align: center;
+          }
+        }
       }
     }
   }
