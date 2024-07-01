@@ -5,15 +5,19 @@ import { Container } from "react-bootstrap";
 import Button from "../../../common/Button/Button";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { getThirdSection } from "../../../../redux/Detailing/detailingReducer";
+import {
+  getRealization,
+  getThirdSection,
+} from "../../../../redux/Detailing/detailingReducer";
 const ThirdSection = () => {
   const thirdSection = useSelector(getThirdSection);
+  const realization = useSelector(getRealization);
   return (
     <div className={style.container} id="thirdsectiondetaling">
       <div className={style.content}>
         <h1>{thirdSection.title}</h1>
         <div className={style.realization}>
-          {thirdSection.card.map((item, index) => (
+          {realization.car.slice(0, 4).map((item, index) => (
             <div key={index} className={style.card}>
               <img src={item.img} alt={item.carMark} />
               <div className={style.contDesc}>

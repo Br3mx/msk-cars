@@ -53,15 +53,15 @@ const Contact = () => {
             </div>
           </aside>
           <asside className={style.mailForm}>
-            <h2>Napisz do nas</h2>
             <form>
+              <h2 className={style.mainTitle}>Napisz do nas !</h2>
               <span>
                 <h6 className={style.title}>Imię (obowiązkowe)</h6>
-                <input type="text" placeholder="np. Jan" />
+                <input type="text" placeholder="np. Jan" maxLength={20} />
               </span>
               <span>
                 <h6 className={style.title}>Nazwisko (obowiązkowe)</h6>
-                <input type="text" placeholder="np. Kowalski" />
+                <input type="text" placeholder="np. Kowalski" maxLength={20} />
               </span>
               <div className={style.mailPhone}>
                 <span>
@@ -69,6 +69,7 @@ const Contact = () => {
                   <input
                     type="email"
                     placeholder="np. jan.kowalski@example.com"
+                    maxLength={30}
                   />
                 </span>
                 <span>
@@ -78,6 +79,7 @@ const Contact = () => {
                     value={phone}
                     onChange={handleInputChange}
                     placeholder="np. 123-456-789"
+                    maxLength={9}
                   />
                 </span>
               </div>
@@ -88,7 +90,7 @@ const Contact = () => {
                   <option value="2">Korekta lakieru</option>
                   <option value="3">Czyszczenie wnętrza</option>
                   <option value="4">Pranie tapicerki</option>
-                  <option value="5">Regeneracja Reflektotów</option>
+                  <option value="5">Regeneracja Reflektorów</option>
                   <option value="6">Folie ochronne</option>
                   <option value="7">Przyciemnianie szyb i lamp</option>
                   <option value="8">Inne</option>

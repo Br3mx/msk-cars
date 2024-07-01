@@ -21,28 +21,6 @@ const initialState = {
     },
     thirdSection: {
       title: "Sprawdź nasze realizacje",
-      card: [
-        {
-          id: "1",
-          img: "img/hyundai1.jpg",
-          carMark: "Lorem Ipsum1",
-        },
-        {
-          id: "2",
-          img: "img/hyundai2.jpg",
-          carMark: "Lorem Ipsum2",
-        },
-        {
-          id: "3",
-          img: "img/hyundai3.jpg",
-          carMark: "Lorem Ipsum3",
-        },
-        {
-          id: "4",
-          img: "img/logo.png",
-          carMark: "Lorem Ipsum4",
-        },
-      ],
     },
     fourthSection: {
       title: "Dlaczego MSK CARS?",
@@ -65,6 +43,80 @@ const initialState = {
       title2: "Regeneracja reflektorów",
       title3: "Folie ochronne",
       title4: "Przyciemnianie szyb i lamp",
+    },
+    realization: {
+      car: [
+        {
+          id: "1",
+          img: "img/hyundai1.jpg",
+          carMark: "Hyundai1",
+        },
+        {
+          id: "2",
+          img: "img/hyundai2.jpg",
+          carMark: "Hyundai2",
+        },
+        {
+          id: "3",
+          img: "img/hyundai3.jpg",
+          carMark: "Hyundai3",
+        },
+        {
+          id: "4",
+          img: "img/hyundai1.jpg",
+          carMark: "Hyundai4",
+        },
+        {
+          id: "5",
+          img: "img/hyundai2.jpg",
+          carMark: "Hyundai5",
+        },
+        {
+          id: "6",
+          img: "img/hyundai3.jpg",
+          carMark: "Hyundai6",
+        },
+        {
+          id: "7",
+          img: "img/hyundai1.jpg",
+          carMark: "Hyundai7",
+        },
+        {
+          id: "8",
+          img: "img/hyundai2.jpg",
+          carMark: "Hyundai8",
+        },
+        {
+          id: "9",
+          img: "img/hyundai3.jpg",
+          carMark: "Hyundai9",
+        },
+        {
+          id: "10",
+          img: "img/hyundai1.jpg",
+          carMark: "Hyundai10",
+        },
+        {
+          id: "11",
+          img: "img/hyundai2.jpg",
+          carMark: "Hyundai11",
+        },
+        {
+          id: "12",
+          img: "img/hyundai3.jpg",
+          carMark: "Hyundai12",
+        },
+        {
+          id: "13",
+          img: "img/hyundai1.jpg",
+          carMark: "Hyundai13",
+        },
+        {
+          id: "14",
+          img: "img/hyundai2.jpg",
+          carMark: "Hyundai14",
+        },
+      ],
     },
   },
 };
