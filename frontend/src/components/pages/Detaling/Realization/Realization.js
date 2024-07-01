@@ -32,7 +32,7 @@ const Realization = () => {
               {realization.car.map((item, index) => (
                 <div key={index} className={style.cardWrapper}>
                   <div className={style.card}>
-                    <img src={item.img} alt={item.carMark} />
+                    <img src={`/img/${item.img}`} alt={item.carMark} />
                     <div className={style.contDesc}>
                       <div className={style.contText}>{item.carMark}</div>
                       <div className={style.btn}>

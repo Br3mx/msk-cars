@@ -19,7 +19,7 @@ const ThirdSection = () => {
         <div className={style.realization}>
           {realization.car.slice(0, 4).map((item, index) => (
             <div key={index} className={style.card}>
-              <img src={item.img} alt={item.carMark} />
+              <img src={`/img/${item.img}`} alt={item.carMark} />
               <div className={style.contDesc}>
                 <div className={style.contText}>{item.carMark}</div>
                 <div className={style.btn}>

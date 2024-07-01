@@ -17,7 +17,14 @@ const initialState = {
     },
     secondSection: {
       title: "Czy Twój samochód zasługuje na luksusową pielęgnację?",
-      text: "U nas w MSK CARS przekształcamy zwykłe auta w prawdziwe dzieła sztuki! Oferujemy kompleksowe usługi autodetailingu, które przywrócą blask i ochronę każdemu pojazdowi.",
+      text: (
+        <>
+          U nas w MSK CARS przekształcamy zwykłe auta w prawdziwe dzieła sztuki!
+          <br />
+          Oferujemy kompleksowe usługi autodetailingu, które przywrócą blask i
+          ochronę każdemu pojazdowi.
+        </>
+      ),
     },
     thirdSection: {
       title: "Sprawdź nasze realizacje",
@@ -35,86 +42,128 @@ const initialState = {
     offer: {
       title: "Auto Detailing",
       list: [
-        "Powłoki ceramiczne",
-        "Korekta lakieru",
-        "Czyszczenie wnętrza",
-        "Pranie tapicerki",
+        "Powłoki ceramiczne - od 900 zł",
+        "Korekta lakieru - 200 zł",
+        "Detailing wnętrza - od 300 zł",
+        "Pranie tapicerki - od 250 zł",
       ],
-      title2: "Regeneracja reflektorów",
+      title2: "Regeneracja reflektorów - 150 zł",
       title3: "Folie ochronne",
-      title4: "Przyciemnianie szyb i lamp",
+      title4: "Przyciemnianie szyb i lamp - od 400 zł",
     },
     realization: {
       car: [
         {
           id: "1",
-          img: "img/hyundai1.jpg",
+          img: "hyundai1.jpg",
           carMark: "Hyundai1",
+          restImg: ["hyundai1.jpg", "hyundai2.jpg", "hyundai3.jpg"],
+          description:
+            "Lorem Ipsum is Lorem Ipsum but it is Lorem Ipsum and is therefore not Lorem Ipsum",
         },
         {
           id: "2",
-          img: "img/hyundai2.jpg",
+          img: "hyundai2.jpg",
           carMark: "Hyundai2",
+          restImg: ["hyundai1.jpg", "hyundai2.jpg", "hyundai3.jpg"],
+          description:
+            "Lorem Ipsum is Lorem Ipsum but it is Lorem Ipsum and is therefore not Lorem Ipsum",
         },
         {
           id: "3",
-          img: "img/hyundai3.jpg",
+          img: "hyundai3.jpg",
           carMark: "Hyundai3",
+          restImg: ["hyundai1.jpg", "hyundai2.jpg", "hyundai3.jpg"],
+          description:
+            "Lorem Ipsum is Lorem Ipsum but it is Lorem Ipsum and is therefore not Lorem Ipsum",
         },
         {
           id: "4",
-          img: "img/hyundai1.jpg",
+          img: "hyundai1.jpg",
           carMark: "Hyundai4",
+          restImg: ["hyundai1.jpg", "hyundai2.jpg", "hyundai3.jpg"],
+          description:
+            "Lorem Ipsum is Lorem Ipsum but it is Lorem Ipsum and is therefore not Lorem Ipsum",
         },
         {
           id: "5",
-          img: "img/hyundai2.jpg",
+          img: "hyundai2.jpg",
           carMark: "Hyundai5",
+          restImg: ["hyundai1.jpg", "hyundai2.jpg", "hyundai3.jpg"],
+          description:
+            "Lorem Ipsum is Lorem Ipsum but it is Lorem Ipsum and is therefore not Lorem Ipsum",
         },
         {
           id: "6",
-          img: "img/hyundai3.jpg",
+          img: "hyundai3.jpg",
           carMark: "Hyundai6",
+          restImg: ["hyundai1.jpg", "hyundai2.jpg", "hyundai3.jpg"],
+          description:
+            "Lorem Ipsum is Lorem Ipsum but it is Lorem Ipsum and is therefore not Lorem Ipsum",
         },
         {
           id: "7",
-          img: "img/hyundai1.jpg",
+          img: "hyundai1.jpg",
           carMark: "Hyundai7",
+          restImg: ["hyundai1.jpg", "hyundai2.jpg", "hyundai3.jpg"],
+          description:
+            "Lorem Ipsum is Lorem Ipsum but it is Lorem Ipsum and is therefore not Lorem Ipsum",
         },
         {
           id: "8",
-          img: "img/hyundai2.jpg",
+          img: "hyundai2.jpg",
           carMark: "Hyundai8",
+          restImg: ["hyundai1.jpg", "hyundai2.jpg", "hyundai3.jpg"],
+          description:
+            "Lorem Ipsum is Lorem Ipsum but it is Lorem Ipsum and is therefore not Lorem Ipsum",
         },
         {
           id: "9",
-          img: "img/hyundai3.jpg",
+          img: "hyundai3.jpg",
           carMark: "Hyundai9",
+          restImg: ["hyundai1.jpg", "hyundai2.jpg", "hyundai3.jpg"],
+          description:
+            "Lorem Ipsum is Lorem Ipsum but it is Lorem Ipsum and is therefore not Lorem Ipsum",
         },
         {
           id: "10",
-          img: "img/hyundai1.jpg",
+          img: "hyundai1.jpg",
           carMark: "Hyundai10",
+          restImg: ["hyundai1.jpg", "hyundai2.jpg", "hyundai3.jpg"],
+          description:
+            "Lorem Ipsum is Lorem Ipsum but it is Lorem Ipsum and is therefore not Lorem Ipsum",
         },
         {
           id: "11",
-          img: "img/hyundai2.jpg",
+          img: "hyundai2.jpg",
           carMark: "Hyundai11",
+          restImg: ["hyundai1.jpg", "hyundai2.jpg", "hyundai3.jpg"],
+          description:
+            "Lorem Ipsum is Lorem Ipsum but it is Lorem Ipsum and is therefore not Lorem Ipsum",
         },
         {
           id: "12",
-          img: "img/hyundai3.jpg",
+          img: "hyundai3.jpg",
           carMark: "Hyundai12",
+          restImg: ["hyundai1.jpg", "hyundai2.jpg", "hyundai3.jpg"],
+          description:
+            "Lorem Ipsum is Lorem Ipsum but it is Lorem Ipsum and is therefore not Lorem Ipsum",
         },
         {
           id: "13",
-          img: "img/hyundai1.jpg",
+          img: "hyundai1.jpg",
           carMark: "Hyundai13",
+          restImg: ["hyundai1.jpg", "hyundai2.jpg", "hyundai3.jpg"],
+          description:
+            "Lorem Ipsum is Lorem Ipsum but it is Lorem Ipsum and is therefore not Lorem Ipsum",
         },
         {
           id: "14",
-          img: "img/hyundai2.jpg",
+          img: "hyundai2.jpg",
           carMark: "Hyundai14",
+          restImg: ["hyundai1.jpg", "hyundai2.jpg", "hyundai3.jpg"],
+          description:
+            "Lorem Ipsum is Lorem Ipsum but it is Lorem Ipsum and is therefore not Lorem Ipsum",
         },
       ],
     },

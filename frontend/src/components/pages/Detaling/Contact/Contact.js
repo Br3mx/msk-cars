@@ -97,7 +97,7 @@ const Contact = () => {
                 </select>
               </span>
               <span>
-                <h6>Dodatkowe pytanie i uwagi (obowiązkowe)</h6>
+                <h6>Dodatkowe pytania i uwagi (obowiązkowe)</h6>
                 <textarea placeholder="" />
               </span>
               <span className={style.contButton}>

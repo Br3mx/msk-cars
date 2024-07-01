@@ -127,6 +127,15 @@
           select {
             height: 40px;
             text-align: center;
+            color: $color-main-font;
+            border: none;
+            border-radius: 10px;
+            background-color: rgba($color-light-blue, 1);
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            &:hover {
+              transform: scale(1.1);
+            }
           }
         }
       }
