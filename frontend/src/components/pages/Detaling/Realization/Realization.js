@@ -8,10 +8,12 @@ import style from "./Realization.module.scss";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Container } from "react-bootstrap";
+import { motion, useInView } from "framer-motion";
 
 const Realization = () => {
   const realization = useSelector(getRealization);
-
+  const ref = React.useRef(null);
+  const inView = useInView(ref, { once: true });
   const settings = {
     dots: false,
     infinite: true,
@@ -21,16 +23,37 @@ const Realization = () => {
   };
 
   return (
-    <div className={style.container}>
+    <motion.div className={style.container}>
       <Container>
-        <div className={style.content}>
-          <div className={style.title}>
+        <motion.div
+          ref={ref}
+          initial={{ y: 50, opacity: 0 }}
+          animate={inView ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }}
+          transition={{ duration: 1, delay: 0.2 }}
+          className={style.content}
+        >
+          <motion.div
+            className={style.title}
+            initial={{ y: -100, opacity: 0 }}
+            animate={inView ? { y: 0, opacity: 1 } : { y: -100, opacity: 0 }}
+            transition={{ duration: 1, delay: 0.2 }}
+          >
             <h1>Realizacje</h1>
-          </div>
+          </motion.div>
           <div className={style.realization}>
             <Slider {...settings}>
               {realization.car.map((item, index) => (
-                <div key={index} className={style.cardWrapper}>
+                <motion.div
+                  key={index}
+                  className={style.cardWrapper}
+                  initial={{ scale: 0.5, opacity: 0 }}
+                  animate={
+                    inView
+                      ? { scale: 1, opacity: 1 }
+                      : { scale: 0.5, opacity: 0 }
+                  }
+                  transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
+                >
                   <div className={style.card}>
                     <img src={`/img/${item.img}`} alt={item.carMark} />
                     <div className={style.contDesc}>
@@ -46,13 +69,13 @@ const Realization = () => {
                       </div>
                     </div>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </Slider>
           </div>
-        </div>
+        </motion.div>
       </Container>
-    </div>
+    </motion.div>
   );
 };
 

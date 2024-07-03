@@ -9,16 +9,43 @@ import {
   getRealization,
   getThirdSection,
 } from "../../../../redux/Detailing/detailingReducer";
+import { motion, useInView } from "framer-motion";
+
 const ThirdSection = () => {
   const thirdSection = useSelector(getThirdSection);
   const realization = useSelector(getRealization);
+
+  const ref = React.useRef(null);
+  const inView = useInView(ref, { once: true });
+  console.log(inView);
+
   return (
-    <div className={style.container} id="thirdsectiondetaling">
-      <div className={style.content}>
-        <h1>{thirdSection.title}</h1>
+    <motion.div className={style.container} id="thirdsectiondetaling">
+      <motion.div
+        className={style.content}
+        ref={ref}
+        initial={{ y: 50, opacity: 0 }}
+        animate={inView ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }}
+        transition={{ duration: 1, delay: 0.2 }}
+      >
+        <motion.h1
+          initial={{ x: -50, opacity: 0 }}
+          animate={inView ? { x: 0, opacity: 1 } : { x: -50, opacity: 0 }}
+          transition={{ duration: 1, delay: 1 }}
+        >
+          {thirdSection.title}
+        </motion.h1>
         <div className={style.realization}>
           {realization.car.slice(0, 4).map((item, index) => (
-            <div key={index} className={style.card}>
+            <motion.div
+              key={index}
+              className={style.card}
+              initial={{ scale: 0.5, opacity: 0 }}
+              animate={
+                inView ? { scale: 1, opacity: 1 } : { scale: 0.5, opacity: 0 }
+              }
+              transition={{ duration: 1, delay: 0.5 + index * 0.2 }}
+            >
               <img src={`/img/${item.img}`} alt={item.carMark} />
               <div className={style.contDesc}>
                 <div className={style.contText}>{item.carMark}</div>
@@ -32,16 +59,22 @@ const ThirdSection = () => {
                   </Link>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
-
-          <Link to="/realization-detaling" className={style.button}>
-            <Button>Zobacz więcej realizacji</Button>
-          </Link>
+          <motion.span
+            className={style.contButton}
+            initial={{ opacity: 0 }}
+            animate={inView ? { opacity: 1 } : { opacity: 0 }}
+            transition={{ duration: 1, delay: 2 }}
+          >
+            <Link to="/realization-detaling" className={style.button}>
+              <Button>Zobacz więcej realizacji</Button>
+            </Link>
+          </motion.span>
         </div>
-      </div>
+      </motion.div>
       <BtnScroll targetId="fourthsectiondetaling" />
-    </div>
+    </motion.div>
   );
 };
 

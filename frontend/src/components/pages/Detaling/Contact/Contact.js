@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { getAddress, getPhone } from "../../../../redux/commonRedux";
 import { FaMapPin, FaPhoneAlt } from "react-icons/fa";
 import Button from "../../../common/Button/Button";
+import { motion, useInView } from "framer-motion";
 const Contact = () => {
   const phoneNumber = useSelector(getPhone);
   const address = useSelector(getAddress);
@@ -14,14 +15,27 @@ const Contact = () => {
     const formattedPhoneNumber = e.target.value.replace(/[^0-9-()\s]/g, "");
     setPhone(formattedPhoneNumber);
   };
+  const ref = React.useRef(null);
+  const inView = useInView(ref, { once: true });
   return (
-    <div className={style.container}>
+    <motion.div className={style.container}>
       <Container>
-        <div className={style.content}>
+        <motion.div
+          className={style.content}
+          ref={ref}
+          initial={{ y: 200, opacity: 0 }}
+          animate={inView ? { y: 0, opacity: 1 } : { y: 200, opacity: 0 }}
+          transition={{ duration: 1, delay: 0.2 }}
+        >
           <aside className={style.contact}>
-            <div className={style.phone}>
+            <motion.div
+              className={style.phone}
+              initial={{ x: -100, opacity: 0 }}
+              animate={inView ? { x: 0, opacity: 1 } : { x: -100, opacity: 0 }}
+              transition={{ duration: 1, delay: 0.7 }}
+            >
               <h2>Telefon</h2>
-              <div className={style.phoneNumber}>
+              <motion.div className={style.phoneNumber}>
                 <span>
                   <a href="tel:+48533073301" target="_blank">
                     <FaPhoneAlt />
@@ -34,11 +48,27 @@ const Contact = () => {
                     <p>{phoneNumber.phone2}</p>
                   </a>
                 </span>
-              </div>
-            </div>
-            <div className={style.address}>
-              <div className={style.contLok}>{address.lokalization}</div>
-              <div className={style.map}>
+              </motion.div>
+            </motion.div>
+            <motion.div
+              className={style.address}
+              initial={{ y: 100, opacity: 0 }}
+              animate={inView ? { y: 0, opacity: 1 } : { y: 100, opacity: 0 }}
+              transition={{ duration: 1, delay: 0.7 }}
+            >
+              <motion.div className={style.contLok}>
+                {address.lokalization}
+              </motion.div>
+              <motion.div
+                className={style.map}
+                initial={{ rotate: 180, opacity: 0 }}
+                animate={
+                  inView
+                    ? { rotate: 0, opacity: 1 }
+                    : { rotate: 180, opacity: 0 }
+                }
+                transition={{ duration: 1, delay: 0.7 }}
+              >
                 <iframe
                   src={address.map}
                   width="350"
@@ -49,11 +79,15 @@ const Contact = () => {
                   referrerPolicy="no-referrer-when-downgrade"
                   title="Google Maps"
                 ></iframe>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           </aside>
           <asside className={style.mailForm}>
-            <form>
+            <motion.form
+              initial={{ y: -100, opacity: 0 }}
+              animate={inView ? { y: 0, opacity: 1 } : { y: -100, opacity: 0 }}
+              transition={{ duration: 1, delay: 0.7 }}
+            >
               <h2 className={style.mainTitle}>Napisz do nas !</h2>
               <span>
                 <h6 className={style.title}>Imię (obowiązkowe)</h6>
@@ -63,7 +97,7 @@ const Contact = () => {
                 <h6 className={style.title}>Nazwisko (obowiązkowe)</h6>
                 <input type="text" placeholder="np. Kowalski" maxLength={20} />
               </span>
-              <div className={style.mailPhone}>
+              <motion.div className={style.mailPhone}>
                 <span>
                   <h6 className={style.title}>Adres email (obowiązkowe)</h6>
                   <input
@@ -82,7 +116,7 @@ const Contact = () => {
                     maxLength={9}
                   />
                 </span>
-              </div>
+              </motion.div>
               <span>
                 <select id="title" className={style.titleSelect}>
                   <option value="">Wybierz Tytuł</option>
@@ -103,11 +137,11 @@ const Contact = () => {
               <span className={style.contButton}>
                 <Button type="submit">Wyślij</Button>
               </span>
-            </form>
+            </motion.form>
           </asside>
-        </div>
+        </motion.div>
       </Container>
-    </div>
+    </motion.div>
   );
 };
 

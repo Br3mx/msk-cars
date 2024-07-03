@@ -1,5 +1,6 @@
 @import "../../../../style/settings.scss";
 
+/* style.module.scss */
 .container {
   height: 100vh;
   padding-top: 6.3rem;
@@ -9,8 +10,9 @@
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  display: grid;
-  place-items: center;
+  display: flex; /* Użyj flexbox do centrowania zawartości */
+  justify-content: center; /* Centrowanie zawartości w pionie */
+  align-items: center; /* Centrowanie zawartości w poziomie */
   left: 50%;
   transform: translateX(-50%);
   &::before {
@@ -34,7 +36,8 @@
     box-shadow: 0px 0px 50px rgba($color-main-font, 0.5);
     border-radius: 10px;
     width: 45%;
-
+    max-width: 800px; /* Ustaw maksymalną szerokość kontenera */
+    margin: 0 auto; /* Automatyczne centrowanie */
     .contText {
       display: grid;
       place-items: center;
@@ -43,7 +46,7 @@
       }
       .card {
         position: relative;
-        width: 30vw;
+        width: 30vw; /* Możesz dostosować szerokość karty */
         padding: 10px 0;
         h2 {
           font-weight: 900;
@@ -55,7 +58,6 @@
           list-style: none;
           flex-direction: column;
           align-items: center;
-
           li {
             font-size: 25px;
             margin: 10px;

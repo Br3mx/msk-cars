@@ -9,7 +9,7 @@ const BtnScroll = ({ targetId, icon: Icon = FaArrowAltCircleDown }) => {
       <Link
         to={targetId}
         spy={true}
-        offset={0}
+        offset={1.1}
         duration={700}
         smooth={true}
         className={style.navbarBrand}

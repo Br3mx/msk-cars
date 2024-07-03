@@ -1,29 +1,52 @@
 import React from "react";
 import style from "./FirstSection.module.scss";
 import { FaArrowAltCircleDown, FaArrowRight, FaPhone } from "react-icons/fa";
-import { Container, Navbar } from "react-bootstrap";
-import { Link } from "react-scroll";
+import { Container } from "react-bootstrap";
 import BtnScroll from "../../../common/BtnScroll/BtnScroll";
-import { getFirstSection } from "../../../../redux/Detailing/detailingReducer";
 import { useSelector } from "react-redux";
+import { getFirstSection } from "../../../../redux/Detailing/detailingReducer";
 import { getPhone } from "../../../../redux/commonRedux";
 import Button from "../../../common/Button/Button";
+import { motion, useInView } from "framer-motion";
 
 const FirstSection = () => {
   const firstSection = useSelector(getFirstSection);
   const phoneNumber = useSelector(getPhone);
+  const ref = React.useRef(null);
+  const inView = useInView(ref, { once: true });
   return (
-    <div className={style.container} id="firstsectiondetaling">
+    <motion.div className={style.container} id="firstsectiondetaling">
       <Container>
-        <div className={style.content}>
+        <motion.div
+          className={style.content}
+          ref={ref}
+          initial={{ y: -50, opacity: 0 }}
+          animate={inView ? { y: 0, opacity: 1 } : { y: -50, opacity: 0 }}
+          transition={{ duration: 1, delay: 0.2 }}
+        >
           <div className={style.contText}>
-            <h5>{firstSection.title}</h5>
-            <p>
+            <motion.h5
+              initial={{ x: 100, opacity: 0 }}
+              animate={inView ? { x: 0, opacity: 1 } : { x: 100, opacity: 0 }}
+              transition={{ duration: 1, delay: 0.5 }}
+            >
+              {firstSection.title}
+            </motion.h5>
+            <motion.p
+              initial={{ x: 50, opacity: 0 }}
+              animate={inView ? { x: 0, opacity: 1 } : { x: 50, opacity: 0 }}
+              transition={{ duration: 1, delay: 1 }}
+            >
               {firstSection.subtitle} <br />
               <span>{firstSection.strong}</span>
-            </p>
+            </motion.p>
           </div>
-          <div className={style.contPhones}>
+          <motion.div
+            className={style.contPhones}
+            initial={{ scale: 0 }}
+            animate={inView ? { scale: 1 } : { scale: 0 }}
+            transition={{ duration: 0.5, delay: 1.5 }}
+          >
             <div className={style.contPhone}>
               <span>
                 <a href="tel:+48533073301">
@@ -40,18 +63,23 @@ const FirstSection = () => {
                 </a>
               </span>
             </div>
-          </div>
-        </div>
-        <div className={style.contBtn}>
+          </motion.div>
+        </motion.div>
+        <motion.div
+          className={style.contBtn}
+          initial={{ y: 50, opacity: 0 }}
+          animate={inView ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }}
+          transition={{ duration: 1, delay: 2 }}
+        >
           <a target="_blank" href="https://www.facebook.com/mskrally">
             <Button>
               SPRAWDŹ NAS <FaArrowRight />
             </Button>
           </a>
-        </div>
+        </motion.div>
         <BtnScroll targetId="secondsectiondetaling" />
       </Container>
-    </div>
+    </motion.div>
   );
 };
 
