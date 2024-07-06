@@ -22,20 +22,20 @@ const FirstSection = () => {
           ref={ref}
           initial={{ y: -50, opacity: 0 }}
           animate={inView ? { y: 0, opacity: 1 } : { y: -50, opacity: 0 }}
-          transition={{ duration: 1, delay: 0.2 }}
+          transition={{ duration: 1 }}
         >
           <div className={style.contText}>
             <motion.h5
               initial={{ x: 100, opacity: 0 }}
               animate={inView ? { x: 0, opacity: 1 } : { x: 100, opacity: 0 }}
-              transition={{ duration: 1, delay: 0.5 }}
+              transition={{ duration: 1, delay: 0.2 }}
             >
               {firstSection.title}
             </motion.h5>
             <motion.p
               initial={{ x: 50, opacity: 0 }}
               animate={inView ? { x: 0, opacity: 1 } : { x: 50, opacity: 0 }}
-              transition={{ duration: 1, delay: 1 }}
+              transition={{ duration: 1, delay: 0.5 }}
             >
               {firstSection.subtitle} <br />
               <span>{firstSection.strong}</span>
@@ -45,7 +45,7 @@ const FirstSection = () => {
             className={style.contPhones}
             initial={{ scale: 0 }}
             animate={inView ? { scale: 1 } : { scale: 0 }}
-            transition={{ duration: 0.5, delay: 1.5 }}
+            transition={{ duration: 0.5, delay: 1 }}
           >
             <div className={style.contPhone}>
               <span>
@@ -69,7 +69,7 @@ const FirstSection = () => {
           className={style.contBtn}
           initial={{ y: 50, opacity: 0 }}
           animate={inView ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }}
-          transition={{ duration: 1, delay: 2 }}
+          transition={{ duration: 1, delay: 1.5 }}
         >
           <a target="_blank" href="https://www.facebook.com/mskrally">
             <Button>

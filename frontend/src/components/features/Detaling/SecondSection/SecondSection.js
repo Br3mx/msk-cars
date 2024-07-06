@@ -20,20 +20,20 @@ const SecondSection = () => {
         ref={ref}
         initial={{ y: 50, opacity: 0 }}
         animate={inView ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }}
-        transition={{ duration: 1, delay: 0.2 }}
+        transition={{ duration: 1 }}
       >
         <div className={style.contText}>
           <motion.h1
             initial={{ x: -50, opacity: 0 }}
             animate={inView ? { x: 0, opacity: 1 } : { x: -50, opacity: 0 }}
-            transition={{ duration: 1, delay: 1 }}
+            transition={{ duration: 1, delay: 0.2 }}
           >
             {secondSection.title}
           </motion.h1>
           <motion.h4
             initial={{ x: 50, opacity: 0 }}
             animate={inView ? { x: 0, opacity: 1 } : { x: 50, opacity: 0 }}
-            transition={{ duration: 1, delay: 1.5 }}
+            transition={{ duration: 1, delay: 0.5 }}
           >
             {secondSection.text}
           </motion.h4>
@@ -46,14 +46,14 @@ const SecondSection = () => {
               ? { rotate: 0, scale: 1, opacity: 1 }
               : { rotate: 180, scale: 0.5, opacity: 0 }
           }
-          transition={{ duration: 0.5, delay: 2 }}
+          transition={{ duration: 0.5, delay: 1 }}
         >
           <div className={style.card}>
             <div className={style.contText}>
               <motion.h2
                 initial={{ y: -50, opacity: 0 }}
                 animate={inView ? { y: 0, opacity: 1 } : { y: -50, opacity: 0 }}
-                transition={{ duration: 1, delay: 2.5 }}
+                transition={{ duration: 1, delay: 1.5 }}
               >
                 Sprawdź Naszą ofertę
               </motion.h2>
@@ -68,7 +68,7 @@ const SecondSection = () => {
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={inView ? { opacity: 1 } : { opacity: 0 }}
-                  transition={{ duration: 1, delay: 3 }}
+                  transition={{ duration: 1, delay: 2 }}
                 >
                   <Button>Sprawdź</Button>
                 </motion.div>

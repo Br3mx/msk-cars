@@ -29,7 +29,7 @@ const Realization = () => {
           ref={ref}
           initial={{ y: 50, opacity: 0 }}
           animate={inView ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }}
-          transition={{ duration: 1, delay: 0.2 }}
+          transition={{ duration: 1 }}
           className={style.content}
         >
           <motion.div
