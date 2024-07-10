@@ -12,7 +12,15 @@ import NotFound from "./components/pages/NotFound/NotFound";
 import Preloader from "./components/common/Preloader/Preloader";
 import SingleRealization from "./components/pages/Detaling/SingleRealization/SingleRealization";
 import ScrollToTop from "./utils/ScrollToTop";
+import { useDispatch } from "react-redux";
+import { loadDetRequest } from "./redux/Detailing/detailingReducer";
 const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(loadDetRequest());
+  }, [dispatch]);
+
   const location = useLocation();
   const [loading, setLoading] = useState(true);
   useEffect(() => {

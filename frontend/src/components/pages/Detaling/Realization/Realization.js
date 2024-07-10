@@ -9,6 +9,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Container } from "react-bootstrap";
 import { motion, useInView } from "framer-motion";
+import { IMGS_URL } from "../../../../config";
 
 const Realization = () => {
   const realization = useSelector(getRealization);
@@ -42,7 +43,7 @@ const Realization = () => {
           </motion.div>
           <div className={style.realization}>
             <Slider {...settings}>
-              {realization.car.map((item, index) => (
+              {realization.map((item, index) => (
                 <motion.div
                   key={index}
                   className={style.cardWrapper}
@@ -54,8 +55,11 @@ const Realization = () => {
                   }
                   transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
                 >
-                  <div className={style.card}>
-                    <img src={`/img/${item.img}`} alt={item.carMark} />
+                  <div key={index} className={style.card}>
+                    <img
+                      src={`${IMGS_URL}/detailing/hyundai/${item.img}`}
+                      alt={item.carMark}
+                    />
                     <div className={style.contDesc}>
                       <div className={style.contText}>{item.carMark}</div>
                       <div className={style.btn}>

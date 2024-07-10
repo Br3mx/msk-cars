@@ -1,11 +1,11 @@
 @import "../../../../style/settings.scss";
-
+@import "../../../../config.scss";
 .container {
   height: 100vh;
   position: relative;
   width: 100vw;
   left: 50%;
-  background-image: url("../../../../assets/img/detaling2.jpg");
+  background-image: url("#{$IMGS_URL}/detailing/another-photo/detaling2.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

@@ -1,5 +1,5 @@
 @import "../../../style/settings.scss";
-
+@import "../../../config.scss";
 .contLogo {
   display: grid;
   place-items: center;
@@ -36,7 +36,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: url(../../../assets/img/hyundai1.jpg);
+    background-image: url("#{$IMGS_URL}/detailing/hyundai/hyundai1.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -67,7 +67,7 @@
   }
   &:nth-of-type(2n) {
     &::before {
-      background-image: url(../../../assets/img/laweta.jpg);
+      background-image: url(#{$IMGS_URL}/detailing/another-photo/laweta.jpg);
       background-position: top calc(100% + 50px);
     }
   }

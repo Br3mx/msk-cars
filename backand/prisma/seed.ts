@@ -1,7 +1,15 @@
 import { PrismaClient } from '@prisma/client';
 const db = new PrismaClient();
 
-function getCars() {
+/*  
+function getCarsExports() {
+    return [
+        {
+
+        },
+    ]
+} */
+function getCarsDetailing() {
   return [
     {
       id: 'a1f11b1f-5e2c-43c4-9e16-ba67f8eb5717',
@@ -115,14 +123,14 @@ function getCars() {
       description:
         'Lorem Ipsum is Lorem Ipsum but it is Lorem Ipsum and is therefore not Lorem Ipsum',
     },
-  ];
+  ].sort((a, b) => a.id.localeCompare(b.id));
 }
 async function seed() {
-  await db.cars.deleteMany();
+  await db.carsDetailing.deleteMany();
 
   await Promise.all(
-    getCars().map((cars) => {
-      return db.cars.create({ data: cars });
+    getCarsDetailing().map((carsDetailing) => {
+      return db.carsDetailing.create({ data: carsDetailing });
     }),
   );
 }

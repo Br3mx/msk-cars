@@ -10,7 +10,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Cars {
+model CarsDetailing {
   id        String  @id @default(uuid())
   img       String
   carMark   String

@@ -14,7 +14,7 @@ const SingleRealization = () => {
   if (!car) {
     return <div>Samochód nie znaleziony</div>;
   }
-
+  const restImgJsonParse = JSON.parse(car.restImg);
   return (
     <motion.div className={style.container}>
       <div className={style.content}>
@@ -37,7 +37,7 @@ const SingleRealization = () => {
             <p>{car.description}</p>
           </motion.span>
           <div className={style.gallery}>
-            {car.restImg.map((item, index) => (
+            {restImgJsonParse.map((item, index) => (
               <motion.div
                 key={index}
                 className={style.card}

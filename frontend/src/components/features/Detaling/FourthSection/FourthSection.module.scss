@@ -1,9 +1,9 @@
 @import "../../../../style/settings.scss";
-
+@import "../../../../config.scss";
 .container {
   height: 100vh;
   position: relative;
-  background-image: url(../../../../assets/img/warsztat.jpg);
+  background-image: url(#{$IMGS_URL}/detailing/another-photo/warsztat.jpg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

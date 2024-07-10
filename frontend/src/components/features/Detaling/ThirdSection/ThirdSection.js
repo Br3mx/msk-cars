@@ -10,6 +10,7 @@ import {
   getThirdSection,
 } from "../../../../redux/Detailing/detailingReducer";
 import { motion, useInView } from "framer-motion";
+import { IMGS_URL } from "../../../../config";
 
 const ThirdSection = () => {
   const thirdSection = useSelector(getThirdSection);
@@ -36,7 +37,7 @@ const ThirdSection = () => {
           {thirdSection.title}
         </motion.h1>
         <div className={style.realization}>
-          {realization.car.slice(0, 4).map((item, index) => (
+          {realization.slice(0, 4).map((item, index) => (
             <motion.div
               key={index}
               className={style.card}
@@ -46,7 +47,8 @@ const ThirdSection = () => {
               }
               transition={{ duration: 1, delay: 0.5 + index * 0.2 }}
             >
-              <img src={`/img/${item.img}`} alt={item.carMark} />
+              <img src={`${IMGS_URL}/detailing/hyundai/${item.img}`} />
+
               <div className={style.contDesc}>
                 <div className={style.contText}>{item.carMark}</div>
                 <div className={style.btn}>

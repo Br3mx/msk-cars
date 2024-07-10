@@ -1,12 +1,12 @@
 @import "../../../../style/settings.scss";
-
+@import "../../../../config.scss";
 /* style.module.scss */
 .container {
   height: 100vh;
   padding-top: 6.3rem;
   position: relative;
   width: 100vw;
-  background-image: url(../../../../assets/img/warsztat3.jpg);
+  background-image: url(#{$IMGS_URL}/detailing/another-photo/warsztat3.jpg);
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;

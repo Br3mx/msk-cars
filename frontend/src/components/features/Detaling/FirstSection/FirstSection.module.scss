@@ -1,5 +1,5 @@
 @import "../../../../style/settings.scss";
-
+@import "../../../../config.scss";
 .container {
   padding-top: 10rem;
   height: 100vh;
@@ -95,34 +95,34 @@
 
 @keyframes bgChange {
   0% {
-    background-image: url("../../../../assets/img/hyundai4.jpg");
+    background-image: url("#{$IMGS_URL}/detailing/hyundai/hyundai4.jpg");
     background-position: center calc(100% - 40%);
   }
   20% {
-    background-image: url("../../../../assets/img/hyundai4.jpg");
+    background-image: url("#{$IMGS_URL}/detailing/hyundai/hyundai4.jpg");
   }
   20.01% {
-    background-image: url("../../../../assets/img/hyundai1.jpg");
+    background-image: url("#{$IMGS_URL}/detailing/hyundai/hyundai1.jpg");
   }
   40% {
-    background-image: url("../../../../assets/img/hyundai1.jpg");
+    background-image: url("#{$IMGS_URL}/detailing/hyundai/hyundai1.jpg");
   }
   40.01% {
-    background-image: url("../../../../assets/img/hyundai2.jpg");
+    background-image: url("#{$IMGS_URL}/detailing/hyundai/hyundai2.jpg");
   }
   60% {
-    background-image: url("../../../../assets/img/hyundai2.jpg");
+    background-image: url("#{$IMGS_URL}/detailing/hyundai/hyundai2.jpg");
   }
   60.01% {
-    background-image: url("../../../../assets/img/hyundai5.jpg");
+    background-image: url("#{$IMGS_URL}/detailing/hyundai/hyundai5.jpg");
   }
   80% {
-    background-image: url("../../../../assets/img/hyundai5.jpg");
+    background-image: url("#{$IMGS_URL}/detailing/hyundai/hyundai5.jpg");
   }
   80.01% {
-    background-image: url("../../../../assets/img/hyundai3.jpg");
+    background-image: url("#{$IMGS_URL}/detailing/hyundai/hyundai3.jpg");
   }
   100% {
-    background-image: url("../../../../assets/img/hyundai3.jpg");
+    background-image: url("#{$IMGS_URL}/detailing/hyundai/hyundai3.jpg");
   }
 }

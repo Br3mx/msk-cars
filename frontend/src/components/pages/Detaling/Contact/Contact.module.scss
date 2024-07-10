@@ -1,11 +1,11 @@
 @import "../../../../style/settings.scss";
-
+@import "../../../../config.scss";
 .container {
   height: 100vh;
   padding-top: 6.8rem;
   position: relative;
   width: 100vw;
-  background-image: url(../../../../assets/img/warsztat2.jpg);
+  background-image: url(#{$IMGS_URL}/detailing/another-photo/warsztat2.jpg);
   background-position: center calc(40%);
   background-size: cover;
   left: 50%;
