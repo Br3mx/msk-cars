@@ -8,6 +8,7 @@ export const getSecondSection = (state) => state.detailing.secondSection;
 export const getThirdSection = (state) => state.detailing.thirdSection;
 export const getFourthSection = (state) => state.detailing.fourthSection;
 export const getOffer = (state) => state.detailing.offer;
+export const getAbout = (state) => state.detailing.about;
 
 export const getRealization = (state) =>
   state.detailing.realization.carsDetailing.data;

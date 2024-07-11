@@ -56,6 +56,51 @@ const initialState = {
         data: [],
       },
     },
+    about: {
+      title: "O nas",
+      text: (
+        <>
+          <h5 style={{ textAlign: "center" }}>
+            <strong>
+              MSK-Cars to firma, która szczyci się świadczeniem najwyższej
+              jakości usług detailingowych oraz personalizowanym procesem zakupu
+              samochodów na zamówienie, dostosowanym do unikalnych potrzeb i
+              preferencji naszych klientów.
+            </strong>
+          </h5>
+          <br />
+          Nasze usługi detailingowe mają na celu przywrócenie i podkreślenie
+          piękna Twojego pojazdu, sprawiając, że będzie wyglądał jak nowy.
+          Oferujemy szeroki zakres opcji detailingu.
+          <br />
+          Używamy tylko najwyższej jakości produktów oraz nowoczesnego sprzętu,
+          aby dostarczyć rezultaty, które przewyższają oczekiwania.
+          <br />
+          <h5
+            style={{
+              textAlign: "center",
+              paddingTop: "20px",
+              marginBottom: "-15px",
+            }}
+          >
+            <strong>Zakup Samochodów na Zamówienie W MSK-Cars!</strong>
+          </h5>
+          <br />
+          Rozumiemy, że znalezienie idealnego samochodu może być trudnym
+          zadaniem.
+          <br />
+          Dlatego oferujemy spersonalizowaną usługę zakupu samochodów,
+          poszukując i nabywając pojazdy w imieniu naszych klientów. Niezależnie
+          od tego, czy szukasz konkretnego modelu, samochodu klasycznego, czy
+          luksusowego, jesteśmy tutaj, aby spełnić Twoje marzenia motoryzacyjne.
+          <br />
+          Pracujemy z Tobą, aby zrozumieć Twoje preferencje, wymagania i budżet.
+          <br />
+          Zapraszamy do MSK-Cars, gdzie Twoje auto zyska nowy blask, a Ty
+          spełnisz swoje marzenia o idealnym samochodzie !
+        </>
+      ),
+    },
   },
 };
 

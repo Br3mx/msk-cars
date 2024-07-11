@@ -12,10 +12,12 @@ import { PrismaService } from './shared/services/prisma.service';
 import * as cors from 'cors';
 import { ConfigModule } from '@nestjs/config';
 import configuration from './config/configuration';
+import { MailModule } from './email/email.module';
 
 @Module({
   imports: [
     DetailingModule,
+    MailModule,
     PrismaModule,
     ConfigModule.forRoot({
       load: [configuration],
