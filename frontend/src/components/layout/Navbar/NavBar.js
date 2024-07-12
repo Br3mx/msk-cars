@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { FaHome } from "react-icons/fa";
 import { useSection } from "../../common/SectionContext";
@@ -7,14 +7,27 @@ import style from "./NavBar.module.scss";
 const NavBar = () => {
   const { section } = useSection();
   const location = useLocation();
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const isActive = (path) => location.pathname === path;
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
 
   return (
     <>
       <div className={style.container}>
         <div className={style.content}>
-          <nav>
+          <div
+            className={`${style.hamburger} ${menuOpen ? style.open : ""}`}
+            onClick={toggleMenu}
+          >
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+          <nav className={menuOpen ? style.open : ""}>
             <Link
               to={
                 section === "detailing"

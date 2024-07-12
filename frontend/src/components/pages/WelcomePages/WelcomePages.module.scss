@@ -99,3 +99,32 @@
     }
   }
 }
+
+/* Małe telefony w orientacji pionowej */
+@media only screen and (max-width: 768px) {
+  .container {
+    .contLogo {
+      margin-top: 4vh;
+      img {
+        height: 100%;
+        width: 100px;
+      }
+    }
+    .contCard {
+      margin-top: 4vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 0;
+      gap: 40px;
+      .card {
+        border-radius: 50px;
+        height: 30vh;
+        width: 250px;
+        position: relative;
+        border-radius: 50px;
+      }
+    }
+  }
+}

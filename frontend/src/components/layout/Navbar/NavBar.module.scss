@@ -3,7 +3,7 @@
 .container {
   z-index: 1000;
   position: absolute;
-  width: 100%;
+  width: 100vw;
   backdrop-filter: blur(10px);
   box-shadow: 0px 5px 20px rgba($color-main-font, 0.3);
   background-color: transparent;
@@ -11,8 +11,14 @@
     width: 100%;
     display: flex;
     justify-content: center;
+    @media only screen and (max-width: 768px) {
+      justify-content: space-between;
+      position: fixed !important;
+      padding: 0 20px;
+    }
   }
 }
+
 nav {
   display: inline-flex;
   gap: 50px;
@@ -20,13 +26,71 @@ nav {
   align-items: center;
   width: fit-content;
   transform: translateX(-6.4%);
+
+  @media only screen and (max-width: 768px) {
+    display: none;
+    flex-direction: column;
+    background-color: $color-dark-blue;
+    position: absolute;
+    top: 60px;
+    position: fixed !important;
+    width: 100vw;
+    gap: 20px;
+    padding: 20px 0;
+
+    &.open {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: fixed !important;
+    }
+  }
 }
+
+.hamburger {
+  display: none;
+  position: fixed !important;
+
+  cursor: pointer;
+  @media only screen and (max-width: 768px) {
+    display: block;
+    position: fixed !important;
+    top: 30px;
+    z-index: 1100;
+    background-color: rgba($color-main-font, 0.8);
+    border-radius: 50%;
+    padding: 10px 8px;
+  }
+
+  div {
+    width: 25px;
+    height: 3px;
+    background-color: $color-light-blue;
+    margin: 5px;
+    transition: 0.4s;
+  }
+
+  &.open {
+    position: fixed !important;
+    div:nth-child(1) {
+      transform: rotate(-45deg) translate(-5px, 6px);
+    }
+    div:nth-child(2) {
+      opacity: 0;
+    }
+    div:nth-child(3) {
+      transform: rotate(45deg) translate(-5px, -6px);
+    }
+  }
+}
+
 .contLogo {
   display: flex;
   justify-content: center;
   align-items: center;
   bottom: 0;
 }
+
 .link {
   white-space: nowrap;
   font-size: 20px;
@@ -63,12 +127,14 @@ nav {
     }
   }
 }
+
 .activeLink {
   font-size: 20px;
   text-decoration: none;
   color: $color-light-blue;
   font-family: $font-basic;
-  position: relative; // Ensure position relative is applied to activeLink as well
+  position: relative;
+
   &::after {
     content: "";
     position: absolute;
@@ -77,5 +143,13 @@ nav {
     width: 100%;
     height: 2px;
     background-color: rgba($color-main-font, 0.7);
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .contLogo {
+    img {
+      width: 70px;
+    }
   }
 }
