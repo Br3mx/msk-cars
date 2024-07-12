@@ -6,14 +6,43 @@ import { getAddress, getPhone } from "../../../../redux/commonRedux";
 import { FaMapPin, FaPhoneAlt } from "react-icons/fa";
 import Button from "../../../common/Button/Button";
 import { motion, useInView } from "framer-motion";
+import axios from "axios";
+import { API_URL } from "../../../../config";
 const Contact = () => {
   const phoneNumber = useSelector(getPhone);
   const address = useSelector(getAddress);
   const [phone, setPhone] = useState("");
-
+  const [formData, setFormData] = useState({
+    name: "",
+    surname: "",
+    email: "",
+    phone: "",
+    title: "",
+    message: "",
+  });
   const handleInputChange = (e) => {
     const formattedPhoneNumber = e.target.value.replace(/[^0-9-()\s]/g, "");
     setPhone(formattedPhoneNumber);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const mailData = {
+        name: formData.name,
+        surname: formData.surname,
+        email: formData.email,
+        phone: formData.phone,
+        title: formData.title,
+        message: formData.message,
+      };
+
+      const response = await axios.post(`${API_URL}/mail/send`, mailData);
+      console.log("Email submitted:", response.data);
+    } catch (error) {
+      console.error("Error submitting mail:", error);
+      console.error("Response from server:", error.response);
+    }
   };
   const ref = React.useRef(null);
   const inView = useInView(ref, { once: true });
@@ -84,6 +113,7 @@ const Contact = () => {
           </aside>
           <asside className={style.mailForm}>
             <motion.form
+              onSubmit={handleSubmit}
               initial={{ y: -100, opacity: 0 }}
               animate={inView ? { y: 0, opacity: 1 } : { y: -100, opacity: 0 }}
               transition={{ duration: 1, delay: 0.7 }}
@@ -91,11 +121,21 @@ const Contact = () => {
               <h2 className={style.mainTitle}>Napisz do nas !</h2>
               <span>
                 <h6 className={style.title}>Imię (obowiązkowe)</h6>
-                <input type="text" placeholder="np. Jan" maxLength={20} />
+                <input
+                  type="text"
+                  placeholder="np. Jan"
+                  maxLength={20}
+                  value={formData.name}
+                />
               </span>
               <span>
                 <h6 className={style.title}>Nazwisko (obowiązkowe)</h6>
-                <input type="text" placeholder="np. Kowalski" maxLength={20} />
+                <input
+                  type="text"
+                  placeholder="np. Kowalski"
+                  maxLength={20}
+                  value={formData.surname}
+                />
               </span>
               <motion.div className={style.mailPhone}>
                 <span>
@@ -104,13 +144,14 @@ const Contact = () => {
                     type="email"
                     placeholder="np. jan.kowalski@example.com"
                     maxLength={30}
+                    value={formData.email}
                   />
                 </span>
                 <span>
                   <h6 className={style.title}>Numer Telefonu (obowiązkowe)</h6>
                   <input
                     type="text"
-                    value={phone}
+                    value={formData.phone}
                     onChange={handleInputChange}
                     placeholder="np. 123-456-789"
                     maxLength={9}
@@ -118,7 +159,11 @@ const Contact = () => {
                 </span>
               </motion.div>
               <span>
-                <select id="title" className={style.titleSelect}>
+                <select
+                  id="title"
+                  className={style.titleSelect}
+                  value={formData.title}
+                >
                   <option value="">Wybierz Tytuł</option>
                   <option value="1">Powłoki ceramiczne</option>
                   <option value="2">Korekta lakieru</option>
@@ -132,7 +177,7 @@ const Contact = () => {
               </span>
               <span>
                 <h6>Dodatkowe pytania i uwagi (obowiązkowe)</h6>
-                <textarea placeholder="" />
+                <textarea placeholder="" value={formData.message} />
               </span>
               <span className={style.contButton}>
                 <Button type="submit">Wyślij</Button>

@@ -17,3 +17,16 @@ model CarsDetailing {
   restImg     String  @default("[]")  
   description String
 }
+
+model Mail {
+  id        String  @id @default(uuid())
+ 
+  name String
+  surname String
+  email String
+  phone String
+  title String
+  message String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
