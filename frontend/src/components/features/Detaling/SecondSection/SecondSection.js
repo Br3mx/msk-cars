@@ -49,7 +49,7 @@ const SecondSection = () => {
           transition={{ duration: 0.5, delay: 1 }}
         >
           <div className={style.card}>
-            <div className={style.contText}>
+            <div className={style.contTextCard}>
               <motion.h2
                 initial={{ y: -50, opacity: 0 }}
                 animate={inView ? { y: 0, opacity: 1 } : { y: -50, opacity: 0 }}

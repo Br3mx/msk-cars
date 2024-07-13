@@ -3,6 +3,14 @@
 .container {
   padding: 0 10rem;
   background-color: $color-dark-blue;
+  width: 100vw;
+  left: 50%;
+  transform: translateX(-50%);
+  position: relative;
+  @media only screen and (max-width: 768px) {
+    padding: 1rem 0;
+  }
+
   .content {
     display: flex;
     justify-content: space-between;
@@ -10,8 +18,22 @@
     text-align: center;
     flex-wrap: wrap;
     gap: 5rem;
+    @media only screen and (max-width: 768px) {
+      flex-direction: column;
+      justify-content: center;
+      gap: 20px;
+    }
+
     .nav {
       width: 14rem;
+      @media only screen and (max-width: 768px) {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+        gap: 20px;
+      }
 
       .link {
         margin-right: 30px;
@@ -19,6 +41,11 @@
         flex-wrap: wrap;
         color: $color-main-font;
         text-decoration: none;
+        @media only screen and (max-width: 768px) {
+          flex-direction: column;
+          margin-right: 0;
+        }
+
         &:hover {
           color: $color-light-blue;
         }

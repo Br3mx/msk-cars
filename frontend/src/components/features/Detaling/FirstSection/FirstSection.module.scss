@@ -12,7 +12,7 @@
   background-position: center;
   animation: bgChange 20s linear infinite;
   @media only screen and (max-width: 768px) {
-    padding-top: 6rem;
+    padding-top: 2.5rem;
   }
 
   &::before {
@@ -50,6 +50,7 @@
     font-size: 15px;
     right: 0;
     gap: 20px;
+    top: 3rem;
   }
 }
 .contText {
@@ -57,14 +58,17 @@
   padding: 20px;
   font-size: 40px;
   @media only screen and (max-width: 768px) {
-    font-size: 20px;
-    padding: 0;
+    font-size: 18px;
+    padding: 0 10px;
   }
 
   h5 {
     font-size: 30px;
     border-bottom: dotted 5px $color-light-blue;
     padding-bottom: 10px;
+    @media only screen and (max-width: 768px) {
+      font-size: 23px;
+    }
   }
   span {
     font-weight: bold;
@@ -89,7 +93,7 @@
     font-size: 15px;
     padding: 0;
     right: 0;
-    margin-top: 5rem;
+    margin-top: 13rem;
   }
 }
 

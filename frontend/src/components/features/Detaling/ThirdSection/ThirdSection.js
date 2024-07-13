@@ -1,8 +1,6 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import style from "./ThirdSection.module.scss";
 import BtnScroll from "../../../common/BtnScroll/BtnScroll";
-import { Container } from "react-bootstrap";
-import Button from "../../../common/Button/Button";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import {
@@ -11,14 +9,28 @@ import {
 } from "../../../../redux/Detailing/detailingReducer";
 import { motion, useInView } from "framer-motion";
 import { IMGS_URL } from "../../../../config";
+import Button from "../../../common/Button/Button";
 
 const ThirdSection = () => {
   const thirdSection = useSelector(getThirdSection);
   const realization = useSelector(getRealization);
 
-  const ref = React.useRef(null);
+  const ref = useRef(null);
   const inView = useInView(ref, { once: true });
-  console.log(inView);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  const itemsToShow = isMobile ? 1 : 4;
 
   return (
     <motion.div className={style.container} id="thirdsectiondetaling">
@@ -37,7 +49,7 @@ const ThirdSection = () => {
           {thirdSection.title}
         </motion.h1>
         <div className={style.realization}>
-          {realization.slice(0, 4).map((item, index) => (
+          {realization.slice(0, itemsToShow).map((item, index) => (
             <motion.div
               key={index}
               className={style.card}
@@ -47,7 +59,10 @@ const ThirdSection = () => {
               }
               transition={{ duration: 1, delay: 0.5 + index * 0.2 }}
             >
-              <img src={`${IMGS_URL}/detailing/hyundai/${item.img}`} />
+              <img
+                src={`${IMGS_URL}/detailing/hyundai/${item.img}`}
+                alt={item.carMark}
+              />
 
               <div className={style.contDesc}>
                 <div className={style.contText}>{item.carMark}</div>
