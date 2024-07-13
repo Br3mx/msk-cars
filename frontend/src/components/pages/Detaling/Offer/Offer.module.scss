@@ -15,6 +15,10 @@
   align-items: center; /* Centrowanie zawartości w poziomie */
   left: 50%;
   transform: translateX(-50%);
+  @media only screen and (max-width: 768px) {
+    padding-top: 0.5rem;
+  }
+
   &::before {
     content: "";
     position: absolute;
@@ -36,21 +40,32 @@
     box-shadow: 0px 0px 50px rgba($color-main-font, 0.5);
     border-radius: 10px;
     width: 45%;
-    max-width: 800px; /* Ustaw maksymalną szerokość kontenera */
-    margin: 0 auto; /* Automatyczne centrowanie */
+    max-width: 800px;
+    margin: 0 auto;
+    @media only screen and (max-width: 768px) {
+      width: 100%;
+      line-height: 30px;
+      max-width: auto;
+    }
+
     .contText {
       display: grid;
       place-items: center;
-      img {
-        width: 100px;
-      }
       .card {
         position: relative;
-        width: 30vw; /* Możesz dostosować szerokość karty */
+        width: 30vw;
         padding: 10px 0;
+        @media only screen and (max-width: 768px) {
+          width: 100%;
+          padding: 10px;
+        }
+
         h2 {
           font-weight: 900;
           font-size: 33px;
+          @media only screen and (max-width: 768px) {
+            font-size: 20px;
+          }
         }
         ul {
           padding: 0;
@@ -61,6 +76,12 @@
           li {
             font-size: 25px;
             margin: 10px;
+            @media only screen and (max-width: 768px) {
+              font-size: 20px;
+              &:nth-last-of-type(1) {
+                margin-bottom: 0;
+              }
+            }
           }
           li::before {
             content: "*";
@@ -69,6 +90,11 @@
             color: $color-light-blue;
             font-size: 50px;
             padding-top: 12px;
+            @media only screen and (max-width: 768px) {
+              font-size: 30px;
+              padding-top: 8px;
+              left: 3.5%;
+            }
           }
         }
         &::after {
@@ -79,6 +105,11 @@
           width: 100%;
           height: 3px;
           background-color: rgba($color-light-blue, 0.7);
+          @media only screen and (max-width: 768px) {
+            width: 70%;
+            left: 50%;
+            transform: translateX(-50%);
+          }
         }
       }
     }
