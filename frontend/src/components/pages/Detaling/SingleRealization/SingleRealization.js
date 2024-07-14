@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getCarById } from "../../../../redux/Detailing/detailingReducer";
@@ -10,11 +10,22 @@ const SingleRealization = () => {
   const car = useSelector((state) => getCarById(state, id));
   const ref = React.useRef(null);
   const inView = useInView(ref, { once: true });
+  const [selectedImage, setSelectedImage] = useState(null);
 
   if (!car) {
     return <div>Samochód nie znaleziony</div>;
   }
+
   const restImgJsonParse = JSON.parse(car.restImg);
+
+  const handleImageClick = (src) => {
+    setSelectedImage(src);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedImage(null);
+  };
+
   return (
     <motion.div className={style.container}>
       <div className={style.content}>
@@ -44,6 +55,7 @@ const SingleRealization = () => {
                 initial={{ scale: 0.5, opacity: 0 }}
                 animate={{ scale: inView ? 1 : 0.5, opacity: inView ? 1 : 0 }}
                 transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
+                onClick={() => handleImageClick(`/img/${item}`)}
               >
                 <img src={`/img/${item}`} alt={`car image ${index}`} />
               </motion.div>
@@ -51,6 +63,24 @@ const SingleRealization = () => {
           </div>
         </div>
       </div>
+      {selectedImage && (
+        <motion.div
+          className={style.modal}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          onClick={handleCloseModal}
+        >
+          <motion.img
+            src={selectedImage}
+            alt="Selected Car"
+            className={style.modalImage}
+            initial={{ scale: 0.8 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 0.3 }}
+          />
+        </motion.div>
+      )}
     </motion.div>
   );
 };
