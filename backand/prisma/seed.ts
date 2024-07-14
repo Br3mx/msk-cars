@@ -125,12 +125,33 @@ function getCarsDetailing() {
     },
   ].sort((a, b) => a.id.localeCompare(b.id));
 }
+
+function getMail() {
+  return [
+    {
+      id: '5719cb57-05a8-4392-b1ec-5b64fa2316b8',
+      name: 'John',
+      surname: 'Doe',
+      email: 'user1@example.com',
+      phone: '123456789',
+      title: 'Lorem Ipsum',
+      message:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel semper velit. Duis vel nunc ac nunc tincidunt congue. Donec consectetur velit a justo semper, vitae congue erat molestie.',
+    },
+  ];
+}
 async function seed() {
   await db.carsDetailing.deleteMany();
+  await db.mail.deleteMany();
 
   await Promise.all(
     getCarsDetailing().map((carsDetailing) => {
       return db.carsDetailing.create({ data: carsDetailing });
+    }),
+  );
+  await Promise.all(
+    getMail().map((mail) => {
+      return db.mail.create({ data: mail });
     }),
   );
 }

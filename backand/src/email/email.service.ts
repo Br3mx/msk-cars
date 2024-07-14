@@ -1,6 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import * as nodemailer from 'nodemailer';
 import * as dotenv from 'dotenv';
+import { PrismaClient } from '@prisma/client';
+const prisma = new PrismaClient();
 @Injectable()
 export class MailService {
   private readonly transporter;
@@ -80,6 +82,17 @@ export class MailService {
       };
 
       await this.transporter.sendMail(mailOptions);
+      const savedMail = await prisma.mail.create({
+        data: {
+          name,
+          surname,
+          email,
+          phone,
+          title,
+          message,
+        },
+      });
+
       return { message: 'Email został pomyślnie wysłany.' };
     } catch (error) {
       console.error('Szczegóły błędu:', error);

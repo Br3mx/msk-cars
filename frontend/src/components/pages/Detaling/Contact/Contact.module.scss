@@ -209,6 +209,8 @@
             height: 150px;
             resize: none;
             border-radius: 5px;
+            color: rgba($color-light-blue, 1);
+            font-weight: 500;
             padding: 10px 20px;
             @media only screen and (max-width: 768px) {
               width: 100%;
