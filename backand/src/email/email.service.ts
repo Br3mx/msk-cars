@@ -82,7 +82,7 @@ export class MailService {
       await this.transporter.sendMail(mailOptions);
       return { message: 'Email został pomyślnie wysłany.' };
     } catch (error) {
-      console.error('Szczegóły błędu:', error); // Logowanie szczegółów błędu
+      console.error('Szczegóły błędu:', error);
       throw new Error('Wystąpił błąd podczas wysyłania emaila.');
     }
   }
