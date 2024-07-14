@@ -8,10 +8,10 @@ import Button from "../../../common/Button/Button";
 import { motion, useInView } from "framer-motion";
 import axios from "axios";
 import { API_URL } from "../../../../config";
+
 const Contact = () => {
   const phoneNumber = useSelector(getPhone);
   const address = useSelector(getAddress);
-  const [phone, setPhone] = useState("");
   const [formData, setFormData] = useState({
     name: "",
     surname: "",
@@ -20,20 +20,65 @@ const Contact = () => {
     title: "",
     message: "",
   });
-  const handleInputChange = (e) => {
-    const formattedPhoneNumber = e.target.value.replace(/[^0-9-()\s]/g, "");
-    setPhone(formattedPhoneNumber);
+
+  const [formErrors, setFormErrors] = useState({
+    name: false,
+    surname: false,
+    email: false,
+    phone: false,
+    title: false,
+    message: false,
+  });
+
+  const handleChangePhone = (e) => {
+    const { name, value } = e.target;
+    const formattedValue = value.replace(/\D/g, "");
+
+    const isValidPhone = formattedValue.length === 9;
+
+    // Ustawiamy wartość i błąd w zależności od wyniku walidacji
+    setFormData({
+      ...formData,
+      [name]: formattedValue,
+    });
+
+    setFormErrors({
+      ...formErrors,
+      phone: !isValidPhone,
+    });
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    const isValid = value.length >= 1;
     setFormData({
       ...formData,
       [name]: value,
     });
+    setFormErrors({
+      ...formErrors,
+      [name]: !isValid,
+    });
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    let errors = {};
+    let hasErrors = false;
+
+    Object.keys(formData).forEach((key) => {
+      if (formData[key].trim() === "") {
+        errors[key] = true;
+        hasErrors = true;
+      } else {
+        errors[key] = false;
+      }
+    });
+
+    if (hasErrors) {
+      setFormErrors(errors);
+      return;
+    }
     try {
       const mailData = {
         name: formData.name,
@@ -43,10 +88,15 @@ const Contact = () => {
         title: formData.title,
         message: formData.message,
       };
-
-      const response = await axios.post(`${API_URL}/mail/send`, mailData);
-      console.log("Email submitted:", response.data);
-      alert("Email został pomyślnie wysłany 😀");
+      if (formData.phone.length < 9) {
+        alert(
+          "Proszę wpisać poprawny numer telefonu składający się z 9 cyfr !. Poprawny przykład: 123456789 "
+        );
+      } else {
+        const response = await axios.post(`${API_URL}/mail/send`, mailData);
+        console.log("Email submitted:", response.data);
+        alert("Email został pomyślnie wysłany 😀");
+      }
     } catch (error) {
       alert(
         "Wystąpił błąd podczas wysyłki formularza. Upewnij się że wszystkie pola zostały poprawnie wypełnione !"
@@ -55,8 +105,10 @@ const Contact = () => {
       console.error("Response from server:", error.response);
     }
   };
+
   const ref = React.useRef(null);
   const inView = useInView(ref, { once: true });
+
   return (
     <motion.div className={style.container}>
       <Container>
@@ -67,62 +119,66 @@ const Contact = () => {
           animate={inView ? { y: 0, opacity: 1 } : { y: 200, opacity: 0 }}
           transition={{ duration: 1, delay: 0.2 }}
         >
-          <aside className={style.contact}>
-            <motion.div
-              className={style.phone}
-              initial={{ x: -100, opacity: 0 }}
-              animate={inView ? { x: 0, opacity: 1 } : { x: -100, opacity: 0 }}
-              transition={{ duration: 1, delay: 0.7 }}
-            >
-              <h2>Telefon</h2>
-              <motion.div className={style.phoneNumber}>
-                <span>
-                  <a href="tel:+48533073301" target="_blank">
-                    <FaPhoneAlt />
-                    <p>{phoneNumber.phone1}</p>
-                  </a>
-                </span>
-                <span>
-                  <a href="tel:+48504598563" target="_blank">
-                    <FaPhoneAlt />
-                    <p>{phoneNumber.phone2}</p>
-                  </a>
-                </span>
-              </motion.div>
-            </motion.div>
-            <motion.div
-              className={style.address}
-              initial={{ y: 100, opacity: 0 }}
-              animate={inView ? { y: 0, opacity: 1 } : { y: 100, opacity: 0 }}
-              transition={{ duration: 1, delay: 0.7 }}
-            >
-              <motion.div className={style.contLok}>
-                {address.lokalization}
-              </motion.div>
+          <div className={style.contContact}>
+            <aside className={style.contact}>
               <motion.div
-                className={style.map}
-                initial={{ rotate: 180, opacity: 0 }}
+                className={style.phone}
+                initial={{ x: -100, opacity: 0 }}
                 animate={
-                  inView
-                    ? { rotate: 0, opacity: 1 }
-                    : { rotate: 180, opacity: 0 }
+                  inView ? { x: 0, opacity: 1 } : { x: -100, opacity: 0 }
                 }
                 transition={{ duration: 1, delay: 0.7 }}
               >
-                <iframe
-                  src={address.map}
-                  width="350"
-                  height="300"
-                  className={style.map}
-                  allowFullScreen=""
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="Google Maps"
-                ></iframe>
+                <h2>Telefon</h2>
+                <motion.div className={style.phoneNumber}>
+                  <span>
+                    <a href="tel:+48533073301" target="_blank">
+                      <FaPhoneAlt />
+                      <p>{phoneNumber.phone1}</p>
+                    </a>
+                  </span>
+                  <span>
+                    <a href="tel:+48504598563" target="_blank">
+                      <FaPhoneAlt />
+                      <p>{phoneNumber.phone2}</p>
+                    </a>
+                  </span>
+                </motion.div>
               </motion.div>
-            </motion.div>
-          </aside>
-          <asside className={style.mailForm}>
+              <motion.div
+                className={style.address}
+                initial={{ y: 100, opacity: 0 }}
+                animate={inView ? { y: 0, opacity: 1 } : { y: 100, opacity: 0 }}
+                transition={{ duration: 1, delay: 0.7 }}
+              >
+                <motion.div className={style.contLok}>
+                  {address.lokalization}
+                </motion.div>
+                <motion.div
+                  className={style.map}
+                  initial={{ rotate: 180, opacity: 0 }}
+                  animate={
+                    inView
+                      ? { rotate: 0, opacity: 1 }
+                      : { rotate: 180, opacity: 0 }
+                  }
+                  transition={{ duration: 1, delay: 0.7 }}
+                >
+                  <iframe
+                    src={address.map}
+                    width="350"
+                    height="300"
+                    className={style.map}
+                    allowFullScreen=""
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="Google Maps"
+                  ></iframe>
+                </motion.div>
+              </motion.div>
+            </aside>
+          </div>
+          <aside className={style.mailForm}>
             <motion.form
               onSubmit={handleSubmit}
               initial={{ y: -100, opacity: 0 }}
@@ -139,7 +195,11 @@ const Contact = () => {
                   maxLength={20}
                   value={formData.name}
                   onChange={handleChange}
+                  className={formErrors.name ? style.error : ""}
                 />
+                {formErrors.name && (
+                  <p className={style.errorMessage}>To pole jest wymagane.</p>
+                )}
               </span>
               <span>
                 <h6 className={style.title}>Nazwisko (obowiązkowe)</h6>
@@ -150,7 +210,11 @@ const Contact = () => {
                   maxLength={20}
                   value={formData.surname}
                   onChange={handleChange}
+                  className={formErrors.surname ? style.error : ""}
                 />
+                {formErrors.surname && (
+                  <p className={style.errorMessage}>To pole jest wymagane.</p>
+                )}
               </span>
               <motion.div className={style.mailPhone}>
                 <span>
@@ -162,26 +226,35 @@ const Contact = () => {
                     maxLength={30}
                     value={formData.email}
                     onChange={handleChange}
+                    className={formErrors.email ? style.error : ""}
                   />
+                  {formErrors.email && (
+                    <p className={style.errorMessage}>To pole jest wymagane.</p>
+                  )}
                 </span>
                 <span>
                   <h6 className={style.title}>Numer Telefonu (obowiązkowe)</h6>
                   <input
-                    type="phone"
+                    type="text"
                     name="phone"
                     value={formData.phone}
-                    placeholder="123456789"
+                    placeholder="np. 123456789"
                     maxLength={9}
-                    onChange={handleChange}
+                    onChange={handleChangePhone}
+                    className={formErrors.phone ? style.error : ""}
+                    pattern="[0-9]*"
                   />
+                  {formErrors.phone && (
+                    <p className={style.errorMessage}>To pole jest wymagane.</p>
+                  )}
                 </span>
               </motion.div>
               <span>
                 <select
                   id="title"
                   name="title"
-                  className={style.titleSelect}
                   value={formData.title}
+                  className={formErrors.title ? style.error : ""}
                   onChange={handleChange}
                 >
                   <option value="">Wybierz Tytuł</option>
@@ -203,22 +276,29 @@ const Contact = () => {
                   </option>
                   <option value="Inne">Inne</option>
                 </select>
+                {formErrors.title && (
+                  <p className={style.errorMessage}>To pole jest wymagane.</p>
+                )}
               </span>
               <span>
-                <h6>Dodatkowe pytania i uwagi (obowiązkowe)</h6>
+                <h6>Dodatkowe informacje i pytania (obowiązkowe)</h6>
                 <textarea
                   placeholder=""
                   type="text"
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
+                  className={formErrors.message ? style.error : ""}
                 />
+                {formErrors.message && (
+                  <p className={style.errorMessage}>To pole jest wymagane.</p>
+                )}
               </span>
               <span className={style.contButton}>
                 <button type="submit">Wyślij</button>
               </span>
             </motion.form>
-          </asside>
+          </aside>
         </motion.div>
       </Container>
     </motion.div>
