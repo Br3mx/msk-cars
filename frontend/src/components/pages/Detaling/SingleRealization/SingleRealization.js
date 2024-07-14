@@ -4,6 +4,9 @@ import { useParams } from "react-router-dom";
 import { getCarById } from "../../../../redux/Detailing/detailingReducer";
 import style from "./SingleRealization.module.scss";
 import { motion, useInView } from "framer-motion";
+import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch";
+import { Controls } from "./utils/Controls";
+import { FaTimes } from "react-icons/fa";
 
 const SingleRealization = () => {
   const { id } = useParams();
@@ -69,16 +72,22 @@ const SingleRealization = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          onClick={handleCloseModal}
+          //onClick={handleCloseModal}
         >
-          <motion.img
-            src={selectedImage}
-            alt="Selected Car"
-            className={style.modalImage}
-            initial={{ scale: 0.8 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 0.3 }}
-          />
+          <TransformWrapper
+            defaultScale={1}
+            defaultPositionX={200}
+            defaultPositionY={100}
+          >
+            <TransformComponent>
+              <img
+                src={selectedImage}
+                alt="Selected Car"
+                className={style.modalImage}
+              />
+            </TransformComponent>
+            <Controls closeFunction={handleCloseModal} />
+          </TransformWrapper>
         </motion.div>
       )}
     </motion.div>
