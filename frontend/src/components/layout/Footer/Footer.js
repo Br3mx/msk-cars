@@ -9,14 +9,7 @@ const Footer = () => {
     <div className={style.container}>
       <div className={style.content}>
         <div className={style.nav}>
-          <Link
-            to={
-              section === "detailing"
-                ? "/about-detaling"
-                : "/about-cars-to-order"
-            }
-            className={style.link}
-          >
+          <Link to="/about" className={style.link}>
             O NAS
           </Link>
           <Link

@@ -47,20 +47,8 @@ const NavBar = () => {
               <FaHome />
             </Link>
             <Link
-              to={
-                section === "detailing"
-                  ? "/about-detaling"
-                  : "/about-cars-to-order"
-              }
-              className={
-                isActive(
-                  section === "detailing"
-                    ? "/about-detaling"
-                    : "/about-cars-to-order"
-                )
-                  ? style.activeLink
-                  : style.link
-              }
+              to="/about"
+              className={isActive("/about") ? style.activeLink : style.link}
             >
               O NAS
             </Link>

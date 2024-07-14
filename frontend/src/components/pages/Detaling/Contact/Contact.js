@@ -25,6 +25,13 @@ const Contact = () => {
     setPhone(formattedPhoneNumber);
   };
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -39,7 +46,11 @@ const Contact = () => {
 
       const response = await axios.post(`${API_URL}/mail/send`, mailData);
       console.log("Email submitted:", response.data);
+      alert("Email został pomyślnie wysłany 😀");
     } catch (error) {
+      alert(
+        "Wystąpił błąd podczas wysyłki formularza. Upewnij się że wszystkie pola zostały poprawnie wypełnione !"
+      );
       console.error("Error submitting mail:", error);
       console.error("Response from server:", error.response);
     }
@@ -123,18 +134,22 @@ const Contact = () => {
                 <h6 className={style.title}>Imię (obowiązkowe)</h6>
                 <input
                   type="text"
+                  name="name"
                   placeholder="np. Jan"
                   maxLength={20}
                   value={formData.name}
+                  onChange={handleChange}
                 />
               </span>
               <span>
                 <h6 className={style.title}>Nazwisko (obowiązkowe)</h6>
                 <input
                   type="text"
+                  name="surname"
                   placeholder="np. Kowalski"
                   maxLength={20}
                   value={formData.surname}
+                  onChange={handleChange}
                 />
               </span>
               <motion.div className={style.mailPhone}>
@@ -142,45 +157,65 @@ const Contact = () => {
                   <h6 className={style.title}>Adres email (obowiązkowe)</h6>
                   <input
                     type="email"
+                    name="email"
                     placeholder="np. jan.kowalski@example.com"
                     maxLength={30}
                     value={formData.email}
+                    onChange={handleChange}
                   />
                 </span>
                 <span>
                   <h6 className={style.title}>Numer Telefonu (obowiązkowe)</h6>
                   <input
-                    type="text"
+                    type="phone"
+                    name="phone"
                     value={formData.phone}
-                    onChange={handleInputChange}
-                    placeholder="np. 123-456-789"
+                    placeholder="123456789"
                     maxLength={9}
+                    onChange={handleChange}
                   />
                 </span>
               </motion.div>
               <span>
                 <select
                   id="title"
+                  name="title"
                   className={style.titleSelect}
                   value={formData.title}
+                  onChange={handleChange}
                 >
                   <option value="">Wybierz Tytuł</option>
-                  <option value="1">Powłoki ceramiczne</option>
-                  <option value="2">Korekta lakieru</option>
-                  <option value="3">Czyszczenie wnętrza</option>
-                  <option value="4">Pranie tapicerki</option>
-                  <option value="5">Regeneracja Reflektorów</option>
-                  <option value="6">Folie ochronne</option>
-                  <option value="7">Przyciemnianie szyb i lamp</option>
-                  <option value="8">Inne</option>
+                  <option value="Powłoki ceramiczne">Powłoki ceramiczne</option>
+                  <option value="Korekta lakieru">Korekta lakieru</option>
+                  <option value="Czyszczenie wnętrza">
+                    Czyszczenie wnętrza
+                  </option>
+                  <option value="Pranie tapicerki">Pranie tapicerki</option>
+                  <option value="Regeneracja Reflektorów">
+                    Regeneracja Reflektorów
+                  </option>
+                  <option value="Folie ochronne">Folie ochronne</option>
+                  <option value="Przyciemnianie szyb i lamp">
+                    Przyciemnianie szyb i lamp
+                  </option>
+                  <option value="Samochody na zamówienie">
+                    Samochody na zamówienie
+                  </option>
+                  <option value="Inne">Inne</option>
                 </select>
               </span>
               <span>
                 <h6>Dodatkowe pytania i uwagi (obowiązkowe)</h6>
-                <textarea placeholder="" value={formData.message} />
+                <textarea
+                  placeholder=""
+                  type="text"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                />
               </span>
               <span className={style.contButton}>
-                <Button type="submit">Wyślij</Button>
+                <button type="submit">Wyślij</button>
               </span>
             </motion.form>
           </asside>

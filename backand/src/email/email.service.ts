@@ -26,73 +26,54 @@ export class MailService {
         <html>
           <head>
             <style>
-              body {
-                font-family: Arial, sans-serif;
-                margin: 0;
-                padding: 0;
-                background-color: #f6f6f6;
-              }
-              .container {
-                width: 100%;
-                max-width: 600px;
-                margin: 0 auto;
-                background-color: #ffffff;
-                padding: 20px;
-                border-radius: 8px;
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-              }
-              .header {
-                text-align: center;
-                padding-bottom: 20px;
-              }
-              .header h1 {
-                margin: 0;
-                font-size: 24px;
-                color: #333333;
-              }
-              .content p {
-                font-size: 16px;
-                line-height: 1.5;
-                color: #333333;
-              }
-            h2 {
-            text-align: center;
-            }
-              .content strong {
-                color: #555555;
-              }
-              .footer {
-                text-align: center;
-                padding-top: 20px;
-                font-size: 12px;
-                color: #999999;
-              }
+              @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;700&display=swap');
             </style>
           </head>
-          <body>
-            <div class="container">
-              <div class="header">
-                <h1>Wiadomość w sprawie <br/>
-                ${title}</h1>
-              </div>
-              <div class="content">
-              <h2>Dane Klienta :</h2>
-              <ul>
-
-                <li><p><strong>Imię:</strong> ${name}</p></li>
-                <li><p><strong>Nazwisko:</strong> ${surname}</p></li>
-                <li><p><strong>Email:</strong> ${email}</p></li>
-                <li><p><strong>Telefon:</strong> ${phone}</p></li>
-            </ul>
-            <h2>Treść wiadomości:</h2>
-                <p><strong>Temat:</strong> ${title}</p>
-                <p><strong>Wiadomość:</strong></p>
-                <p>${message}</p>
-              </div>
-              <div class="footer">
-                <p>MSK-CARS</p>
-              </div>
-            </div>
+          <body style="font-family: 'Chakra Petch', sans-serif; margin: 0; padding: 0;">
+            <table width="100%" cellspacing="0" cellpadding="0" border="0" style="height: 100%; text-align: center; background-color: #f0f0f0;">
+              <tr>
+                <td align="center" style="padding: 20px 0;">
+                  <table width="600px" cellpadding="0" cellspacing="0" border="0" style="border-radius: 10px; overflow: hidden; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); background-color: #ffffff;">
+                    <tr>
+                      <td align="center" style="padding: 20px 0; background-color: #005fa9; color: #ffffff;">
+                        <h1>Wiadomość w sprawie : <br/><strong><i>${title}</i></strong></h1>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td align="center" style="padding: 20px;">
+                        <h2>Dane Klienta:</h2>
+                        <table width="80%" cellpadding="0" cellspacing="0" border="0" style="margin: 0 auto;">
+                          <tr>
+                            <td align="left"><strong>Imię:</strong></td>
+                            <td align="left">${name}</td>
+                          </tr>
+                          <tr>
+                            <td align="left"><strong>Nazwisko:</strong></td>
+                            <td align="left">${surname}</td>
+                          </tr>
+                          <tr>
+                            <td align="left"><strong>Email:</strong></td>
+                            <td align="left">${email}</td>
+                          </tr>
+                          <tr>
+                            <td align="left"><strong>Telefon:</strong></td>
+                            <td align="left"><a href="tel:+48${phone}">+48${phone}</a></td>                          
+                          </tr>
+                        </table>
+                        <h2>Treść wiadomości:</h2>
+                        <p><strong>Wiadomość:</strong></p>
+                        <p style="border: 2.5px solid #005fa9; border-radius: 10px; padding: 10px; width: 80%; margin: 0 auto;">${message}</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td align="center" style="padding: 20px; font-size: 12px; color: #999999;">
+                        <p>MSK-CARS</p>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
           </body>
         </html>
       `,

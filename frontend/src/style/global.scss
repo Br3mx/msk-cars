@@ -4,7 +4,6 @@ body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
-
   height: 100%;
   color: $color-main-font !important;
   font-family: $font-basic !important;
@@ -14,6 +13,10 @@ body {
     rgba($color-dark-blue, 1),
     rgba($color-light-blue, 0.9)
   );
+  ::selection {
+    background-color: $color-main-font !important;
+    color: $color-light-blue;
+  }
 }
 
 @media only screen and (max-width: 768px) {
