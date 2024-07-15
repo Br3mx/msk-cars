@@ -12,8 +12,8 @@ export class MailService {
     this.transporter = nodemailer.createTransport({
       service: 'Gmail',
       auth: {
-        user: process.env.MAIL_TEST_USER,
-        pass: process.env.MAIL_TEST_PASS,
+        user: process.env.MAIL_MSK_USER,
+        pass: process.env.MAIL_MSK_PASS,
       },
     });
   }
@@ -22,7 +22,7 @@ export class MailService {
     try {
       const mailOptions = {
         from: email,
-        to: process.env.MAIL_TEST_USER,
+        to: process.env.MAIL_MSK_USER,
         subject: `MSK-CARS oto nowa wiadomość od ${name} ${surname}`,
         html: `
         <html>
