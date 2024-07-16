@@ -13,4 +13,16 @@ export class DetailingService {
       where: { id },
     });
   }
+
+  async createDetailing(data: any): Promise<CarsDetailing> {
+    try {
+      const createdDetailing = await this.prismaService.carsDetailing.create({
+        data,
+      });
+      return createdDetailing;
+    } catch (error) {
+      console.error('Error creating detailing:', error);
+      throw new Error('Failed to create detailing');
+    }
+  }
 }
