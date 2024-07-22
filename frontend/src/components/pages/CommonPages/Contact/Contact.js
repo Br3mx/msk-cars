@@ -3,8 +3,7 @@ import style from "./Contact.module.scss";
 import { Container } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { getAddress, getPhone } from "../../../../redux/commonRedux";
-import { FaMapPin, FaPhoneAlt } from "react-icons/fa";
-import Button from "../../../common/Button/Button";
+import { FaPhoneAlt } from "react-icons/fa";
 import { motion, useInView } from "framer-motion";
 import axios from "axios";
 import { API_URL } from "../../../../config";
@@ -132,13 +131,13 @@ const Contact = () => {
                 <h2>Telefon</h2>
                 <motion.div className={style.phoneNumber}>
                   <span>
-                    <a href="tel:+48533073301" target="_blank">
+                    <a href="tel:+48533073301">
                       <FaPhoneAlt />
                       <p>{phoneNumber.phone1}</p>
                     </a>
                   </span>
                   <span>
-                    <a href="tel:+48504598563" target="_blank">
+                    <a href="tel:+48504598563">
                       <FaPhoneAlt />
                       <p>{phoneNumber.phone2}</p>
                     </a>

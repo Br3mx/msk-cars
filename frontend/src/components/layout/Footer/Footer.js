@@ -22,14 +22,7 @@ const Footer = () => {
           >
             REALIZACJE
           </Link>
-          <Link
-            to={
-              section === "detailing"
-                ? "/offer-detaling"
-                : "/offer-cars-to-order"
-            }
-            className={style.link}
-          >
+          <Link to="/offer" className={style.link}>
             OFERTA
           </Link>
           <Link to={"/contact"} className={style.link}>
@@ -51,6 +44,7 @@ const Footer = () => {
               href="https://www.facebook.com/mskrally"
               target="_blank"
               className={style.link}
+              rel="noopener noreferrer"
             >
               <FaFacebook className={style.icon} />
             </a>

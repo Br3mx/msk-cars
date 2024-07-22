@@ -1,6 +1,5 @@
 @import "../../../../style/settings.scss";
 @import "../../../../style/config.scss";
-/* style.module.scss */
 .container {
   height: 100vh;
   padding-top: 6.3rem;
@@ -39,8 +38,7 @@
     line-height: 40px;
     box-shadow: 0px 0px 50px rgba($color-main-font, 0.5);
     border-radius: 10px;
-    width: 45%;
-    max-width: 800px;
+    width: 100%;
     margin: 0 auto;
     @media only screen and (max-width: 768px) {
       width: 100%;
@@ -49,8 +47,12 @@
     }
 
     .contText {
-      display: grid;
-      place-items: center;
+      display: flex;
+      justify-content: space-around;
+      @media only screen and (max-width: 768px) {
+        flex-direction: column;
+      }
+
       .card {
         position: relative;
         width: 30vw;
@@ -110,6 +112,19 @@
             left: 50%;
             transform: translateX(-50%);
           }
+        }
+      }
+    }
+  }
+}
+
+.secondDiv {
+  .card {
+    &:nth-last-of-type(4) {
+      &::after {
+        display: none !important;
+        @media only screen and (max-width: 768px) {
+          display: block !important;
         }
       }
     }

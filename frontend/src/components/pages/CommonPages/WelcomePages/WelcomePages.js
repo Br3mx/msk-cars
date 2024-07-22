@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./WelcomePages.module.scss";
 import { Link, useNavigate } from "react-router-dom";
-import { useSection } from "../../common/SectionContext"; // Import kontekstu
+import { useSection } from "../../../common/SectionContext"; // Import kontekstu
 import { motion, useInView } from "framer-motion";
 
 const WelcomePages = () => {

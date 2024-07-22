@@ -6,7 +6,6 @@ import style from "./SingleRealization.module.scss";
 import { motion, useInView } from "framer-motion";
 import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch";
 import { Controls } from "./utils/Controls";
-import { FaTimes } from "react-icons/fa";
 
 const SingleRealization = () => {
   const { id } = useParams();
@@ -60,7 +59,7 @@ const SingleRealization = () => {
                 transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
                 onClick={() => handleImageClick(`/img/${item}`)}
               >
-                <img src={`/img/${item}`} alt={`car image ${index}`} />
+                <img src={`/img/${item}`} alt={`${index}`} />
               </motion.div>
             ))}
           </div>

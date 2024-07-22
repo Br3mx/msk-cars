@@ -76,20 +76,8 @@ const NavBar = () => {
               </Link>
             </div>
             <Link
-              to={
-                section === "detailing"
-                  ? "/offer-detaling"
-                  : "/offer-cars-to-order"
-              }
-              className={
-                isActive(
-                  section === "detailing"
-                    ? "/offer-detaling"
-                    : "/offer-cars-to-order"
-                )
-                  ? style.activeLink
-                  : style.link
-              }
+              to="/offer"
+              className={isActive("/offer") ? style.activeLink : style.link}
             >
               OFERTA
             </Link>

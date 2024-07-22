@@ -1,5 +1,5 @@
-@import "../../../style/settings.scss";
-@import "../../../style/config.scss";
+@import "../../../../style/settings.scss";
+@import "../../../../style/config.scss";
 .contLogo {
   display: grid;
   place-items: center;
@@ -68,7 +68,7 @@
   &:nth-of-type(2n) {
     &::before {
       background-image: url(#{$IMGS_URL}/detailing/another-photo/laweta.jpg);
-      background-position: top calc(100% + 50px);
+      background-position: center calc(100% + 3rem);
     }
   }
   .contText {

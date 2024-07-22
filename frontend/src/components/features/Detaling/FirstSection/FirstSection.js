@@ -1,6 +1,6 @@
 import React from "react";
 import style from "./FirstSection.module.scss";
-import { FaArrowAltCircleDown, FaArrowRight, FaPhone } from "react-icons/fa";
+import { FaArrowRight, FaPhone } from "react-icons/fa";
 import { Container } from "react-bootstrap";
 import BtnScroll from "../../../common/BtnScroll/BtnScroll";
 import { useSelector } from "react-redux";
@@ -71,7 +71,11 @@ const FirstSection = () => {
           animate={inView ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }}
           transition={{ duration: 1, delay: 1.5 }}
         >
-          <a target="_blank" href="https://www.facebook.com/mskrally">
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://www.facebook.com/mskrally"
+          >
             <Button>
               SPRAWDŹ NAS <FaArrowRight />
             </Button>

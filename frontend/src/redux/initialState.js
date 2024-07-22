@@ -50,6 +50,7 @@ const initialState = {
       title2: "Regeneracja reflektorów - 150 zł",
       title3: "Folie ochronne",
       title4: "Przyciemnianie szyb i lamp - od 400 zł",
+      title5: "Samochody na zamówienie",
     },
     realization: {
       carsDetailing: {

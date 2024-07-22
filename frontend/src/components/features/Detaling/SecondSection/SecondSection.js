@@ -1,7 +1,6 @@
 import React from "react";
 import style from "./SecondSection.module.scss";
 import { Link } from "react-router-dom";
-import { FaArrowAltCircleDown } from "react-icons/fa";
 import BtnScroll from "../../../common/BtnScroll/BtnScroll";
 import { useSelector } from "react-redux";
 import { getSecondSection } from "../../../../redux/Detailing/detailingReducer";
@@ -58,7 +57,7 @@ const SecondSection = () => {
                 Sprawdź Naszą ofertę
               </motion.h2>
               <Link
-                to={"/offer-detaling"}
+                to={"/offer"}
                 style={{
                   display: "flex",
                   justifyContent: "center",

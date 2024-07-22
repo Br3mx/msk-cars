@@ -1,6 +1,6 @@
 import React from "react";
 import style from "./FourthSection.module.scss";
-import { FaArrowAltCircleUp, FaHome, FaMapPin, FaPhone } from "react-icons/fa";
+import { FaArrowAltCircleUp, FaMapPin } from "react-icons/fa";
 import { Container } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { getFourthSection } from "../../../../redux/Detailing/detailingReducer";

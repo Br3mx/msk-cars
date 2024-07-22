@@ -84,7 +84,7 @@ const Realization = () => {
                   <div key={index} className={style.card}>
                     <img
                       src={`${IMGS_URL}/detailing/hyundai/${item.img}`}
-                      alt={item.carMark}
+                      alt={item.img}
                     />
                     <div className={style.contDesc}>
                       <div className={style.contText}>{item.carMark}</div>
