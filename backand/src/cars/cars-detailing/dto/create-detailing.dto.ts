@@ -8,7 +8,4 @@ export class CreateDetailingDTO {
   @IsNotEmpty()
   @IsString()
   description: string;
-
-  img: any;
-  restImg: any[];
 }
