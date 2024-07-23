@@ -55,7 +55,7 @@ export class DetailingController {
       img: img[0].originalname, // Załóżmy, że img zawiera nazwę pliku głównego obrazu
       restImg: restImg
         ? JSON.stringify(restImg.map((file) => file.originalname))
-        : '[]', // Przekształć tablicę plików w JSON-encoded string // Przekształć tablicę plików w pojedynczy ciąg znaków
+        : '[]',
       id,
     };
 
