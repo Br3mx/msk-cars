@@ -21,7 +21,7 @@ const WelcomePages = () => {
         ref={ref}
         initial={{ y: -50, opacity: 0 }}
         animate={inView ? { y: 0, opacity: 1 } : { y: -50, opacity: 0 }}
-        transition={{ duration: 1, delay: 0.2 }}
+        transition={{ duration: 1 }}
       >
         <motion.div
           className={style.contLogo}
@@ -31,7 +31,7 @@ const WelcomePages = () => {
               ? { rotate: 0, y: 0, opacity: 1 }
               : { rotate: 180, y: 1000, opacity: 0 }
           }
-          transition={{ duration: 1, delay: 0.4 }}
+          transition={{ duration: 1, delay: 0.2 }}
         >
           <img src="/img/logo.png" alt="Logo" />
         </motion.div>
@@ -44,7 +44,7 @@ const WelcomePages = () => {
                 ? { rotate: 0, x: 0, opacity: 1 }
                 : { rotate: -30, x: -500, opacity: 0 }
             }
-            transition={{ duration: 1, delay: 0.5 }}
+            transition={{ duration: 1, delay: 0.3 }}
           >
             <motion.div className={style.contText}>
               <h2>Auto Detaling</h2>
@@ -65,7 +65,7 @@ const WelcomePages = () => {
                 ? { rotate: 0, x: 0, opacity: 1 }
                 : { rotate: 30, x: 500, opacity: 0 }
             }
-            transition={{ duration: 1, delay: 0.5 }}
+            transition={{ duration: 1, delay: 0.3 }}
           >
             <motion.div className={style.contText}>
               <h2>Samochody na zamównienie</h2>

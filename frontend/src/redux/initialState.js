@@ -103,6 +103,17 @@ const initialState = {
       ),
     },
   },
+  carsExport: {
+    firstSection2: {
+      title: "Szukasz wymarzonego samochodu ?",
+      text: (
+        <>
+          Zaufaj naszemu doświadczeniu i pasji do motoryzacji.
+          <br /> Twoje marzenie o idealnym samochodzie jest w zasięgu ręki!
+        </>
+      ),
+    },
+  },
 };
 
 export default initialState;

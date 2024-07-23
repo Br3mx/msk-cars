@@ -3,9 +3,11 @@ import thunk from "redux-thunk";
 import initialState from "./initialState.js";
 import detailingReducer from "./Detailing/detailingReducer";
 import commonReducer from "./commonRedux.js";
+import carsExportReducer from "./CarsExport/carsexportReducer.js";
 const subreducers = {
   detailing: detailingReducer,
   common: commonReducer,
+  carsExport: carsExportReducer,
 };
 
 const reducer = combineReducers(subreducers);

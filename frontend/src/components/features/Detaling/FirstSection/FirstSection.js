@@ -24,46 +24,48 @@ const FirstSection = () => {
           animate={inView ? { y: 0, opacity: 1 } : { y: -50, opacity: 0 }}
           transition={{ duration: 1 }}
         >
-          <div className={style.contText}>
-            <motion.h5
-              initial={{ x: 100, opacity: 0 }}
-              animate={inView ? { x: 0, opacity: 1 } : { x: 100, opacity: 0 }}
-              transition={{ duration: 1, delay: 0.2 }}
+          <div className={style.wrapper}>
+            <div className={style.contText}>
+              <motion.h5
+                initial={{ x: 100, opacity: 0 }}
+                animate={inView ? { x: 0, opacity: 1 } : { x: 100, opacity: 0 }}
+                transition={{ duration: 1, delay: 0.2 }}
+              >
+                {firstSection.title}
+              </motion.h5>
+              <motion.p
+                initial={{ x: 50, opacity: 0 }}
+                animate={inView ? { x: 0, opacity: 1 } : { x: 50, opacity: 0 }}
+                transition={{ duration: 1, delay: 0.5 }}
+              >
+                {firstSection.subtitle} <br />
+                <span>{firstSection.strong}</span>
+              </motion.p>
+            </div>
+            <motion.div
+              className={style.contPhones}
+              initial={{ scale: 0 }}
+              animate={inView ? { scale: 1 } : { scale: 0 }}
+              transition={{ duration: 0.5, delay: 1 }}
             >
-              {firstSection.title}
-            </motion.h5>
-            <motion.p
-              initial={{ x: 50, opacity: 0 }}
-              animate={inView ? { x: 0, opacity: 1 } : { x: 50, opacity: 0 }}
-              transition={{ duration: 1, delay: 0.5 }}
-            >
-              {firstSection.subtitle} <br />
-              <span>{firstSection.strong}</span>
-            </motion.p>
+              <div className={style.contPhone}>
+                <span>
+                  <a href="tel:+48533073301">
+                    <FaPhone className={style.phoneIcon} />
+                    {phoneNumber.phone1}
+                  </a>
+                </span>
+              </div>
+              <div className={style.contPhone}>
+                <span>
+                  <a href="tel:+48504598563">
+                    <FaPhone className={style.phoneIcon} />
+                    {phoneNumber.phone2}
+                  </a>
+                </span>
+              </div>
+            </motion.div>
           </div>
-          <motion.div
-            className={style.contPhones}
-            initial={{ scale: 0 }}
-            animate={inView ? { scale: 1 } : { scale: 0 }}
-            transition={{ duration: 0.5, delay: 1 }}
-          >
-            <div className={style.contPhone}>
-              <span>
-                <a href="tel:+48533073301">
-                  <FaPhone className={style.phoneIcon} />
-                  {phoneNumber.phone1}
-                </a>
-              </span>
-            </div>
-            <div className={style.contPhone}>
-              <span>
-                <a href="tel:+48504598563">
-                  <FaPhone className={style.phoneIcon} />
-                  {phoneNumber.phone2}
-                </a>
-              </span>
-            </div>
-          </motion.div>
         </motion.div>
         <motion.div
           className={style.contBtn}
