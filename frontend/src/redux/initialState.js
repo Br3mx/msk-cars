@@ -113,6 +113,27 @@ const initialState = {
         </>
       ),
     },
+    secondSection2: {
+      text1: (
+        <>
+          W MSK-Cars specjalizujemy się w sprowadzaniu samochodów na zamówienie,
+          dostosowanych do Twoich indywidualnych potrzeb i preferencji. <br />
+          Dzięki naszemu doświadczeniu i pasji do motoryzacji, jesteśmy w stanie
+          znaleźć idealny pojazd dla każdego klienta.
+        </>
+      ),
+      text2: (
+        <>
+          Zapraszamy do zapoznania się z naszą ofertą i skorzystania z
+          możliwości zamówienia samochodu swoich marzeń. Skontaktuj się z nami
+          telefonicznie lub mailowo poprzez formularz kontaktowy.
+          <br />
+          <strong>Twoje wymarzone auto czeka na Ciebie!</strong>
+          <br />
+          Spełnij swoje marzenie o idealnym samochodzie z MSK-Cars!
+        </>
+      ),
+    },
   },
 };
 
