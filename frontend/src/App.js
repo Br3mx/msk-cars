@@ -17,6 +17,7 @@ import { loadDetRequest } from "./redux/Detailing/detailingReducer";
 import Home2 from "./components/pages/CarsExport/Home/Home2";
 import Realization2 from "./components/pages/CarsExport/Realization/Realization2";
 import SingleRealization2 from "./components/pages/CarsExport/SingleRealization/SingleRealization2";
+
 const App = () => {
   const dispatch = useDispatch();
 
