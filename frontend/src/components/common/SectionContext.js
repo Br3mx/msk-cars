@@ -1,14 +1,18 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState, useEffect } from "react";
 
-// Tworzymy kontekst
 const SectionContext = createContext();
 
-// Hook do łatwego użycia kontekstu
 export const useSection = () => useContext(SectionContext);
 
-// Komponent dostarczający kontekst
 export const SectionProvider = ({ children }) => {
-  const [section, setSection] = useState("detailing");
+  const [section, setSection] = useState(() => {
+    const savedSection = localStorage.getItem("section");
+    return savedSection ? savedSection : "detailing";
+  });
+
+  useEffect(() => {
+    localStorage.setItem("section", section);
+  }, [section]);
 
   return (
     <SectionContext.Provider value={{ section, setSection }}>
