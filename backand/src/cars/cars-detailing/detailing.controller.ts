@@ -12,7 +12,7 @@ import {
   UseInterceptors,
 } from '@nestjs/common';
 import { DetailingService } from './detailing.service';
-import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
+import { FileFieldsInterceptor } from '@nestjs/platform-express';
 import { v4 as uuidv4 } from 'uuid';
 import { CreateDetailingDTO } from './dto/create-detailing.dto';
 @Controller('detailing')
@@ -32,18 +32,30 @@ export class DetailingController {
   }
 
   @Post('create')
-  @UseInterceptors(FileInterceptor('img'), FilesInterceptor('restImg', 10))
+  @UseInterceptors(
+    FileFieldsInterceptor([
+      { name: 'img', maxCount: 1 },
+      { name: 'restImg', maxCount: 10 },
+    ]),
+  )
   async createDetailing(
-    @UploadedFile() img: Express.Multer.File,
-    @UploadedFiles() restImg: Express.Multer.File[],
+    @UploadedFiles()
+    {
+      img,
+      restImg,
+    }: { img: Express.Multer.File; restImg?: Express.Multer.File[] },
     @Body() createDetailingDTO: CreateDetailingDTO,
   ) {
     console.log('Received DTO:', createDetailingDTO);
+    console.log(img, restImg);
+
     const id = uuidv4();
     const detailingData = {
       ...createDetailingDTO,
-      img: img.filename, // Załóżmy, że img zawiera nazwę pliku głównego obrazu
-      restImg: restImg.map((file) => file.filename), // Przekształć tablicę plików w tablicę nazw plików
+      img: img[0].originalname, // Załóżmy, że img zawiera nazwę pliku głównego obrazu
+      restImg: restImg
+        ? JSON.stringify(restImg.map((file) => file.originalname))
+        : '[]', // Przekształć tablicę plików w JSON-encoded string // Przekształć tablicę plików w pojedynczy ciąg znaków
       id,
     };
 
