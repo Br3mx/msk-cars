@@ -83,7 +83,7 @@ const Realization = () => {
                 >
                   <div key={index} className={style.card}>
                     <img
-                      src={`${IMGS_URL}/detailing/hyundai/${item.img}`}
+                      src={`${IMGS_URL}/detailing/cars/${item.img}`}
                       alt={item.img}
                     />
                     <div className={style.contDesc}>

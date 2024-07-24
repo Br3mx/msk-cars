@@ -14,7 +14,7 @@ model CarsDetailing {
   id        String  @id @default(uuid())
   img       String
   carMark   String
-  restImg     String  @default("[]")  
+  restImg     Json    
   description String
 }
 

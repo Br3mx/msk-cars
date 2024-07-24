@@ -15,9 +15,14 @@ import { DetailingService } from './detailing.service';
 import { FileFieldsInterceptor } from '@nestjs/platform-express';
 import { v4 as uuidv4 } from 'uuid';
 import { CreateDetailingDTO } from './dto/create-detailing.dto';
+import { diskStorage } from 'multer';
+import { extname } from 'path';
+import * as dotenv from 'dotenv';
+
 @Controller('detailing')
 export class DetailingController {
   constructor(private detailingService: DetailingService) {
+    dotenv.config();
     this.detailingService = detailingService;
   }
   @Get('/')
@@ -31,12 +36,23 @@ export class DetailingController {
     return det;
   }
 
-  @Post('create')
+  @Post(process.env.POST_DETAILING_URL)
   @UseInterceptors(
-    FileFieldsInterceptor([
-      { name: 'img', maxCount: 1 },
-      { name: 'restImg', maxCount: 10 },
-    ]),
+    FileFieldsInterceptor(
+      [
+        { name: 'img', maxCount: 1 },
+        { name: 'restImg', maxCount: 10 },
+      ],
+      {
+        storage: diskStorage({
+          destination: './public/detailing/cars',
+          filename: (req, file, cb) => {
+            const uniqueSuffix = `${uuidv4()}${extname(file.originalname)}`;
+            cb(null, uniqueSuffix);
+          },
+        }),
+      },
+    ),
   )
   async createDetailing(
     @UploadedFiles()
@@ -52,9 +68,9 @@ export class DetailingController {
     const id = uuidv4();
     const detailingData = {
       ...createDetailingDTO,
-      img: img[0].originalname, // Załóżmy, że img zawiera nazwę pliku głównego obrazu
+      img: img[0].filename,
       restImg: restImg
-        ? JSON.stringify(restImg.map((file) => file.originalname))
+        ? JSON.stringify(restImg.map((file) => file.filename))
         : '[]',
       id,
     };

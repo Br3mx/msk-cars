@@ -60,7 +60,7 @@ const ThirdSection = () => {
               transition={{ duration: 1, delay: 0.5 + index * 0.2 }}
             >
               <img
-                src={`${IMGS_URL}/detailing/hyundai/${item.img}`}
+                src={`${IMGS_URL}/detailing/cars/${item.img}`}
                 alt={item.carMark}
               />
 

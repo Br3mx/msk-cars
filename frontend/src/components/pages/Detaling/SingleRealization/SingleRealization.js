@@ -6,6 +6,7 @@ import style from "./SingleRealization.module.scss";
 import { motion, useInView } from "framer-motion";
 import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch";
 import { Controls } from "./utils/Controls";
+import { IMGS_URL } from "../../../../config";
 
 const SingleRealization = () => {
   const { id } = useParams();
@@ -57,9 +58,14 @@ const SingleRealization = () => {
                 initial={{ scale: 0.5, opacity: 0 }}
                 animate={{ scale: inView ? 1 : 0.5, opacity: inView ? 1 : 0 }}
                 transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
-                onClick={() => handleImageClick(`/img/${item}`)}
+                onClick={() =>
+                  handleImageClick(`${IMGS_URL}/detailing/cars/${item}`)
+                }
               >
-                <img src={`/img/${item}`} alt={`${index}`} />
+                <img
+                  src={`${IMGS_URL}/detailing/cars/${item}`}
+                  alt={`${index}`}
+                />
               </motion.div>
             ))}
           </div>
