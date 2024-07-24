@@ -2,11 +2,13 @@ import {
   BadRequestException,
   Body,
   Controller,
+  Delete,
   Get,
   NotFoundException,
   Param,
   ParseUUIDPipe,
   Post,
+  Put,
   UploadedFile,
   UploadedFiles,
   UseInterceptors,
@@ -18,6 +20,7 @@ import { CreateDetailingDTO } from './dto/create-detailing.dto';
 import { diskStorage } from 'multer';
 import { extname } from 'path';
 import * as dotenv from 'dotenv';
+import { UpdateDetailingDTO } from './dto/update-detailing.dto';
 
 @Controller('detailing')
 export class DetailingController {
@@ -35,7 +38,13 @@ export class DetailingController {
     if (!det) throw new NotFoundException('Car not found');
     return det;
   }
-
+  @Delete(process.env.DELETE_DETAILING_URL)
+  async deleteDet(@Param('id', new ParseUUIDPipe()) id: string) {
+    if (!(await this.detailingService.getById(id)))
+      throw new NotFoundException('Product not found');
+    await this.detailingService.deleteDet(id);
+    return { success: true };
+  }
   @Post(process.env.POST_DETAILING_URL)
   @UseInterceptors(
     FileFieldsInterceptor(
@@ -76,5 +85,47 @@ export class DetailingController {
     };
 
     return this.detailingService.createDetailing(detailingData);
+  }
+
+  @Put(process.env.PUT_DETAILING_URL)
+  @UseInterceptors(
+    FileFieldsInterceptor(
+      [
+        { name: 'img', maxCount: 1 },
+        { name: 'restImg', maxCount: 10 },
+      ],
+      {
+        storage: diskStorage({
+          destination: './public/detailing/cars',
+          filename: (req, file, cb) => {
+            const uniqueSuffix = `${uuidv4()}${extname(file.originalname)}`;
+            cb(null, uniqueSuffix);
+          },
+        }),
+      },
+    ),
+  )
+  async updateDetailing(
+    @Param('id', new ParseUUIDPipe()) id: string,
+    @UploadedFiles()
+    {
+      img,
+      restImg,
+    }: { img?: Express.Multer.File; restImg?: Express.Multer.File[] },
+    @Body() updateDetailingDTO: UpdateDetailingDTO,
+  ) {
+    const existingDetailing = await this.detailingService.getById(id);
+    if (!existingDetailing) throw new NotFoundException('Detailing not found');
+
+    const updatedDetailingData = {
+      ...existingDetailing,
+      ...updateDetailingDTO,
+      img: img ? img[0].filename : existingDetailing.img,
+      restImg: restImg
+        ? JSON.stringify(restImg.map((file) => file.filename))
+        : existingDetailing.restImg,
+    };
+
+    return this.detailingService.updateDetailing(id, updatedDetailingData);
   }
 }
