@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getCarById } from "../../../../redux/Detailing/detailingReducer";
@@ -14,9 +14,39 @@ const SingleRealization = () => {
   const ref = React.useRef(null);
   const inView = useInView(ref, { once: true });
   const [selectedImage, setSelectedImage] = useState(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const dragRef = useRef(null);
+
+  const handleMouseDown = (e) => {
+    setIsDragging(true);
+    // Zmiana klasy dla kursorów
+    if (dragRef.current) {
+      dragRef.current.classList.add(style.grabbing);
+    }
+    // Zapobiegaj domyślnym działaniom (opcjonalne)
+    e.preventDefault();
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+    if (dragRef.current) {
+      dragRef.current.classList.remove(style.grabbing);
+    }
+  };
 
   if (!car) {
-    return <div>Samochód nie znaleziony</div>;
+    return (
+      <h1
+        style={{
+          display: "grid",
+          placeItems: "center",
+          height: "100vh",
+          alignItems: "center",
+        }}
+      >
+        Nie znaleziono samochodu
+      </h1>
+    );
   }
 
   const restImgJsonParse = JSON.parse(car.restImg);
@@ -45,7 +75,7 @@ const SingleRealization = () => {
           <motion.span
             className={style.description}
             initial={{ y: 50, opacity: 0 }}
-            animate={{ y: inView ? 0 : 50, opacity: inView ? 1 : 0 }}
+            animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 1, delay: 0.2 }}
           >
             <p>{car.description}</p>
@@ -56,7 +86,7 @@ const SingleRealization = () => {
                 key={index}
                 className={style.card}
                 initial={{ scale: 0.5, opacity: 0 }}
-                animate={{ scale: inView ? 1 : 0.5, opacity: inView ? 1 : 0 }}
+                animate={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
                 onClick={() =>
                   handleImageClick(`${IMGS_URL}/detailing/cars/${item}`)
@@ -77,20 +107,33 @@ const SingleRealization = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          //onClick={handleCloseModal}
+          onMouseDown={handleMouseDown}
+          onMouseUp={handleMouseUp}
         >
           <TransformWrapper
             defaultScale={1}
             defaultPositionX={200}
             defaultPositionY={100}
           >
-            <TransformComponent>
-              <img
-                src={selectedImage}
-                alt="Selected Car"
-                className={style.modalImage}
-              />
-            </TransformComponent>
+            <span
+              className={style.border}
+              ref={dragRef}
+              onMouseDown={handleMouseDown}
+              onMouseUp={handleMouseUp}
+            >
+              <TransformComponent
+                wrapperStyle={{
+                  height: "35rem" /* Wysokość TransformComponent na 100% */,
+                  width: "100%" /* Szerokość TransformComponent na 100% */,
+                }}
+              >
+                <img
+                  src={selectedImage}
+                  alt="Selected Car"
+                  className={style.modalImage}
+                />
+              </TransformComponent>
+            </span>
             <Controls closeFunction={handleCloseModal} />
           </TransformWrapper>
         </motion.div>

@@ -32,6 +32,21 @@ const ThirdSection = () => {
 
   const itemsToShow = isMobile ? 1 : 4;
 
+  if (realization.length === 0) {
+    return (
+      <h1
+        style={{
+          display: "grid",
+          placeItems: "center",
+          height: "100vh",
+          alignItems: "center",
+        }}
+      >
+        Nie znaleziono żadnych realizacji
+      </h1>
+    );
+  }
+
   return (
     <motion.div className={style.container} id="thirdsectiondetaling">
       <motion.div

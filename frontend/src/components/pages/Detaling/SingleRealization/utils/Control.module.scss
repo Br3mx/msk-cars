@@ -21,5 +21,11 @@
       scale: 1.1;
       color: $color-light-blue;
     }
+    &:nth-of-type(1) {
+      cursor: zoom-in;
+    }
+    &:nth-of-type(2) {
+      cursor: zoom-out;
+    }
   }
 }

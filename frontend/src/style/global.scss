@@ -1,10 +1,13 @@
 @import "./settings.scss";
 @import "./config.scss";
+html,
+body {
+  min-height: 100vh;
+}
 body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
-  height: 100%;
   color: $color-main-font !important;
   font-family: $font-basic !important;
   background: rgb(0, 0, 47);

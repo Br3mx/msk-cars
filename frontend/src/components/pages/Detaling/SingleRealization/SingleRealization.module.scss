@@ -78,6 +78,16 @@
   justify-content: center;
   flex-direction: column;
   z-index: 1000;
+  .border {
+    border: 10px double rgba($color-light-blue, 1);
+    background-color: rgba($color-main-font, 0.2);
+    cursor: grab;
+    position: relative; /* Dodaj to, jeśli jeszcze tego nie ma */
+    z-index: 1001;
+  }
+  .border.grabbing {
+    cursor: grabbing; /* Kursor w trakcie przeciągania */
+  }
 }
 
 .modalImage {
@@ -86,7 +96,7 @@
   margin: 0 auto;
   cursor: auto;
   position: relative;
-  width: 22%;
+  width: 30%;
   @media only screen and (max-width: 768px) {
     width: 60%;
     height: auto;
