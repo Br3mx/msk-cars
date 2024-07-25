@@ -135,6 +135,9 @@
   justify-content: center;
   margin-top: 0.3rem;
   transition: all 0.5s ease-in-out;
+  @media only screen and (max-width: 768px) {
+    margin-top: 1rem;
+  }
 
   button {
     font-size: 18px;
@@ -183,9 +186,5 @@
     object-fit: cover;
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
-    @media only screen and (max-width: 768px) {
-      height: 200px;
-      width: 200px;
-    }
   }
 }

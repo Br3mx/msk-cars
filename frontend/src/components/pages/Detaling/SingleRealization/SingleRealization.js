@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getCarById } from "../../../../redux/Detailing/detailingReducer";
@@ -16,6 +16,10 @@ const SingleRealization = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [isDragging, setIsDragging] = useState(false);
   const dragRef = useRef(null);
+  const [wrapperStyle, setWrapperStyle] = useState({
+    height: "35rem",
+    width: "100%",
+  });
 
   const handleMouseDown = (e) => {
     setIsDragging(true);
@@ -33,6 +37,21 @@ const SingleRealization = () => {
       dragRef.current.classList.remove(style.grabbing);
     }
   };
+
+  useEffect(() => {
+    const updateWrapperStyle = () => {
+      if (window.innerWidth <= 768) {
+        setWrapperStyle({ height: "10rem", width: "100%" });
+      } else {
+        setWrapperStyle({ height: "35rem", width: "100%" });
+      }
+    };
+
+    window.addEventListener("resize", updateWrapperStyle);
+    updateWrapperStyle(); // initial call
+
+    return () => window.removeEventListener("resize", updateWrapperStyle);
+  }, []);
 
   if (!car) {
     return (
@@ -121,12 +140,7 @@ const SingleRealization = () => {
               onMouseDown={handleMouseDown}
               onMouseUp={handleMouseUp}
             >
-              <TransformComponent
-                wrapperStyle={{
-                  height: "35rem" /* Wysokość TransformComponent na 100% */,
-                  width: "100%" /* Szerokość TransformComponent na 100% */,
-                }}
-              >
+              <TransformComponent wrapperStyle={wrapperStyle}>
                 <img
                   src={selectedImage}
                   alt="Selected Car"

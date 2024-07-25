@@ -43,7 +43,6 @@
     justify-content: center;
     gap: 50px;
     flex-wrap: wrap;
-
     .card {
       @media only screen and (max-width: 768px) {
         padding: 0 1.5rem;
@@ -97,6 +96,9 @@
   cursor: auto;
   position: relative;
   width: 30%;
+  object-fit: cover;
+  display: flex;
+  justify-content: center;
   @media only screen and (max-width: 768px) {
     width: 60%;
     height: auto;
