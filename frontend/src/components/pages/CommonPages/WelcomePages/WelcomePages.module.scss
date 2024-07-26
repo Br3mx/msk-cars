@@ -17,7 +17,20 @@
   padding: 3rem;
   gap: 5rem;
 }
-
+.link1 {
+  text-decoration: none;
+  color: $color-main-font;
+}
+.link2 {
+  text-decoration: none;
+  color: $color-main-font;
+  .card {
+    &::before {
+      background-image: url(#{$IMGS_URL}/detailing/another-photo/laweta.jpg) !important;
+      background-position: center calc(100% + 3rem);
+    }
+  }
+}
 .card {
   border-radius: 50px;
   height: 50vh;
@@ -65,12 +78,7 @@
   &:hover::after {
     height: 100%;
   }
-  &:nth-of-type(2n) {
-    &::before {
-      background-image: url(#{$IMGS_URL}/detailing/another-photo/laweta.jpg);
-      background-position: center calc(100% + 3rem);
-    }
-  }
+
   .contText {
     position: absolute;
     bottom: 0;

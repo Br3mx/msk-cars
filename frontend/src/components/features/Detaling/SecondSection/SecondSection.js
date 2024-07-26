@@ -54,7 +54,7 @@ const SecondSection = () => {
                 animate={inView ? { y: 0, opacity: 1 } : { y: -50, opacity: 0 }}
                 transition={{ duration: 1, delay: 1.5 }}
               >
-                Sprawdź Naszą ofertę
+                SPRAWDŹ CENY NASZYCH OFERT
               </motion.h2>
               <Link
                 to={"/offer"}

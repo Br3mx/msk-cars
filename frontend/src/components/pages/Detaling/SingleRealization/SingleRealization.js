@@ -41,7 +41,7 @@ const SingleRealization = () => {
   useEffect(() => {
     const updateWrapperStyle = () => {
       if (window.innerWidth <= 768) {
-        setWrapperStyle({ height: "10rem", width: "100%" });
+        setWrapperStyle({ height: "20rem", width: "100%" });
       } else {
         setWrapperStyle({ height: "35rem", width: "100%" });
       }
