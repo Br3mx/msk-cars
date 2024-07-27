@@ -1,17 +1,11 @@
 import React from "react";
 import style from "./FirstSection.module.scss";
-import {
-  FaArrowRight,
-  FaFacebook,
-  FaInstagram,
-  FaMapPin,
-  FaPhone,
-} from "react-icons/fa";
+import { FaFacebook, FaInstagram, FaMapPin, FaPhone } from "react-icons/fa";
 import { Container } from "react-bootstrap";
 import BtnScroll from "../../../common/BtnScroll/BtnScroll";
 import { useSelector } from "react-redux";
 import { getFirstSection } from "../../../../redux/Detailing/detailingReducer";
-import { getAddress, getPhone } from "../../../../redux/commonRedux";
+import { getPhone } from "../../../../redux/commonRedux";
 import Button from "../../../common/Button/Button";
 import { motion, useInView } from "framer-motion";
 import { Link } from "react-scroll";
@@ -20,7 +14,6 @@ import { Link as Link1 } from "react-router-dom";
 const FirstSection = () => {
   const firstSection = useSelector(getFirstSection);
   const phoneNumber = useSelector(getPhone);
-  const address = useSelector(getAddress);
   const ref = React.useRef(null);
   const inView = useInView(ref, { once: true });
   return (
@@ -118,7 +111,7 @@ const FirstSection = () => {
               href="https://www.facebook.com/mskrally"
             >
               <Button>
-                SPRAWDŹ NASZ FACEBOOK <FaFacebook />
+                <FaFacebook />
               </Button>
             </a>
             <a
@@ -128,7 +121,7 @@ const FirstSection = () => {
               className={style.insta}
             >
               <Button>
-                SPRAWDŹ NASZ INSTAGRAM <FaInstagram />
+                <FaInstagram />
               </Button>
             </a>
           </motion.div>
