@@ -77,7 +77,8 @@ const SingleRealization = () => {
   const handleCloseModal = () => {
     setSelectedImage(null);
   };
-
+  const description = JSON.parse(car.description);
+  console.log(description);
   return (
     <motion.div className={style.container}>
       <div className={style.content}>
@@ -97,7 +98,14 @@ const SingleRealization = () => {
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 1, delay: 0.2 }}
           >
-            <p>{car.description}</p>
+            <h3>Zakres prac detailingowych :</h3>
+            {description.map((item, index) => (
+              <div>
+                <ul>
+                  <li key={index}>{item}</li>
+                </ul>
+              </div>
+            ))}
           </motion.span>
           <div className={style.gallery}>
             {restImgJsonParse.map((item, index) => (

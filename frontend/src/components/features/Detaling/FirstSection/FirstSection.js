@@ -126,8 +126,12 @@ const FirstSection = () => {
             </a>
           </motion.div>
         </div>
-        <p className={style.textBtn}>Kliknij aby przejść do kolejnej sekcji</p>
-        <BtnScroll targetId="secondsectiondetaling" />
+        <div className={style.contBtnText}>
+          <p className={style.textBtn}>
+            Kliknij aby przejść do kolejnej sekcji
+          </p>
+          <BtnScroll targetId="secondsectiondetaling" />
+        </div>
       </Container>
     </motion.div>
   );

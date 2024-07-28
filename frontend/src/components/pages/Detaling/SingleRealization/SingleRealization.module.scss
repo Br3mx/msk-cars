@@ -28,11 +28,20 @@
   place-items: center;
 
   .description {
-    p {
-      text-align: left;
-      font-size: 20px;
-      @media only screen and (max-width: 768px) {
-        padding: 0 1.5rem;
+    margin-top: 0.5rem;
+    h3 {
+      margin-bottom: 2rem;
+    }
+    ul {
+      border: 2px dotted rgba($color-light-blue, 1);
+      padding: 10px 30px;
+      margin-bottom: 2rem;
+      li {
+        text-align: center;
+        font-size: 24px;
+        @media only screen and (max-width: 768px) {
+          padding: 0 1.5rem;
+        }
       }
     }
   }
