@@ -11,6 +11,7 @@ import {
   Put,
   UploadedFile,
   UploadedFiles,
+  UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
 import { DetailingService } from './detailing.service';
@@ -21,6 +22,7 @@ import { diskStorage } from 'multer';
 import { extname } from 'path';
 import * as dotenv from 'dotenv';
 import { UpdateDetailingDTO } from './dto/update-detailing.dto';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @Controller('detailing')
 export class DetailingController {
@@ -45,7 +47,9 @@ export class DetailingController {
     await this.detailingService.deleteDet(id);
     return { success: true };
   }
+
   @Post(process.env.POST_DETAILING_URL)
+  @UseGuards(JwtAuthGuard)
   @UseInterceptors(
     FileFieldsInterceptor(
       [

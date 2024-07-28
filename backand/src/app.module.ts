@@ -13,6 +13,10 @@ import * as cors from 'cors';
 import { ConfigModule } from '@nestjs/config';
 import configuration from './config/configuration';
 import { MailModule } from './email/email.module';
+import { UsersController } from './users/users.controller';
+import { UsersService } from './users/users.service';
+import { UsersModule } from './users/users.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -23,9 +27,11 @@ import { MailModule } from './email/email.module';
       load: [configuration],
       isGlobal: true,
     }),
+    UsersModule,
+    AuthModule,
   ],
-  controllers: [AppController],
-  providers: [AppService, PrismaService],
+  controllers: [AppController, UsersController],
+  providers: [AppService, PrismaService, UsersService],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer): void {

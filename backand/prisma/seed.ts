@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient, Role } from '@prisma/client';
 const db = new PrismaClient();
 
 /*  
@@ -140,9 +140,24 @@ function getMail() {
     },
   ];
 }
+function getUser() {
+  return [
+    {
+      id: '5f8d0c9b-bf21-4f2c-8c8d-6c5d8e6dbe7b',
+      email: 'przykładowyemail@gmail.com',
+      role: Role.ADMIN,
+      password: {
+        create: {
+          hashedPassword: 'hashed_password_here',
+        },
+      },
+    },
+  ];
+}
 async function seed() {
   await db.carsDetailing.deleteMany();
   await db.mail.deleteMany();
+  await db.user.deleteMany();
 
   await Promise.all(
     getCarsDetailing().map((carsDetailing) => {
@@ -152,6 +167,11 @@ async function seed() {
   await Promise.all(
     getMail().map((mail) => {
       return db.mail.create({ data: mail });
+    }),
+  );
+  await Promise.all(
+    getUser().map((user) => {
+      return db.user.create({ data: user });
     }),
   );
 }
