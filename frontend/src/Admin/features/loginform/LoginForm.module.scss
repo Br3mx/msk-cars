@@ -1,0 +1,64 @@
+@import "../../../style/settings.scss";
+
+.container {
+  padding: 1rem 0;
+  background: transparent;
+  border: 5px dotted $color-main-font;
+  border-radius: 40px;
+  backdrop-filter: blur(10px);
+  span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+      width: 10rem;
+      align-items: center;
+    }
+  }
+  .content {
+    padding: 0 5rem 5rem 5rem;
+  }
+  h1 {
+    text-align: center;
+  }
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    font-size: 25px;
+    .passwordWrapper {
+      position: relative;
+    }
+    .showPassword {
+      position: absolute;
+      right: 10px;
+      top: 30%;
+      cursor: pointer;
+      color: $color-light-blue;
+      font-size: 20px;
+      transition: transform 0.3s ease;
+    }
+    input {
+      font-size: 17px;
+      text-align: center;
+      height: 3rem;
+      padding: 0 20px;
+      width: 25rem;
+    }
+  }
+  .contBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: -3rem;
+    button {
+      height: 3rem;
+      width: 12.5rem;
+      font-size: 18px;
+      border: none;
+      border-radius: 10px;
+      background-color: $color-light-blue;
+      color: $color-main-font;
+    }
+  }
+}

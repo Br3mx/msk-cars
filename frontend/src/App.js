@@ -17,9 +17,13 @@ import { loadDetRequest } from "./redux/Detailing/detailingReducer";
 import Home2 from "./components/pages/CarsExport/Home/Home2";
 import Realization2 from "./components/pages/CarsExport/Realization/Realization2";
 import SingleRealization2 from "./components/pages/CarsExport/SingleRealization/SingleRealization2";
+import Login from "./Admin/Login/Login";
+import { REACT_APP_START_URL } from "./environmentVariables.js";
+import AdminHome from "./Admin/AdminHome/AdminHome.js";
 
 const App = () => {
   const dispatch = useDispatch();
+  const adminUrl = REACT_APP_START_URL;
 
   useEffect(() => {
     dispatch(loadDetRequest());
@@ -33,6 +37,24 @@ const App = () => {
       setLoading(false);
     }, 1500);
   }, []);
+
+  if (location.pathname.startsWith(adminUrl)) {
+    return (
+      <SectionProvider>
+        {loading ? (
+          <Preloader />
+        ) : (
+          <ScrollToTop>
+            <Routes>
+              <Route path={`${adminUrl}/login`} element={<Login />} />
+              <Route path={`${adminUrl}/home`} element={<AdminHome />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </ScrollToTop>
+        )}
+      </SectionProvider>
+    );
+  }
   return (
     <SectionProvider>
       {loading ? (
