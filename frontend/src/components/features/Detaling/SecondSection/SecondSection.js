@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { getSecondSection } from "../../../../redux/Detailing/detailingReducer";
 import Button from "../../../common/Button/Button";
 import { motion, useInView } from "framer-motion";
+import { FaArrowAltCircleUp } from "react-icons/fa";
 
 const SecondSection = () => {
   const secondSection = useSelector(getSecondSection);

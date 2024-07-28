@@ -107,6 +107,7 @@ const SingleRealization = () => {
               </div>
             ))}
           </motion.span>
+          <h1 style={{ marginBottom: "2rem" }}>Zdjęcia : </h1>
           <div className={style.gallery}>
             {restImgJsonParse.map((item, index) => (
               <motion.div
