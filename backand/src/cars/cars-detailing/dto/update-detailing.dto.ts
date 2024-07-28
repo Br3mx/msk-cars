@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString } from 'class-validator';
+import { ArrayNotEmpty, IsArray, IsNotEmpty, IsString } from 'class-validator';
 
 export class UpdateDetailingDTO {
   @IsNotEmpty()
@@ -7,5 +7,5 @@ export class UpdateDetailingDTO {
 
   @IsNotEmpty()
   @IsString()
-  description: string;
+  description: string; // Change to string
 }

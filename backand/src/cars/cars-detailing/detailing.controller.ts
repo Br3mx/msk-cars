@@ -73,6 +73,9 @@ export class DetailingController {
   ) {
     console.log('Received DTO:', createDetailingDTO);
     console.log(img, restImg);
+    const descriptionArray = createDetailingDTO.description
+      .split(',')
+      .map((item) => item.trim());
 
     const id = uuidv4();
     const detailingData = {
@@ -81,6 +84,7 @@ export class DetailingController {
       restImg: restImg
         ? JSON.stringify(restImg.map((file) => file.filename))
         : '[]',
+      description: JSON.stringify(descriptionArray),
       id,
     };
 

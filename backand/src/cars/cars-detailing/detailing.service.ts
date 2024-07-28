@@ -42,7 +42,13 @@ export class DetailingService {
 
     return this.prismaService.carsDetailing.update({
       where: { id },
-      data,
+      data: {
+        ...data,
+        description:
+          typeof data.description === 'string'
+            ? JSON.parse(data.description)
+            : data.description,
+      },
     });
   }
 }

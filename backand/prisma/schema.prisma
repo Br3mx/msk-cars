@@ -15,7 +15,7 @@ model CarsDetailing {
   img       String
   carMark   String
   restImg     Json    
-  description String
+  description Json
 }
 
 model Mail {

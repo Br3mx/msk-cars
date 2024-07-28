@@ -1,4 +1,10 @@
-import { IsNotEmpty, IsString, IsUUID } from 'class-validator';
+import {
+  ArrayNotEmpty,
+  IsArray,
+  IsNotEmpty,
+  IsString,
+  IsUUID,
+} from 'class-validator';
 
 export class CreateDetailingDTO {
   @IsNotEmpty()
@@ -7,5 +13,5 @@ export class CreateDetailingDTO {
 
   @IsNotEmpty()
   @IsString()
-  description: string;
+  description: string; // Change to string
 }
