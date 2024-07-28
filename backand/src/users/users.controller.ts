@@ -8,6 +8,8 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
+import { AdminAuthGuard } from 'src/auth/admin-auth.guard';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @Controller('user')
 export class UsersController {
@@ -25,8 +27,8 @@ export class UsersController {
     return user;
   }
   @Delete(':id')
-  //@UseGuards(AdminAuthGuard)
-  //@UseGuards(JwtAuthGuard)
+  @UseGuards(AdminAuthGuard)
+  @UseGuards(JwtAuthGuard)
   public async delete(@Param('id', new ParseUUIDPipe()) id: string) {
     if (!(await this.usersService.getUsersById(id)))
       throw new NotFoundException('User not found');
