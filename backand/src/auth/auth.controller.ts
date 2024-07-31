@@ -37,11 +37,11 @@ export class AuthController {
 
     res.json({
       message: 'success',
-      role: user.role, // Zwróć rolę użytkownika
+      role: user.role,
     });
   }
 
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(LocalAuthGuard)
   @Delete('logout')
   async logout(@Response() res) {
     res.clearCookie('auth', { httpOnly: true });

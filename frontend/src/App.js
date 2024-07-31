@@ -20,6 +20,10 @@ import SingleRealization2 from "./components/pages/CarsExport/SingleRealization/
 import Login from "./Admin/Login/Login";
 import { REACT_APP_START_URL } from "./environmentVariables.js";
 import AdminHome from "./Admin/AdminHome/AdminHome.js";
+import AddRealizationD from "./Admin/Pages/Detailing/AddRealizationD/AddRealizationD.js";
+import EditRealizationD from "./Admin/Pages/Detailing/EditRealizationD/EditRealizationD.js";
+import AddRealizationC from "./Admin/Pages/CarsToOrder/AddRealizationC/AddRealizationC.js";
+import EditRealizationC from "./Admin/Pages/CarsToOrder/EditRealizationC/EditRealizationC.js";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -48,6 +52,24 @@ const App = () => {
             <Routes>
               <Route path={`${adminUrl}/login`} element={<Login />} />
               <Route path={`${adminUrl}/home`} element={<AdminHome />} />
+              {/* DETAILING */}
+              <Route
+                path={`${adminUrl}/detaling/add-realization`}
+                element={<AddRealizationD />}
+              />
+              <Route
+                path={`${adminUrl}/detaling/edit-realization`}
+                element={<EditRealizationD />}
+              />
+              {/* SAMOCHODY NA ZAMÓWIENIE */}
+              <Route
+                path={`${adminUrl}/cars-to-order/add-realization`}
+                element={<AddRealizationC />}
+              />
+              <Route
+                path={`${adminUrl}/cars-to-order/edit-realization`}
+                element={<EditRealizationC />}
+              />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </ScrollToTop>

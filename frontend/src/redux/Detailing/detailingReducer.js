@@ -21,9 +21,14 @@ const createActionName = (name) => `app/detailing/${name}`;
 
 export const ERROR = createActionName("ERROR");
 export const LOAD_DET = createActionName("LOAD_DET");
+export const DELETE_REALIZATION = createActionName("DELETE_REALIZATION");
 
 export const loadDet = (payload) => ({ type: LOAD_DET, payload });
 export const setError = (payload) => ({ type: ERROR, payload });
+export const deleteRealizationSuccess = (id) => ({
+  type: DELETE_REALIZATION,
+  payload: id,
+});
 
 // thunk
 
@@ -35,6 +40,14 @@ export const loadDetRequest = () => async (dispatch) => {
     dispatch(setError(e.message));
   }
 };
+export const deleteRealizationD = (id) => async (dispatch) => {
+  try {
+    await axios.delete(`${API_URL}/detailing/delete/${id}`);
+    dispatch(deleteRealizationSuccess(id));
+  } catch (e) {
+    dispatch(setError(e.message));
+  }
+};
 
 export default function reducer(state = [initialState], action = {}) {
   switch (action.type) {
@@ -42,6 +55,11 @@ export default function reducer(state = [initialState], action = {}) {
       return {
         ...state,
         realization: { carsDetailing: { data: action.payload } },
+      };
+    case DELETE_REALIZATION:
+      return {
+        ...state,
+        realizations: state.realizations.filter((r) => r.id !== action.payload),
       };
     case ERROR:
       return { ...state, error: action.payload };
