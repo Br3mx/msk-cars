@@ -23,10 +23,21 @@ export class AuthController {
   @UseGuards(LocalAuthGuard)
   @Post('login')
   async login(@Request() req, @Response() res) {
-    const tokens = await this.authService.createSession(req.user);
-    res.cookie('auth', tokens, { httpOnly: true });
-    res.send({
+    const user = req.user;
+    //console.log(user);
+    const tokens = await this.authService.createSession(user);
+    const isProduction = process.env.NODE_ENV === 'production';
+
+    // Zwróć token oraz rolę w odpowiedzi
+    res.cookie('auth', tokens.access_token, {
+      httpOnly: true,
+      sameSite: 'None',
+      secure: isProduction,
+    });
+
+    res.json({
       message: 'success',
+      role: user.role, // Zwróć rolę użytkownika
     });
   }
 

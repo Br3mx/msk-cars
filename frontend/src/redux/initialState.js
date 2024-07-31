@@ -1,5 +1,8 @@
 const initialState = {
   common: {
+    user: {
+      role: "",
+    },
     phoneNumber: {
       phone1: "(+48) 533-073-301",
       phone2: "(+48) 504-598-563",

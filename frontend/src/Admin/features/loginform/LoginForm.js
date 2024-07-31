@@ -1,18 +1,22 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { loginUser } from "../../../redux/commonRedux";
 import style from "./LoginForm.module.scss";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { REACT_APP_START_URL } from "../../../environmentVariables";
 import { API_URL } from "../../../config";
-import { useNavigate } from "react-router-dom";
+import { REACT_APP_START_URL } from "../../../environmentVariables";
 
 const LoginForm = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
   const [errorMessage, setErrorMessage] = useState("");
-  const navigate = useNavigate();
+
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
@@ -35,16 +39,20 @@ const LoginForm = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
+        credentials: "include", // Upewnij się, że cookie jest wysyłane i odbierane
       });
 
-      if (response.ok) {
-        const redirectUrl = `${REACT_APP_START_URL}/home`;
-        localStorage.setItem("token", response.headers.get("Authorization"));
-        setTimeout(() => {
-          navigate(redirectUrl);
-        }, 1000);
-      } else {
+      if (!response.ok) {
         throw new Error("Login failed");
+      }
+
+      const data = await response.json();
+      console.log("data", data);
+      if (data.role === "ADMIN") {
+        const home = `${REACT_APP_START_URL}/home`;
+        navigate(home);
+      } else {
+        setErrorMessage("Unauthorized");
       }
     } catch (error) {
       setErrorMessage(error.message);
@@ -84,9 +92,7 @@ const LoginForm = () => {
           </div>
           {errorMessage && <p className={style.error}>{errorMessage}</p>}
           <div className={style.contBtn}>
-            <button onClick={handleSubmit} type="submit">
-              Zaloguj
-            </button>
+            <button type="submit">Zaloguj</button>
           </div>
         </form>
       </div>

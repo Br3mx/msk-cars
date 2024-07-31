@@ -26,7 +26,6 @@ export class UsersService {
       include: { password: true },
     });
   }
-
   public async addNewUser(
     userData: Omit<User, 'id' | 'role'>,
     password: Password['hashedPassword'],
