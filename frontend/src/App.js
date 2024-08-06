@@ -24,6 +24,7 @@ import AddRealizationD from "./Admin/Pages/Detailing/AddRealizationD/AddRealizat
 import EditRealizationD from "./Admin/Pages/Detailing/EditRealizationD/EditRealizationD.js";
 import AddRealizationC from "./Admin/Pages/CarsToOrder/AddRealizationC/AddRealizationC.js";
 import EditRealizationC from "./Admin/Pages/CarsToOrder/EditRealizationC/EditRealizationC.js";
+import EditSingleRealizationD from "./Admin/Pages/Detailing/EditSingleRealizationD/EditSingleRealizationD.js";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -60,6 +61,10 @@ const App = () => {
               <Route
                 path={`${adminUrl}/detaling/edit-realization`}
                 element={<EditRealizationD />}
+              />
+              <Route
+                path={`${adminUrl}/edit/single-detailing/:id`}
+                element={<EditSingleRealizationD />}
               />
               {/* SAMOCHODY NA ZAMÓWIENIE */}
               <Route

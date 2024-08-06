@@ -1,8 +1,9 @@
 import { API_URL } from "../../config";
 import initialState from "../initialState";
 import axios from "axios";
-//action
+import { isUUID } from "validator";
 
+// selectors
 export const getFirstSection = (state) => state.detailing.firstSection;
 export const getSecondSection = (state) => state.detailing.secondSection;
 export const getThirdSection = (state) => state.detailing.thirdSection;
@@ -16,6 +17,7 @@ export const getCarById = ({ detailing }, id) =>
   detailing.realization.carsDetailing.data.find(
     (carDetailing) => carDetailing.id === id
   );
+
 // actions
 const createActionName = (name) => `app/detailing/${name}`;
 
@@ -25,13 +27,12 @@ export const DELETE_REALIZATION = createActionName("DELETE_REALIZATION");
 
 export const loadDet = (payload) => ({ type: LOAD_DET, payload });
 export const setError = (payload) => ({ type: ERROR, payload });
-export const deleteRealizationSuccess = (id) => ({
+export const deleteRealizationSuccess = (payload) => ({
   type: DELETE_REALIZATION,
-  payload: id,
+  payload,
 });
 
-// thunk
-
+// thunks
 export const loadDetRequest = () => async (dispatch) => {
   try {
     const res = await axios.get(`${API_URL}/detailing`);
@@ -40,7 +41,19 @@ export const loadDetRequest = () => async (dispatch) => {
     dispatch(setError(e.message));
   }
 };
+
 export const deleteRealizationD = (id) => async (dispatch) => {
+  // Sprawdź, czy id jest prawidłowym UUID
+  if (typeof id !== "string") {
+    dispatch(setError("ID must be a string"));
+    return;
+  }
+
+  if (!isUUID(id)) {
+    dispatch(setError("Invalid UUID format"));
+    return;
+  }
+
   try {
     await axios.delete(`${API_URL}/detailing/delete/${id}`);
     dispatch(deleteRealizationSuccess(id));
@@ -49,7 +62,8 @@ export const deleteRealizationD = (id) => async (dispatch) => {
   }
 };
 
-export default function reducer(state = [initialState], action = {}) {
+// reducer
+export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     case LOAD_DET:
       return {
@@ -59,7 +73,13 @@ export default function reducer(state = [initialState], action = {}) {
     case DELETE_REALIZATION:
       return {
         ...state,
-        realizations: state.realizations.filter((r) => r.id !== action.payload),
+        realization: {
+          carsDetailing: {
+            data: state.realization.carsDetailing.data.filter(
+              (re) => re.id !== action.payload
+            ),
+          },
+        },
       };
     case ERROR:
       return { ...state, error: action.payload };
