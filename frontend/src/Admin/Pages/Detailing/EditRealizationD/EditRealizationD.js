@@ -19,7 +19,6 @@ const EditRealizationD = (id) => {
   const handleDelete = () => {
     dispatch(deleteRealizationD(id));
   };
-  console.log("delete", handleDelete);
   return (
     <div className={style.container}>
       {user === "ADMIN" ? (

@@ -39,7 +39,7 @@ const LoginForm = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
-        credentials: "include", // Upewnij się, że cookie jest wysyłane i odbierane
+        credentials: "include",
       });
 
       if (!response.ok) {
