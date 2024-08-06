@@ -48,6 +48,9 @@ const LoginForm = () => {
 
       const data = await response.json();
       console.log("data", data);
+      if (data.role) {
+        dispatch(loginUser(data.role));
+      }
       if (data.role === "ADMIN") {
         const home = `${REACT_APP_START_URL}/home`;
         navigate(home);

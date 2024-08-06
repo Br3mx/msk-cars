@@ -3,14 +3,15 @@ import initialState from "./initialState";
 
 export const getPhone = (state) => state.common.phoneNumber;
 export const getAddress = (state) => state.common.address;
+export const getRole = (state) => state.common.user;
 
 const createActionName = (name) => `app/login/${name}`;
 
 export const LOGIN_USER = createActionName("LOGIN_USER");
 
-export const loginUser = (role) => ({
+export const loginUser = (payload) => ({
   type: LOGIN_USER,
-  payload: role,
+  payload,
 });
 
 export default function reducer(state = [initialState], action = {}) {
@@ -18,7 +19,7 @@ export default function reducer(state = [initialState], action = {}) {
     case LOGIN_USER:
       return {
         ...state,
-        role: action.payload,
+        user: action.payload,
       };
     default:
       return state;
