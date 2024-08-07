@@ -5,7 +5,7 @@ import { REACT_APP_START_URL } from "../../environmentVariables";
 import { useSelector } from "react-redux";
 import { getRole } from "../../redux/commonRedux";
 const AdminHome = () => {
-  const user = useSelector(getRole);
+  const user = localStorage.getItem("role");
   console.log(user);
 
   return (

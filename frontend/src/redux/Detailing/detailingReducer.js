@@ -24,12 +24,17 @@ const createActionName = (name) => `app/detailing/${name}`;
 export const ERROR = createActionName("ERROR");
 export const LOAD_DET = createActionName("LOAD_DET");
 export const DELETE_REALIZATION = createActionName("DELETE_REALIZATION");
+export const EDIT_REALIZATION = createActionName("EDIT_REALIZATION");
 
 export const loadDet = (payload) => ({ type: LOAD_DET, payload });
 export const setError = (payload) => ({ type: ERROR, payload });
 export const deleteRealizationSuccess = (payload) => ({
   type: DELETE_REALIZATION,
   payload,
+});
+export const editRealization = (id, newData) => ({
+  type: EDIT_REALIZATION,
+  payload: { id, newData },
 });
 
 // thunks
@@ -62,6 +67,35 @@ export const deleteRealizationD = (id) => async (dispatch) => {
   }
 };
 
+// thunks.js
+export const editRealizationD = (id, newData) => async (dispatch) => {
+  try {
+    // Prepare form data
+    const formData = new FormData();
+    formData.append("carMark", newData.carMark);
+    formData.append("description", JSON.stringify(newData.description));
+
+    if (newData.img instanceof File) {
+      formData.append("img", newData.img);
+    }
+
+    newData.restImg.forEach((img, index) => {
+      if (img instanceof File) {
+        formData.append(`restImg[${index}]`, img);
+      }
+    });
+
+    await axios.put(`${API_URL}/detailing/update-detailing/${id}`, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    dispatch(editRealization(id, newData));
+  } catch (e) {
+    dispatch(setError(e.message));
+  }
+};
+
 // reducer
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
@@ -77,6 +111,18 @@ export default function reducer(state = initialState, action = {}) {
           carsDetailing: {
             data: state.realization.carsDetailing.data.filter(
               (re) => re.id !== action.payload
+            ),
+          },
+        },
+      };
+    case EDIT_REALIZATION:
+      const { id, newData } = action.payload;
+      return {
+        ...state,
+        realization: {
+          carsDetailing: {
+            data: state.realization.carsDetailing.data.map((re) =>
+              re.id === id ? { ...re, ...newData } : re
             ),
           },
         },

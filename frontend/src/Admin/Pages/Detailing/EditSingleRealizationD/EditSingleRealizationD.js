@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import style from "./EditSingleRealizationD.module.scss";
-import { useSelector } from "react-redux";
-import { getCarById } from "../../../../redux/Detailing/detailingReducer";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  editRealizationD,
+  getCarById,
+} from "../../../../redux/Detailing/detailingReducer";
 import { useParams } from "react-router-dom";
 import { IMGS_URL } from "../../../../config";
 import { getRole } from "../../../../redux/commonRedux";
@@ -9,13 +12,23 @@ import { getRole } from "../../../../redux/commonRedux";
 const EditSingleRealizationD = () => {
   const { id } = useParams();
   const car = useSelector((state) => getCarById(state, id));
-  const user = useSelector(getRole);
+  const user = localStorage.getItem("role");
+  const dispatch = useDispatch();
+
+  const parseJSON = (data) => {
+    try {
+      return JSON.parse(data);
+    } catch (e) {
+      console.error("Failed to parse JSON:", e);
+      return [];
+    }
+  };
 
   const [formData, setFormData] = useState({
     carMark: car.carMark,
     img: car.img,
-    restImg: JSON.parse(car.restImg) || [],
-    description: JSON.parse(car.description),
+    restImg: parseJSON(car.restImg),
+    description: parseJSON(car.description),
   });
 
   const [imagePreview, setImagePreview] = useState(
@@ -23,7 +36,7 @@ const EditSingleRealizationD = () => {
   );
 
   const [restImgPreviews, setRestImgPreviews] = useState(
-    formData.restImg.map((img) => `${IMGS_URL}/detailing/cars/${img}`)
+    parseJSON(car.restImg).map((img) => `${IMGS_URL}/detailing/cars/${img}`)
   );
 
   const handleChange = (e) => {
@@ -32,6 +45,23 @@ const EditSingleRealizationD = () => {
       ...prevData,
       [name]: value,
     }));
+  };
+
+  const handleMainFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+
+      reader.onloadend = () => {
+        setImagePreview(reader.result);
+        setFormData((prevData) => ({
+          ...prevData,
+          img: file,
+        }));
+      };
+
+      reader.readAsDataURL(file);
+    }
   };
 
   const handleFileChange = (e, index) => {
@@ -43,7 +73,6 @@ const EditSingleRealizationD = () => {
         const updatedRestImg = [...formData.restImg];
         const updatedRestImgPreviews = [...restImgPreviews];
 
-        // Update the file and preview for the specific index
         updatedRestImg[index] = file;
         updatedRestImgPreviews[index] = reader.result;
 
@@ -52,14 +81,14 @@ const EditSingleRealizationD = () => {
           restImg: updatedRestImg,
         }));
         setRestImgPreviews(updatedRestImgPreviews);
-        setImagePreview(reader.result);
       };
 
       reader.readAsDataURL(file);
     }
   };
+
   const handleDelete = (index) => {
-    if (!window.confirm("Czy na pewno chcesz usunąć te zdjęcie ?")) return;
+    if (!window.confirm("Czy na pewno chcesz usunąć te zdjęcie?")) return;
     const updatedRestImg = formData.restImg.filter((_, i) => i !== index);
     const updatedRestImgPreviews = restImgPreviews.filter(
       (_, i) => i !== index
@@ -71,13 +100,13 @@ const EditSingleRealizationD = () => {
     }));
     setRestImgPreviews(updatedRestImgPreviews);
   };
+
   const handleAddRestImg = (e) => {
     const file = e.target.files[0];
     if (file) {
       const reader = new FileReader();
 
       reader.onloadend = () => {
-        // Add new file and its preview
         setFormData((prevData) => ({
           ...prevData,
           restImg: [...prevData.restImg, file],
@@ -89,9 +118,19 @@ const EditSingleRealizationD = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleUpdate = (e) => {
     e.preventDefault();
-    ///
+
+    const updatedData = {
+      carMark: formData.carMark,
+      img: formData.img,
+      restImg: formData.restImg.map((img) =>
+        typeof img === "string" ? img : img.name
+      ),
+      description: formData.description,
+    };
+
+    dispatch(editRealizationD(id, updatedData));
   };
 
   return (
@@ -101,7 +140,7 @@ const EditSingleRealizationD = () => {
           <h1>
             Edytuj realizacje <br />"{formData.carMark}"
           </h1>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleUpdate}>
             <div className={style.carMark}>
               <span>Marka samochodu</span>
               <input
@@ -118,9 +157,8 @@ const EditSingleRealizationD = () => {
                 alt="Main"
                 className={style.imagePreview}
               />
-              {"-"}
               <span>Zmień miniaturkę</span>
-              <input type="file" name="img" onChange={handleFileChange} />
+              <input type="file" name="img" onChange={handleMainFileChange} />
             </div>
             <span>Zdjęcia dodatkowe</span>
             <div className={style.restImgs}>
@@ -146,7 +184,7 @@ const EditSingleRealizationD = () => {
             </div>
             <div className={style.addRestImg}>
               <span>Dodaj nowe zdjęcie</span>
-              <input type="file" multiple onChange={handleAddRestImg} />
+              <input type="file" onChange={handleAddRestImg} />
             </div>
             <span>
               Aby dodać więcej usług detalingowych wpisuj je po przecinku <br />

@@ -49,6 +49,7 @@ const LoginForm = () => {
       const data = await response.json();
       console.log("data", data);
       if (data.role) {
+        localStorage.setItem("role", data.role);
         dispatch(loginUser(data.role));
       }
       if (data.role === "ADMIN") {

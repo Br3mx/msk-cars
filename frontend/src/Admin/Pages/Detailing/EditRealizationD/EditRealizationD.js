@@ -14,7 +14,7 @@ import { getRole } from "../../../../redux/commonRedux";
 const EditRealizationD = () => {
   const realization = useSelector(getRealization);
   const dispatch = useDispatch();
-  const user = useSelector(getRole);
+  const user = localStorage.getItem("role");
 
   const handleDelete = (id) => {
     if (!window.confirm("Czy na pewno chcesz usunąć tę realizację?")) return;
