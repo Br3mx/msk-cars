@@ -25,7 +25,13 @@ export const ERROR = createActionName("ERROR");
 export const LOAD_DET = createActionName("LOAD_DET");
 export const DELETE_REALIZATION = createActionName("DELETE_REALIZATION");
 export const EDIT_REALIZATION = createActionName("EDIT_REALIZATION");
+export const ADD_REALIZATION = createActionName("ADD_REALIZATION");
 
+// Add new action creator
+export const addRealization = (newRealization) => ({
+  type: ADD_REALIZATION,
+  payload: newRealization,
+});
 export const loadDet = (payload) => ({ type: LOAD_DET, payload });
 export const setError = (payload) => ({ type: ERROR, payload });
 export const deleteRealizationSuccess = (payload) => ({
@@ -103,6 +109,49 @@ export const editRealizationD = (id, newData) => async (dispatch) => {
   }
 };
 
+// thunks.js
+
+export const addRealizationD = (newRealizationData) => async (dispatch) => {
+  try {
+    // Prepare form data
+    const formData = new FormData();
+    formData.append("carMark", newRealizationData.carMark);
+    formData.append(
+      "description",
+      JSON.stringify(newRealizationData.description)
+    );
+
+    if (newRealizationData.img instanceof File) {
+      formData.append("img", newRealizationData.img);
+    }
+
+    const restImgArray = Array.isArray(newRealizationData.restImg)
+      ? newRealizationData.restImg
+      : [];
+    restImgArray.forEach((img, index) => {
+      if (img instanceof File) {
+        formData.append("restImg", img);
+      }
+    });
+
+    const response = await axios.post(
+      `${API_URL}/detailing/admin/create`,
+      formData,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
+
+    console.log("Response from server:", response.data);
+    dispatch(addRealization(response.data)); // Dispatch the action with the new realization data
+  } catch (e) {
+    console.error("Error adding realization:", e);
+    dispatch(setError(e.message)); // Handle errors
+  }
+};
+
 // reducer
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
@@ -131,6 +180,15 @@ export default function reducer(state = initialState, action = {}) {
             data: state.realization.carsDetailing.data.map((re) =>
               re.id === id ? { ...re, ...newData } : re
             ),
+          },
+        },
+      };
+    case ADD_REALIZATION:
+      return {
+        ...state,
+        realization: {
+          carsDetailing: {
+            data: [...state.realization.carsDetailing.data, action.payload],
           },
         },
       };

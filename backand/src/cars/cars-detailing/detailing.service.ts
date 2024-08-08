@@ -22,7 +22,13 @@ export class DetailingService {
   async createDetailing(data: any): Promise<CarsDetailing> {
     try {
       const createdDetailing = await this.prismaService.carsDetailing.create({
-        data,
+        data: {
+          ...data,
+          description:
+            typeof data.description === 'string'
+              ? JSON.parse(data.description)
+              : data.description,
+        },
       });
       return createdDetailing;
     } catch (error) {
