@@ -7,5 +7,5 @@ export class UpdateDetailingDTO {
 
   @IsNotEmpty()
   @IsString()
-  description: string; // Change to string
+  description: string;
 }

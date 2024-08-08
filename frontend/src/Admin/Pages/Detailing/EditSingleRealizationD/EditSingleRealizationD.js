@@ -7,7 +7,6 @@ import {
 } from "../../../../redux/Detailing/detailingReducer";
 import { useParams } from "react-router-dom";
 import { IMGS_URL } from "../../../../config";
-import { getRole } from "../../../../redux/commonRedux";
 
 const EditSingleRealizationD = () => {
   const { id } = useParams();
@@ -121,13 +120,18 @@ const EditSingleRealizationD = () => {
   const handleUpdate = (e) => {
     e.preventDefault();
 
+    const descriptionArray = formData.description
+      .split(",")
+      .map((item) => item.trim());
     const updatedData = {
       carMark: formData.carMark,
       img: formData.img,
-      restImg: formData.restImg.map((img) =>
-        typeof img === "string" ? img : img.name
+      restImg: JSON.stringify(
+        formData.restImg.map((img) =>
+          typeof img === "string" ? img : img.name
+        )
       ),
-      description: formData.description,
+      description: JSON.stringify(descriptionArray),
     };
 
     dispatch(editRealizationD(id, updatedData));

@@ -138,6 +138,7 @@ export class DetailingController {
       restImg: restImg
         ? JSON.stringify(restImg.map((file) => file.filename))
         : existingDetailing.restImg,
+      description: updateDetailingDTO.description, // Już obsługiwane jako tablica
     };
 
     return this.detailingService.updateDetailing(id, updatedDetailingData);

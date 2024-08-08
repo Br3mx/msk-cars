@@ -79,19 +79,26 @@ export const editRealizationD = (id, newData) => async (dispatch) => {
       formData.append("img", newData.img);
     }
 
-    newData.restImg.forEach((img, index) => {
+    const restImgArray = Array.isArray(newData.restImg) ? newData.restImg : [];
+    restImgArray.forEach((img, index) => {
       if (img instanceof File) {
-        formData.append(`restImg[${index}]`, img);
+        formData.append("restImg", img);
       }
     });
 
-    await axios.put(`${API_URL}/detailing/update-detailing/${id}`, formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    });
+    const response = await axios.put(
+      `${API_URL}/detailing/update-detailing/${id}`,
+      formData,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
+    console.log("Response from server:", response.data);
     dispatch(editRealization(id, newData));
   } catch (e) {
+    console.error("Error updating:", e);
     dispatch(setError(e.message));
   }
 };
