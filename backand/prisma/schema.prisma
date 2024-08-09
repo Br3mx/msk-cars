@@ -17,6 +17,13 @@ model CarsDetailing {
   restImg     Json    
   description Json
 }
+model CarsExport {
+  id        String  @id @default(uuid())
+  img       String
+  carMark   String
+  restImg     Json    
+  description Json
+}
 
 model Mail {
   id        String  @id @default(uuid())
