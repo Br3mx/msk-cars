@@ -137,6 +137,24 @@ const initialState = {
         </>
       ),
     },
+    thirdSection2: {},
+    fourthSection2: {
+      title: "MSK-CARS - Odwiedź Nas",
+      text: (
+        <>
+          Chcesz zobaczyć, jak realizujemy indywidualne zamówienia i dbamy o
+          każdy szczegół?
+          <br />
+          Zapraszamy do MSK Cars! Nasza siedziba to miejsce, gdzie każdy
+          samochód na zamówienie przechodzi dokładny proces detailingowy, aby
+          spełniał najwyższe standardy jakości i estetyki. Odwiedź nas i
+          przekonaj się, jak starannie przygotowujemy samochody, aby były
+          idealne w każdym calu!
+        </>
+      ),
+      title2: "Znajdź nas",
+      title3: "Umów wizytę",
+    },
   },
 };
 

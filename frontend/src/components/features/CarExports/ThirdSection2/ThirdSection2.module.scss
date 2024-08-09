@@ -1,0 +1,10 @@
+@import "../../../../style/settings.scss";
+@import "../../../../style/config.scss";
+
+.container {
+  height: 100vh;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+}
