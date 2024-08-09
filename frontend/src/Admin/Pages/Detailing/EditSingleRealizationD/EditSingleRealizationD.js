@@ -175,6 +175,7 @@ const EditSingleRealizationD = () => {
                   />
                   <input
                     type="file"
+                    name="restImg"
                     onChange={(e) => handleFileChange(e, index)}
                   />
                   <button
@@ -188,7 +189,7 @@ const EditSingleRealizationD = () => {
             </div>
             <div className={style.addRestImg}>
               <span>Dodaj nowe zdjęcie</span>
-              <input type="file" onChange={handleAddRestImg} />
+              <input type="file" name="restImg" onChange={handleAddRestImg} />
             </div>
             <span>
               Aby dodać więcej usług detalingowych wpisuj je po przecinku <br />
