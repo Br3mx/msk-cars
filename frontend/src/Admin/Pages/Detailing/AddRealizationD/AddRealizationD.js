@@ -103,11 +103,7 @@ const AddRealizationD = () => {
     const newRealizationData = {
       carMark: formData.carMark,
       img: formData.img,
-      restImg: JSON.stringify(
-        formData.restImg.map((img) =>
-          typeof img === "string" ? img : img.name
-        )
-      ),
+      restImg: formData.restImg,
       description: JSON.stringify(descriptionArray),
     };
 

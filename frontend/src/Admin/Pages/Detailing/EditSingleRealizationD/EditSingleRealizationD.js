@@ -15,18 +15,20 @@ const EditSingleRealizationD = () => {
   const dispatch = useDispatch();
 
   const parseJSON = (data) => {
+    if (!data) return []; // Jeśli dane są puste lub undefined, zwróć pustą tablicę.
+
     try {
-      return JSON.parse(data);
+      return JSON.parse(data); // Spróbuj sparsować dane jako JSON.
     } catch (e) {
       console.error("Failed to parse JSON:", e);
-      return [];
+      return Array.isArray(data) ? data : []; // Jeśli JSON.parse się nie uda, zwróć oryginalne dane (jeśli są tablicą) lub pustą tablicę.
     }
   };
 
   const [formData, setFormData] = useState({
     carMark: car.carMark,
     img: car.img,
-    restImg: parseJSON(car.restImg),
+    restImg: car.restImg,
     description: parseJSON(car.description),
   });
 
@@ -117,20 +119,18 @@ const EditSingleRealizationD = () => {
     }
   };
 
+  const descriptionArray = Array.isArray(formData.description)
+    ? formData.description.map((item) => item.trim())
+    : String(formData.description)
+        .split(",")
+        .map((item) => item.trim());
   const handleUpdate = (e) => {
     e.preventDefault();
 
-    const descriptionArray = formData.description
-      .split(",")
-      .map((item) => item.trim());
     const updatedData = {
       carMark: formData.carMark,
       img: formData.img,
-      restImg: JSON.stringify(
-        formData.restImg.map((img) =>
-          typeof img === "string" ? img : img.name
-        )
-      ),
+      restImg: formData.restImg,
       description: JSON.stringify(descriptionArray),
     };
 
