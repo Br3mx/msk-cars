@@ -20,7 +20,6 @@ const EditSingleRealizationD = () => {
     try {
       return JSON.parse(data); // Spróbuj sparsować dane jako JSON.
     } catch (e) {
-      console.error("Failed to parse JSON:", e);
       return Array.isArray(data) ? data : []; // Jeśli JSON.parse się nie uda, zwróć oryginalne dane (jeśli są tablicą) lub pustą tablicę.
     }
   };
@@ -90,7 +89,11 @@ const EditSingleRealizationD = () => {
 
   const handleDelete = (index) => {
     if (!window.confirm("Czy na pewno chcesz usunąć te zdjęcie?")) return;
-    const updatedRestImg = formData.restImg.filter((_, i) => i !== index);
+
+    const updatedRestImg = Array.isArray(formData.restImg)
+      ? formData.restImg.filter((_, i) => i !== index)
+      : [];
+
     const updatedRestImgPreviews = restImgPreviews.filter(
       (_, i) => i !== index
     );
