@@ -13,14 +13,15 @@ const EditSingleRealizationD = () => {
   const car = useSelector((state) => getCarById(state, id));
   const user = localStorage.getItem("role");
   const dispatch = useDispatch();
+  const [restImgToDelete, setRestImgToDelete] = useState([]);
 
   const parseJSON = (data) => {
-    if (!data) return []; // Jeśli dane są puste lub undefined, zwróć pustą tablicę.
+    if (!data) return [];
 
     try {
-      return JSON.parse(data); // Spróbuj sparsować dane jako JSON.
+      return JSON.parse(data);
     } catch (e) {
-      return Array.isArray(data) ? data : []; // Jeśli JSON.parse się nie uda, zwróć oryginalne dane (jeśli są tablicą) lub pustą tablicę.
+      return Array.isArray(data) ? data : [];
     }
   };
 
@@ -58,29 +59,6 @@ const EditSingleRealizationD = () => {
           ...prevData,
           img: file,
         }));
-      };
-
-      reader.readAsDataURL(file);
-    }
-  };
-
-  const handleFileChange = (e, index) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-
-      reader.onloadend = () => {
-        const updatedRestImg = [...formData.restImg];
-        const updatedRestImgPreviews = [...restImgPreviews];
-
-        updatedRestImg[index] = file;
-        updatedRestImgPreviews[index] = reader.result;
-
-        setFormData((prevData) => ({
-          ...prevData,
-          restImg: updatedRestImg,
-        }));
-        setRestImgPreviews(updatedRestImgPreviews);
       };
 
       reader.readAsDataURL(file);
@@ -127,6 +105,7 @@ const EditSingleRealizationD = () => {
     : String(formData.description)
         .split(",")
         .map((item) => item.trim());
+
   const handleUpdate = (e) => {
     e.preventDefault();
 
@@ -176,11 +155,6 @@ const EditSingleRealizationD = () => {
                     alt={`Rest ${index}`}
                     className={style.imagePreview}
                   />
-                  <input
-                    type="file"
-                    name="restImg"
-                    onChange={(e) => handleFileChange(e, index)}
-                  />
                   <button
                     className={style.btnDelete}
                     onClick={() => handleDelete(index)}
@@ -192,7 +166,12 @@ const EditSingleRealizationD = () => {
             </div>
             <div className={style.addRestImg}>
               <span>Dodaj nowe zdjęcie</span>
-              <input type="file" name="restImg" onChange={handleAddRestImg} />
+              <input
+                type="file"
+                name="restImg"
+                multiple
+                onChange={handleAddRestImg}
+              />
             </div>
             <span>
               Aby dodać więcej usług detalingowych wpisuj je po przecinku <br />
