@@ -26,6 +26,8 @@ import AddRealizationC from "./Admin/Pages/CarsToOrder/AddRealizationC/AddRealiz
 import EditRealizationC from "./Admin/Pages/CarsToOrder/EditRealizationC/EditRealizationC.js";
 import EditSingleRealizationD from "./Admin/Pages/Detailing/EditSingleRealizationD/EditSingleRealizationD.js";
 import { loginUser } from "./redux/commonRedux.js";
+import EditSingleRealizationC from "./Admin/Pages/CarsToOrder/EditSingleRealizationC/EditSingleRealizationC.js";
+import { loadExpRequest } from "./redux/CarsExport/carsexportReducer.js";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -33,6 +35,7 @@ const App = () => {
 
   useEffect(() => {
     dispatch(loadDetRequest());
+    dispatch(loadExpRequest());
   }, [dispatch]);
 
   const location = useLocation();
@@ -75,6 +78,10 @@ const App = () => {
               <Route
                 path={`${adminUrl}/cars-to-order/edit-realization`}
                 element={<EditRealizationC />}
+              />
+              <Route
+                path={`${adminUrl}/edit/single-export/:id`}
+                element={<EditSingleRealizationC />}
               />
               <Route path="*" element={<NotFound />} />
             </Routes>

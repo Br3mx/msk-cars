@@ -24,6 +24,7 @@ const EditRealizationD = () => {
     <div className={style.container}>
       {user === "ADMIN" ? (
         <div className={style.content}>
+          <h1 style={{ textAlign: "center", width: "100vw" }}>DETAILING</h1>
           {realization.map((item, index) => (
             <div key={index} className={style.card}>
               <img
