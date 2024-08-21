@@ -107,6 +107,11 @@ const initialState = {
     },
   },
   carsExport: {
+    realization: {
+      carsExport: {
+        data: [],
+      },
+    },
     firstSection2: {
       title: "Szukasz wymarzonego samochodu ?",
       text: (

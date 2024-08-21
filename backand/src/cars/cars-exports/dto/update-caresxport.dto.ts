@@ -6,7 +6,7 @@ import {
   IsUUID,
 } from 'class-validator';
 
-export class UodateExportDTO {
+export class UpdateExportDTO {
   @IsNotEmpty()
   @IsString()
   carMark: string;
