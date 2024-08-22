@@ -14,6 +14,9 @@ const EditSingleRealizationD = () => {
   const user = localStorage.getItem("role");
   const dispatch = useDispatch();
   const [restImgToDelete, setRestImgToDelete] = useState([]);
+  const [newRestImg, setNewRestImg] = useState([]);
+  console.log("delete", restImgToDelete);
+  console.log("new", newRestImg);
 
   const parseJSON = (data) => {
     if (!data) return [];
@@ -68,6 +71,8 @@ const EditSingleRealizationD = () => {
   const handleDelete = (index) => {
     if (!window.confirm("Czy na pewno chcesz usunąć te zdjęcie?")) return;
 
+    const imageToDelete = formData.restImg[index];
+
     const updatedRestImg = Array.isArray(formData.restImg)
       ? formData.restImg.filter((_, i) => i !== index)
       : [];
@@ -76,28 +81,49 @@ const EditSingleRealizationD = () => {
       (_, i) => i !== index
     );
 
+    console.log(`Image to delete: ${imageToDelete}`);
+    if (imageToDelete === undefined) {
+      console.error(
+        "Image to delete is undefined, check the index and restImg array"
+      );
+      return;
+    }
+
+    setRestImgToDelete((prevState) => [...prevState, imageToDelete]);
+
     setFormData((prevData) => ({
       ...prevData,
       restImg: updatedRestImg,
     }));
+
     setRestImgPreviews(updatedRestImgPreviews);
   };
 
   const handleAddRestImg = (e) => {
-    const file = e.target.files[0];
-    if (file) {
+    const files = Array.from(e.target.files);
+    const newPreviews = [];
+
+    files.forEach((file) => {
       const reader = new FileReader();
 
       reader.onloadend = () => {
-        setFormData((prevData) => ({
-          ...prevData,
-          restImg: [...prevData.restImg, file],
-        }));
-        setRestImgPreviews((prevPreviews) => [...prevPreviews, reader.result]);
+        newPreviews.push(reader.result);
+
+        if (newPreviews.length === files.length) {
+          setFormData((prevData) => ({
+            ...prevData,
+            restImg: [...prevData.restImg, ...files],
+          }));
+          setRestImgPreviews((prevPreviews) => [
+            ...prevPreviews,
+            ...newPreviews,
+          ]);
+          setNewRestImg((prevData) => [...prevData, ...files]);
+        }
       };
 
       reader.readAsDataURL(file);
-    }
+    });
   };
 
   const descriptionArray = Array.isArray(formData.description)
@@ -113,10 +139,18 @@ const EditSingleRealizationD = () => {
       carMark: formData.carMark,
       img: formData.img,
       restImg: formData.restImg,
+      restImgToDelete: restImgToDelete,
       description: JSON.stringify(descriptionArray),
     };
 
-    dispatch(editRealizationD(id, updatedData));
+    const formDataToSend = new FormData();
+    formDataToSend.append("data", JSON.stringify(updatedData));
+
+    newRestImg.forEach((file) => {
+      formDataToSend.append("newRestImg", file);
+    });
+
+    dispatch(editRealizationD(id, formDataToSend));
   };
 
   return (
@@ -168,7 +202,7 @@ const EditSingleRealizationD = () => {
               <span>Dodaj nowe zdjęcie</span>
               <input
                 type="file"
-                name="restImg"
+                name="newRestImg"
                 multiple
                 onChange={handleAddRestImg}
               />
