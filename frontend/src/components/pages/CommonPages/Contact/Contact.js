@@ -28,6 +28,7 @@ const Contact = () => {
     title: false,
     message: false,
   });
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChangePhone = (e) => {
     const { name, value } = e.target;
@@ -64,7 +65,7 @@ const Contact = () => {
     e.preventDefault();
     let errors = {};
     let hasErrors = false;
-
+    setIsLoading(true);
     Object.keys(formData).forEach((key) => {
       if (formData[key].trim() === "") {
         errors[key] = true;
@@ -102,6 +103,8 @@ const Contact = () => {
       );
       console.error("Error submitting mail:", error);
       console.error("Response from server:", error.response);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -294,7 +297,9 @@ const Contact = () => {
                 )}
               </span>
               <span className={style.contButton}>
-                <button type="submit">Wyślij</button>
+                <button type="submit" disabled={isLoading}>
+                  {isLoading ? "Trwa wysyłanie..." : "Wyślij"}
+                </button>
               </span>
             </motion.form>
           </aside>

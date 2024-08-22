@@ -28,6 +28,7 @@ import EditSingleRealizationD from "./Admin/Pages/Detailing/EditSingleRealizatio
 import { loginUser } from "./redux/commonRedux.js";
 import EditSingleRealizationC from "./Admin/Pages/CarsToOrder/EditSingleRealizationC/EditSingleRealizationC.js";
 import { loadExpRequest } from "./redux/CarsExport/carsexportReducer.js";
+import Promotion from "./components/pages/Detaling/Promotion/Promotion.js";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -114,7 +115,7 @@ const App = () => {
                     path="/realization-detaling/:id"
                     element={<SingleRealization />}
                   />
-
+                  <Route path="/promotion-detailing" element={<Promotion />} />
                   {/* Wspólne */}
                   <Route path="/about" element={<About />} />
                   <Route path="/contact" element={<Contact />} />

@@ -18,6 +18,8 @@ const EditRealizationC = () => {
   const user = localStorage.getItem("role");
 
   const handleDelete = (id) => {
+    if (!window.confirm("Czy na pewno chcesz usunąć tą realizacje?")) return;
+
     dispatch(deleteRealizationExp(id));
   };
 

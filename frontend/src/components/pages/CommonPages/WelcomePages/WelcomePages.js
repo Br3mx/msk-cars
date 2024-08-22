@@ -36,7 +36,11 @@ const WelcomePages = () => {
           <img src="/img/logo.png" alt="Logo" />
         </motion.div>
         <motion.div className={style.contCard}>
-          <Link to={"/home-detaling"} className={style.link1}>
+          <Link
+            to={"/home-detaling"}
+            onClick={() => selectSection("detailing")}
+            className={style.link1}
+          >
             <motion.div
               className={style.card}
               initial={{ rotate: -30, x: -500, opacity: 0 }}
@@ -59,7 +63,11 @@ const WelcomePages = () => {
               </motion.div>
             </motion.div>
           </Link>
-          <Link to={"/home-cars-to-order"} className={style.link2}>
+          <Link
+            to={"/home-cars-to-order"}
+            onClick={() => selectSection("carorders")}
+            className={style.link2}
+          >
             <motion.div
               className={style.card}
               initial={{ rotate: 30, x: 500, opacity: 0 }}

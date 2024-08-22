@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import style from "./AddRealizationC.module.scss";
 import { useDispatch } from "react-redux";
 import {
@@ -6,6 +6,7 @@ import {
   addRealizationExport,
 } from "../../../../redux/CarsExport/carsexportReducer";
 import { IMGS_URL } from "../../../../config";
+import Preloader from "../../../../components/common/Preloader/Preloader";
 
 const AddRealizationC = () => {
   const dispatch = useDispatch();
@@ -18,6 +19,18 @@ const AddRealizationC = () => {
 
   const [imagePreview, setImagePreview] = useState(null);
   const [restImgPreviews, setRestImgPreviews] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
+  const [errors, setErrors] = useState({});
+
+  useEffect(() => {
+    if (successMessage) {
+      const timer = setTimeout(() => {
+        setSuccessMessage("");
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [successMessage]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -25,6 +38,23 @@ const AddRealizationC = () => {
       ...prevData,
       [name]: value,
     }));
+  };
+
+  const validateForm = () => {
+    const newErrors = {};
+
+    if (!formData.carMark.trim()) {
+      newErrors.carMark = "Pole 'Marka samochodu' nie może być puste.";
+    }
+    if (!formData.img) {
+      newErrors.img = "Musisz dodać główne zdjęcie.";
+    }
+    if (!formData.description.trim()) {
+      newErrors.description = "Pole 'Opis' nie może być puste.";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
   const handleMainFileChange = (e) => {
@@ -97,12 +127,20 @@ const AddRealizationC = () => {
     }
   };
 
-  const handleAdd = (e) => {
+  const handleAdd = async (e) => {
     e.preventDefault();
+    setSuccessMessage("");
+
+    if (!validateForm()) {
+      return;
+    }
+
+    setIsLoading(true);
 
     const descriptionArray = formData.description
-      .split(",")
+      .split("/")
       .map((item) => item.trim());
+
     const newRealizationData = {
       carMark: formData.carMark,
       img: formData.img,
@@ -110,13 +148,31 @@ const AddRealizationC = () => {
       description: JSON.stringify(descriptionArray),
     };
 
-    dispatch(addRealizationExport(newRealizationData));
+    try {
+      await dispatch(addRealizationExport(newRealizationData));
+      setSuccessMessage("Realizacja została dodana pomyślnie!");
+      setFormData({
+        carMark: "",
+        img: null,
+        restImg: [],
+        description: "",
+      });
+      setImagePreview(null);
+      setRestImgPreviews([]);
+    } catch (error) {
+      setSuccessMessage("Wystąpił błąd podczas dodawania realizacji.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
     <div className={style.container}>
       <div className={style.content}>
         <h1>Dodaj nową realizację</h1>
+        <h2>
+          <i>"Samochody na zamówienie"</i>
+        </h2>
         <form onSubmit={handleAdd}>
           <div className={style.carMark}>
             <span>Marka samochodu</span>
@@ -126,6 +182,7 @@ const AddRealizationC = () => {
               value={formData.carMark}
               onChange={handleChange}
             />
+            {errors.carMark && <p className={style.error}>{errors.carMark}</p>}
           </div>
           <div className={style.mainImg}>
             <span>Główne zdjęcie (miniaturka)</span>
@@ -138,6 +195,7 @@ const AddRealizationC = () => {
             )}
             <span>Wybierz miniaturkę</span>
             <input type="file" name="img" onChange={handleMainFileChange} />
+            {errors.img && <p className={style.error}>{errors.img}</p>}
           </div>
           <span>Zdjęcia dodatkowe</span>
           <div className={style.restImgs}>
@@ -176,9 +234,15 @@ const AddRealizationC = () => {
             value={formData.description}
             onChange={handleChange}
           />
-          <button className={style.submit} type="submit">
-            Dodaj realizację
+          {errors.description && (
+            <p className={style.error}>{errors.description}</p>
+          )}
+          <button className={style.submit} type="submit" disabled={isLoading}>
+            {isLoading ? "Dodawanie..." : "Dodaj realizację"}
           </button>
+          {successMessage && (
+            <h2 className={style.successMessage}>{successMessage}</h2>
+          )}
         </form>
       </div>
     </div>

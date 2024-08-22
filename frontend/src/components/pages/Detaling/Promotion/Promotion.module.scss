@@ -1,0 +1,13 @@
+@import "../../../../style/settings.scss";
+
+.container {
+  background-color: $color-dark-blue;
+  width: 100vw;
+  min-height: 100vh;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
