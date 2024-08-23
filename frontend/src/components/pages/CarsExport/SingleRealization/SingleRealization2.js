@@ -92,13 +92,13 @@ const SingleRealization2 = () => {
           <h1>{car.carMark}</h1>
         </motion.div>
         <div className={style.contText}>
+          <h3>Opis :</h3>
           <motion.span
             className={style.description}
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 1, delay: 0.2 }}
           >
-            <h3>Zakres prac detailingowych :</h3>
             {description.map((item, index) => (
               <div>
                 <ul>

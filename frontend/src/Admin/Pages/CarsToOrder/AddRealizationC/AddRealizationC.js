@@ -7,6 +7,7 @@ import {
 } from "../../../../redux/CarsExport/carsexportReducer";
 import { IMGS_URL } from "../../../../config";
 import Preloader from "../../../../components/common/Preloader/Preloader";
+import Loading from "../../../../components/common/Preloader for button/Loading";
 
 const AddRealizationC = () => {
   const dispatch = useDispatch();
@@ -139,7 +140,10 @@ const AddRealizationC = () => {
 
     const descriptionArray = formData.description
       .split("/")
-      .map((item) => item.trim());
+      .map((item) => item.trim())
+      .map(
+        (item) => item.charAt(0).toUpperCase() + item.slice(1).toLowerCase()
+      );
 
     const newRealizationData = {
       carMark: formData.carMark,
@@ -225,8 +229,10 @@ const AddRealizationC = () => {
             <input type="file" name="restImg" onChange={handleAddRestImg} />
           </div>
           <span>
-            Aby dodać więcej usług detalingowych wpisuj je po przecinku <br />
-            np. Pranie tapicerki, Regeneracja reflektorów, Korekta lakieru itd.
+            Aby odzielić od siebie część opisu lub wykonane usługi wpisuj je po
+            znaku "/" <br />
+            np. Sprowadzony z Niemiec / Zostało naprawione.... / Przygotowany do
+            sprzedaży.
           </span>
           <textarea
             type="text"
@@ -238,7 +244,7 @@ const AddRealizationC = () => {
             <p className={style.error}>{errors.description}</p>
           )}
           <button className={style.submit} type="submit" disabled={isLoading}>
-            {isLoading ? "Dodawanie..." : "Dodaj realizację"}
+            {isLoading ? <Loading /> : "Dodaj realizację"}
           </button>
           {successMessage && (
             <h2 className={style.successMessage}>{successMessage}</h2>

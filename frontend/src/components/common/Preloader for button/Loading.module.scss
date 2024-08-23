@@ -1,0 +1,30 @@
+.preloader {
+  display: grid;
+  place-items: center;
+  padding: 5px 0;
+}
+.preloader:before {
+  display: block;
+  content: "";
+  height: 30px;
+  width: 30px;
+  -webkit-animation: spin 0.9s infinite linear;
+  animation: spin 0.9s infinite linear;
+  border: 10px var(--primary) double;
+  border-left-style: solid;
+  border-radius: 100%;
+}
+
+@-webkit-keyframes spin {
+  to {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  to {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}

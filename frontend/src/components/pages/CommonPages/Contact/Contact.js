@@ -7,6 +7,7 @@ import { FaPhoneAlt } from "react-icons/fa";
 import { motion, useInView } from "framer-motion";
 import axios from "axios";
 import { API_URL } from "../../../../config";
+import Loading from "../../../common/Preloader for button/Loading";
 
 const Contact = () => {
   const phoneNumber = useSelector(getPhone);
@@ -298,7 +299,7 @@ const Contact = () => {
               </span>
               <span className={style.contButton}>
                 <button type="submit" disabled={isLoading}>
-                  {isLoading ? "Trwa wysyłanie..." : "Wyślij"}
+                  {isLoading ? <Loading /> : "Wyślij"}
                 </button>
               </span>
             </motion.form>

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import style from "./AddRealizationD.module.scss";
 import { useDispatch } from "react-redux";
 import { addRealizationD } from "../../../../redux/Detailing/detailingReducer";
+import Preloader from "../../../../components/common/Preloader/Preloader";
+import Loading from "../../../../components/common/Preloader for button/Loading";
 
 const AddRealizationD = () => {
   const dispatch = useDispatch();
@@ -134,8 +136,11 @@ const AddRealizationD = () => {
     setIsLoading(true);
 
     const descriptionArray = formData.description
-      .split(",")
-      .map((item) => item.trim());
+      .split("/")
+      .map((item) => item.trim())
+      .map(
+        (item) => item.charAt(0).toUpperCase() + item.slice(1).toLowerCase()
+      );
 
     const newRealizationData = {
       carMark: formData.carMark,
@@ -221,8 +226,9 @@ const AddRealizationD = () => {
             <input type="file" name="restImg" onChange={handleAddRestImg} />
           </div>
           <span>
-            Aby dodać więcej usług detalingowych wpisuj je po przecinku <br />
-            np. Pranie tapicerki, Regeneracja reflektorów, Korekta lakieru itd.
+            Aby dodać więcej usług detalingowych wpisuj je po znaku "/" <br />
+            np. Pranie tapicerki / Regeneracja reflektorów / Korekta lakieru
+            itd.
           </span>
           <textarea
             type="text"
@@ -235,7 +241,7 @@ const AddRealizationD = () => {
           )}
 
           <button className={style.submit} type="submit" disabled={isLoading}>
-            {isLoading ? "Dodawanie..." : "Dodaj realizację"}
+            {isLoading ? <Loading /> : "Dodaj realizację"}
           </button>
           {successMessage && (
             <h2 className={style.successMessage}>{successMessage}</h2>

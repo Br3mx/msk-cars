@@ -14,9 +14,9 @@ const EditSingleRealizationD = () => {
   const user = localStorage.getItem("role");
   const dispatch = useDispatch();
   const [restImgToDelete, setRestImgToDelete] = useState([]);
-  const [newRestImg, setNewRestImg] = useState([]);
+  const [newRestImgFiles, setNewRestImgFiles] = useState([]);
+
   console.log("delete", restImgToDelete);
-  console.log("new", newRestImg);
 
   const parseJSON = (data) => {
     if (!data) return [];
@@ -31,8 +31,8 @@ const EditSingleRealizationD = () => {
   const [formData, setFormData] = useState({
     carMark: car.carMark,
     img: car.img,
-    restImg: car.restImg,
-    description: parseJSON(car.description),
+    restImg: parseJSON(car.restImg),
+    description: parseJSON(car.description).join(" / "),
   });
 
   const [imagePreview, setImagePreview] = useState(
@@ -73,14 +73,6 @@ const EditSingleRealizationD = () => {
 
     const imageToDelete = formData.restImg[index];
 
-    const updatedRestImg = Array.isArray(formData.restImg)
-      ? formData.restImg.filter((_, i) => i !== index)
-      : [];
-
-    const updatedRestImgPreviews = restImgPreviews.filter(
-      (_, i) => i !== index
-    );
-
     console.log(`Image to delete: ${imageToDelete}`);
     if (imageToDelete === undefined) {
       console.error(
@@ -89,7 +81,19 @@ const EditSingleRealizationD = () => {
       return;
     }
 
-    setRestImgToDelete((prevState) => [...prevState, imageToDelete]);
+    setRestImgToDelete((prevState) => {
+      const updatedState = [...prevState, imageToDelete];
+      console.log("Updated restImgToDelete:", updatedState);
+      return updatedState;
+    });
+
+    const updatedRestImg = Array.isArray(formData.restImg)
+      ? formData.restImg.filter((_, i) => i !== index)
+      : [];
+
+    const updatedRestImgPreviews = restImgPreviews.filter(
+      (_, i) => i !== index
+    );
 
     setFormData((prevData) => ({
       ...prevData,
@@ -110,15 +114,12 @@ const EditSingleRealizationD = () => {
         newPreviews.push(reader.result);
 
         if (newPreviews.length === files.length) {
-          setFormData((prevData) => ({
-            ...prevData,
-            restImg: [...prevData.restImg, ...files],
-          }));
+          setNewRestImgFiles((prevFiles) => [...prevFiles, ...files]);
+
           setRestImgPreviews((prevPreviews) => [
             ...prevPreviews,
             ...newPreviews,
           ]);
-          setNewRestImg((prevData) => [...prevData, ...files]);
         }
       };
 
@@ -129,28 +130,25 @@ const EditSingleRealizationD = () => {
   const descriptionArray = Array.isArray(formData.description)
     ? formData.description.map((item) => item.trim())
     : String(formData.description)
-        .split(",")
+        .split("/")
         .map((item) => item.trim());
 
   const handleUpdate = (e) => {
     e.preventDefault();
 
+    const existingRestImg = Array.isArray(formData.restImg)
+      ? formData.restImg.filter((img) => !restImgToDelete.includes(img))
+      : [];
+
     const updatedData = {
       carMark: formData.carMark,
       img: formData.img,
-      restImg: formData.restImg,
+      restImg: JSON.stringify([...existingRestImg, ...newRestImgFiles]),
       restImgToDelete: restImgToDelete,
       description: JSON.stringify(descriptionArray),
     };
 
-    const formDataToSend = new FormData();
-    formDataToSend.append("data", JSON.stringify(updatedData));
-
-    newRestImg.forEach((file) => {
-      formDataToSend.append("newRestImg", file);
-    });
-
-    dispatch(editRealizationD(id, formDataToSend));
+    dispatch(editRealizationD(id, updatedData));
   };
 
   return (
@@ -202,7 +200,7 @@ const EditSingleRealizationD = () => {
               <span>Dodaj nowe zdjęcie</span>
               <input
                 type="file"
-                name="newRestImg"
+                name="restImg"
                 multiple
                 onChange={handleAddRestImg}
               />
