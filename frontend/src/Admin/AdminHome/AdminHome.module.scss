@@ -8,6 +8,9 @@
       position: absolute;
       img {
         width: 10rem;
+        @media only screen and (max-width: 768px) {
+          width: 8rem;
+        }
       }
     }
     .cards {
@@ -15,9 +18,18 @@
       justify-content: space-around;
       align-items: center;
       min-height: 100vh;
+      @media only screen and (max-width: 768px) {
+        flex-direction: column;
+        justify-content: center;
+        gap: 1rem;
+        padding-top: 0rem;
+      }
       h3 {
         text-align: center;
         margin-bottom: 2rem;
+        @media only screen and (max-width: 768px) {
+          font-size: 15px;
+        }
       }
       .card {
         display: flex;
@@ -26,6 +38,10 @@
         text-align: center;
         gap: 30px;
         font-size: 25px;
+        @media only screen and (max-width: 768px) {
+          font-size: 20px;
+          gap: 10px;
+        }
         .btn {
           background-color: $color-light-blue;
           color: $color-main-font;
@@ -35,6 +51,10 @@
           border-radius: 5px;
           cursor: pointer;
           transition: background-color 0.3s ease;
+          @media only screen and (max-width: 768px) {
+            width: 100%;
+            font-size: 15px;
+          }
           &:hover {
             color: $color-light-blue;
             background-color: lighten($color-main-font, 10%);
@@ -43,4 +63,15 @@
       }
     }
   }
+}
+.detailing {
+  border: 2px solid white;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.carsToOrder {
+  border: 2px solid white;
+  border-radius: 10px;
+  padding: 20px;
 }

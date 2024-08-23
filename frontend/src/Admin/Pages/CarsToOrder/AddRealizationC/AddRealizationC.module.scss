@@ -39,6 +39,9 @@
       }
       textarea {
         width: 30rem;
+        @media only screen and (max-width: 768px) {
+          width: 25rem;
+        }
       }
       .restImgs {
         flex-wrap: wrap;
@@ -55,14 +58,6 @@
           max-width: 400px;
           border: 2px solid $color-main-font;
           border-radius: 10px;
-          input {
-            background-color: white;
-            padding: 5px;
-            width: fit-content;
-            height: fit-content;
-            border-radius: 10px;
-            color: $color-dark-blue;
-          }
         }
         img {
           width: 200px;
@@ -82,33 +77,12 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-
-        input {
-          margin-top: 15px;
-          background-color: white;
-          border: none;
-          border-radius: 20px;
-          color: $color-dark-blue;
-          display: flex;
-          height: 100%;
-          padding: 20px;
-        }
       }
       .mainImg {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        input {
-          margin-top: 15px;
-          background-color: white;
-          border: none;
-          border-radius: 20px;
-          color: $color-dark-blue;
-          display: flex;
-          height: 100%;
-          padding: 20px;
-        }
       }
       .imagePreview {
         width: 300px;
@@ -117,18 +91,6 @@
       }
       span {
         text-align: center;
-      }
-      input {
-        width: 30rem;
-        height: 3rem;
-        text-align: center;
-        margin-top: 15px;
-        background-color: white;
-        border: none;
-        border-radius: 20px;
-        color: $color-dark-blue;
-        height: 100%;
-        padding: 20px;
       }
     }
   }
@@ -143,4 +105,21 @@
   transform: translateY(-50%, -50%);
   position: fixed;
   background-color: rgb(44, 44, 44);
+}
+
+input {
+  margin-top: 15px !important;
+  background-color: white;
+  border: none;
+  border-radius: 20px;
+  color: $color-dark-blue;
+  display: flex;
+  height: 100%;
+  padding: 20px;
+
+  width: 30rem;
+  @media only screen and (max-width: 768px) {
+    width: 20rem !important;
+    height: 4rem !important;
+  }
 }
