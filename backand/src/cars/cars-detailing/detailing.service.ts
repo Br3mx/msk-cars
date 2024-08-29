@@ -39,29 +39,43 @@ export class DetailingService {
   }
 
   async updateDetailing(id: string, data: UpdateDetailingDTO): Promise<any> {
+    console.log('Updating detailing with ID:', id);
+    console.log('Data to update:', data);
+
     const existingDetailing = await this.prismaService.carsDetailing.findUnique(
       { where: { id } },
     );
 
+    console.log('Found existing detailing:', existingDetailing);
+
     if (!existingDetailing) {
+      console.error('Detailing not found for ID:', id);
       throw new NotFoundException('Detailing not found');
     }
 
     // Usuwanie plików
     if (data.restImgToDelete && data.restImgToDelete.length > 0) {
+      console.log('Deleting images:', data.restImgToDelete);
       this.deleteImages(data.restImgToDelete);
     }
 
-    return this.prismaService.carsDetailing.update({
-      where: { id },
-      data: {
-        ...data,
-        description:
-          typeof data.description === 'string'
-            ? JSON.parse(data.description)
-            : data.description,
-      },
-    });
+    try {
+      const updatedDetailing = await this.prismaService.carsDetailing.update({
+        where: { id },
+        data: {
+          ...data,
+          description:
+            typeof data.description === 'string'
+              ? JSON.parse(data.description)
+              : data.description,
+        },
+      });
+      console.log('Updated detailing:', updatedDetailing);
+      return updatedDetailing;
+    } catch (error) {
+      console.error('Error updating detailing:', error);
+      throw new Error('Failed to update detailing');
+    }
   }
 
   private deleteImages(files: string[]) {

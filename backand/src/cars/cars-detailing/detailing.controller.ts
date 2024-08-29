@@ -127,7 +127,6 @@ export class DetailingController {
   ) {
     const existingDetailing = await this.detailingService.getById(id);
     if (!existingDetailing) throw new NotFoundException('Detailing not found');
-    const restImgToDelete = updateDetailingDTO.restImgToDelete || [];
 
     const updatedDetailingData = {
       ...existingDetailing,
@@ -144,9 +143,6 @@ export class DetailingController {
       description: updateDetailingDTO.description,
     };
 
-    return this.detailingService.updateDetailing(id, {
-      ...updatedDetailingData,
-      restImgToDelete,
-    });
+    return this.detailingService.updateDetailing(id, updatedDetailingData);
   }
 }

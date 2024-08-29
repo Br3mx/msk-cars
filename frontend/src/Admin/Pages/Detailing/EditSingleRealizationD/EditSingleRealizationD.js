@@ -15,7 +15,7 @@ const EditSingleRealizationD = () => {
   const dispatch = useDispatch();
   const [restImgToDelete, setRestImgToDelete] = useState([]);
   const [newRestImgFiles, setNewRestImgFiles] = useState([]);
-
+  console.log(newRestImgFiles);
   console.log("delete", restImgToDelete);
 
   const parseJSON = (data) => {
@@ -68,29 +68,24 @@ const EditSingleRealizationD = () => {
     }
   };
 
+  // When deleting an image, check if it's a new image or an existing one
   const handleDelete = (index) => {
     if (!window.confirm("Czy na pewno chcesz usunąć te zdjęcie?")) return;
 
     const imageToDelete = formData.restImg[index];
 
-    console.log(`Image to delete: ${imageToDelete}`);
-    if (imageToDelete === undefined) {
-      console.error(
-        "Image to delete is undefined, check the index and restImg array"
+    if (newRestImgFiles.some((file) => file.name === imageToDelete)) {
+      // If the image is new and not stored on the server, remove it locally
+      setNewRestImgFiles((prev) =>
+        prev.filter((file) => file.name !== imageToDelete)
       );
-      return;
+    } else {
+      if (imageToDelete !== undefined) {
+        setRestImgToDelete((prev) => [...prev, imageToDelete]);
+      }
     }
 
-    setRestImgToDelete((prevState) => {
-      const updatedState = [...prevState, imageToDelete];
-      console.log("Updated restImgToDelete:", updatedState);
-      return updatedState;
-    });
-
-    const updatedRestImg = Array.isArray(formData.restImg)
-      ? formData.restImg.filter((_, i) => i !== index)
-      : [];
-
+    const updatedRestImg = formData.restImg.filter((_, i) => i !== index);
     const updatedRestImgPreviews = restImgPreviews.filter(
       (_, i) => i !== index
     );
@@ -147,7 +142,7 @@ const EditSingleRealizationD = () => {
       restImgToDelete: restImgToDelete,
       description: JSON.stringify(descriptionArray),
     };
-
+    console.log(updatedData);
     dispatch(editRealizationD(id, updatedData));
   };
 
