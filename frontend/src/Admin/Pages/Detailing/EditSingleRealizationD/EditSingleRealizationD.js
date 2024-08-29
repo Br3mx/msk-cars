@@ -75,7 +75,6 @@ const EditSingleRealizationD = () => {
     const imageToDelete = formData.restImg[index];
 
     if (newRestImgFiles.some((file) => file.name === imageToDelete)) {
-      // If the image is new and not stored on the server, remove it locally
       setNewRestImgFiles((prev) =>
         prev.filter((file) => file.name !== imageToDelete)
       );
