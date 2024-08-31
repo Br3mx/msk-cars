@@ -1,3 +1,4 @@
+import { Transform } from 'class-transformer';
 import {
   ArrayNotEmpty,
   IsArray,
@@ -15,6 +16,7 @@ export class UpdateDetailingDTO {
   @IsString()
   description: string;
 
+  @Transform(({ value }) => JSON.parse(value))
   @IsOptional()
   @IsArray()
   restImgToDelete?: string[];

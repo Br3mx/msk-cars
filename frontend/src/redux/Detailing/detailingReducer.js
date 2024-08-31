@@ -76,10 +76,10 @@ export const deleteRealizationD = (id) => async (dispatch) => {
 // thunks.js
 export const editRealizationD = (id, newData) => async (dispatch) => {
   try {
-    // Prepare form data
     const formData = new FormData();
     formData.append("carMark", newData.carMark);
     formData.append("description", JSON.stringify(newData.description));
+    formData.append("restImgToDelete", JSON.stringify(newData.restImgToDelete));
 
     if (newData.img instanceof File) {
       formData.append("img", newData.img);

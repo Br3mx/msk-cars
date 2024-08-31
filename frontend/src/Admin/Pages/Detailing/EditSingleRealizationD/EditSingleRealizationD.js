@@ -137,7 +137,7 @@ const EditSingleRealizationD = () => {
     const updatedData = {
       carMark: formData.carMark,
       img: formData.img,
-      restImg: JSON.stringify([...existingRestImg, ...newRestImgFiles]),
+      restImg: [...existingRestImg, ...newRestImgFiles],
       restImgToDelete: restImgToDelete,
       description: JSON.stringify(descriptionArray),
     };

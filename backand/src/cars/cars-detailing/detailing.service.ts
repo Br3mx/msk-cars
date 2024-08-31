@@ -59,6 +59,8 @@ export class DetailingService {
       this.deleteImages(data.restImgToDelete);
     }
 
+    delete data.restImgToDelete;
+
     try {
       const updatedDetailing = await this.prismaService.carsDetailing.update({
         where: { id },
@@ -79,15 +81,19 @@ export class DetailingService {
   }
 
   private deleteImages(files: string[]) {
-    files.forEach((file) => {
-      const filePath = path.join(__dirname, './public/detailing/cars', file);
-      fs.unlink(filePath, (err) => {
-        if (err) {
-          console.error(`Error while deleting file: ${file}`, err);
-        } else {
-          console.log(`File deleted: ${file}`);
-        }
+    try {
+      files.forEach((file) => {
+        const filePath = path.join(__dirname, './public/detailing/cars', file);
+        fs.unlink(filePath, (err) => {
+          if (err) {
+            console.error(`Error while deleting file: ${file}`, err);
+          } else {
+            console.log(`File deleted: ${file}`);
+          }
+        });
       });
-    });
+    } catch (e) {
+      console.log('Error while deleting files', e);
+    }
   }
 }

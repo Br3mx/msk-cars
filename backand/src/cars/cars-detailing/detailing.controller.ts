@@ -133,13 +133,20 @@ export class DetailingController {
       ...updateDetailingDTO,
       img: img ? img[0].filename : existingDetailing.img,
       restImg: restImg
-        ? JSON.stringify([
-            ...(typeof existingDetailing.restImg === 'string'
+        ? JSON.stringify(
+            [
+              ...(typeof existingDetailing.restImg === 'string'
+                ? JSON.parse(existingDetailing.restImg || '[]')
+                : []),
+              ...restImg.map((file) => file.filename),
+            ].filter((i) => !updateDetailingDTO.restImgToDelete.includes(i)),
+          )
+        : JSON.stringify(
+            (typeof existingDetailing.restImg === 'string'
               ? JSON.parse(existingDetailing.restImg || '[]')
-              : []),
-            ...restImg.map((file) => file.filename),
-          ])
-        : existingDetailing.restImg,
+              : []
+            ).filter((i) => !updateDetailingDTO.restImgToDelete.includes(i)),
+          ),
       description: updateDetailingDTO.description,
     };
 

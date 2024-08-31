@@ -133,13 +133,20 @@ export class CarsExportController {
       ...updateExportDTO,
       img: img ? img[0].filename : existingExp.img,
       restImg: restImg
-        ? JSON.stringify([
-            ...(typeof existingExp.restImg === 'string'
+        ? JSON.stringify(
+            [
+              ...(typeof existingExp.restImg === 'string'
+                ? JSON.parse(existingExp.restImg || '[]')
+                : []),
+              ...restImg.map((file) => file.filename),
+            ].filter((i) => !updateExportDTO.restImgToDelete.includes(i)),
+          )
+        : JSON.stringify(
+            (typeof existingExp.restImg === 'string'
               ? JSON.parse(existingExp.restImg || '[]')
-              : []),
-            ...restImg.map((file) => file.filename),
-          ])
-        : existingExp.restImg,
+              : []
+            ).filter((i) => !updateExportDTO.restImgToDelete.includes(i)),
+          ),
       description: updateExportDTO.description,
     };
 

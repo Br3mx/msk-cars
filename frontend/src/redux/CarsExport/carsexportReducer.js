@@ -80,6 +80,10 @@ export const editRealizationExport = (id, newDataExp) => async (dispatch) => {
     const formData = new FormData();
     formData.append("carMark", newDataExp.carMark);
     formData.append("description", JSON.stringify(newDataExp.description));
+    formData.append(
+      "restImgToDelete",
+      JSON.stringify(newDataExp.restImgToDelete)
+    );
 
     if (newDataExp.img instanceof File) {
       formData.append("img", newDataExp.img);
