@@ -8,6 +8,7 @@ import {
 import { IMGS_URL } from "../../../../config";
 import Preloader from "../../../../components/common/Preloader/Preloader";
 import Loading from "../../../../components/common/Preloader for button/Loading";
+import Success from "../../../../components/common/Success/Success";
 
 const AddRealizationC = () => {
   const dispatch = useDispatch();
@@ -246,9 +247,7 @@ const AddRealizationC = () => {
           <button className={style.submit} type="submit" disabled={isLoading}>
             {isLoading ? <Loading /> : "Dodaj realizację"}
           </button>
-          {successMessage && (
-            <h2 className={style.successMessage}>{successMessage}</h2>
-          )}
+          {successMessage && <Success>{successMessage}</Success>}
         </form>
       </div>
     </div>

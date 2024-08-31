@@ -14,6 +14,7 @@ const EditSingleRealizationC = () => {
   const user = localStorage.getItem("role");
   const dispatch = useDispatch();
   const [restImgToDelete, setRestImgToDelete] = useState([]);
+  const [newRestImgFiles, setNewRestImgFiles] = useState([]);
 
   const parseJSON = (data) => {
     if (!data) return [];
@@ -28,8 +29,8 @@ const EditSingleRealizationC = () => {
   const [formData, setFormData] = useState({
     carMark: car.carMark,
     img: car.img,
-    restImg: car.restImg,
-    description: parseJSON(car.description),
+    restImg: parseJSON(car.restImg),
+    description: parseJSON(car.description).join(" / "),
   });
 
   const [imagePreview, setImagePreview] = useState(
@@ -68,10 +69,19 @@ const EditSingleRealizationC = () => {
   const handleDelete = (index) => {
     if (!window.confirm("Czy na pewno chcesz usunąć te zdjęcie?")) return;
 
-    const updatedRestImg = Array.isArray(formData.restImg)
-      ? formData.restImg.filter((_, i) => i !== index)
-      : [];
+    const imageToDelete = formData.restImg[index];
 
+    if (newRestImgFiles.some((file) => file.name === imageToDelete)) {
+      setNewRestImgFiles((prev) =>
+        prev.filter((file) => file.name !== imageToDelete)
+      );
+    } else {
+      if (imageToDelete !== undefined) {
+        setRestImgToDelete((prev) => [...prev, imageToDelete]);
+      }
+    }
+
+    const updatedRestImg = formData.restImg.filter((_, i) => i !== index);
     const updatedRestImgPreviews = restImgPreviews.filter(
       (_, i) => i !== index
     );
@@ -80,42 +90,55 @@ const EditSingleRealizationC = () => {
       ...prevData,
       restImg: updatedRestImg,
     }));
+
     setRestImgPreviews(updatedRestImgPreviews);
   };
 
   const handleAddRestImg = (e) => {
-    const file = e.target.files[0];
-    if (file) {
+    const files = Array.from(e.target.files);
+    const newPreviews = [];
+
+    files.forEach((file) => {
       const reader = new FileReader();
 
       reader.onloadend = () => {
-        setFormData((prevData) => ({
-          ...prevData,
-          restImg: [...prevData.restImg, file],
-        }));
-        setRestImgPreviews((prevPreviews) => [...prevPreviews, reader.result]);
+        newPreviews.push(reader.result);
+
+        if (newPreviews.length === files.length) {
+          setNewRestImgFiles((prevFiles) => [...prevFiles, ...files]);
+
+          setRestImgPreviews((prevPreviews) => [
+            ...prevPreviews,
+            ...newPreviews,
+          ]);
+        }
       };
 
       reader.readAsDataURL(file);
-    }
+    });
   };
 
   const descriptionArray = Array.isArray(formData.description)
     ? formData.description.map((item) => item.trim())
     : String(formData.description)
-        .split(",")
+        .split("/")
         .map((item) => item.trim());
 
   const handleUpdate = (e) => {
     e.preventDefault();
 
+    const existingRestImg = Array.isArray(formData.restImg)
+      ? formData.restImg.filter((img) => !restImgToDelete.includes(img))
+      : [];
+
     const updatedData = {
       carMark: formData.carMark,
       img: formData.img,
-      restImg: formData.restImg,
+      restImg: [...existingRestImg, ...newRestImgFiles],
+      restImgToDelete: restImgToDelete,
       description: JSON.stringify(descriptionArray),
     };
-
+    console.log(updatedData);
     dispatch(editRealizationExport(id, updatedData));
   };
 

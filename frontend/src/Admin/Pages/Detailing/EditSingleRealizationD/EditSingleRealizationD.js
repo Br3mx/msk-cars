@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import style from "./EditSingleRealizationD.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -7,6 +7,8 @@ import {
 } from "../../../../redux/Detailing/detailingReducer";
 import { useParams } from "react-router-dom";
 import { IMGS_URL } from "../../../../config";
+import Loading from "../../../../components/common/Preloader for button/Loading";
+import Success from "../../../../components/common/Success/Success";
 
 const EditSingleRealizationD = () => {
   const { id } = useParams();
@@ -15,8 +17,18 @@ const EditSingleRealizationD = () => {
   const dispatch = useDispatch();
   const [restImgToDelete, setRestImgToDelete] = useState([]);
   const [newRestImgFiles, setNewRestImgFiles] = useState([]);
-  console.log(newRestImgFiles);
-  console.log("delete", restImgToDelete);
+  const [isLoading, setIsLoading] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
+
+  useEffect(() => {
+    if (successMessage) {
+      console.log("Success Message:", successMessage); // Debugging line
+      const timer = setTimeout(() => {
+        setSuccessMessage("");
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [successMessage]);
 
   const parseJSON = (data) => {
     if (!data) return [];
@@ -127,8 +139,10 @@ const EditSingleRealizationD = () => {
         .split("/")
         .map((item) => item.trim());
 
-  const handleUpdate = (e) => {
+  const handleUpdate = async (e) => {
     e.preventDefault();
+
+    setIsLoading(true);
 
     const existingRestImg = Array.isArray(formData.restImg)
       ? formData.restImg.filter((img) => !restImgToDelete.includes(img))
@@ -142,7 +156,16 @@ const EditSingleRealizationD = () => {
       description: JSON.stringify(descriptionArray),
     };
     console.log(updatedData);
-    dispatch(editRealizationD(id, updatedData));
+
+    try {
+      await dispatch(editRealizationD(id, updatedData));
+      setSuccessMessage("Realizacja została zedytowana pomyślnie!");
+    } catch (error) {
+      console.error("Błąd podczas edytowania:", error);
+      setSuccessMessage("Wystąpił błąd podczas edycji");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -210,9 +233,10 @@ const EditSingleRealizationD = () => {
               value={formData.description}
               onChange={handleChange}
             />
-            <button className={style.submit} type="submit">
-              Zapisz zmiany
+            <button className={style.submit} type="submit" disabled={isLoading}>
+              {isLoading ? <Loading /> : "Zapisz zmiany"}
             </button>
+            {successMessage && <Success>{successMessage}</Success>}
           </form>
         </div>
       ) : (
