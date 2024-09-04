@@ -10,7 +10,6 @@ const WelcomePages = () => {
 
   const selectSection = (section) => {
     setSection(section);
-    navigate("/"); // Przejdź do strony głównej lub innej właściwej strony
   };
   const ref = React.useRef(null);
   const inView = useInView(ref, { once: true });
