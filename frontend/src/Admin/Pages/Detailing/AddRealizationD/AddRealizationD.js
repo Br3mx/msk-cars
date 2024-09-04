@@ -6,6 +6,8 @@ import Preloader from "../../../../components/common/Preloader/Preloader";
 import Loading from "../../../../components/common/Preloader for button/Loading";
 
 const AddRealizationD = () => {
+  const user = localStorage.getItem("role");
+
   const dispatch = useDispatch();
   const [formData, setFormData] = useState({
     carMark: "",
@@ -109,20 +111,30 @@ const AddRealizationD = () => {
   };
 
   const handleAddRestImg = (e) => {
-    const file = e.target.files[0];
-    if (file) {
+    const files = Array.from(e.target.files); // Przekształć FileList w tablicę
+    const newPreviews = [];
+
+    files.forEach((file) => {
       const reader = new FileReader();
 
       reader.onloadend = () => {
-        setFormData((prevData) => ({
-          ...prevData,
-          restImg: [...prevData.restImg, file],
-        }));
-        setRestImgPreviews((prevPreviews) => [...prevPreviews, reader.result]);
+        newPreviews.push(reader.result);
+
+        // Dodajemy zdjęcia dopiero po zakończeniu przetwarzania wszystkich plików
+        if (newPreviews.length === files.length) {
+          setFormData((prevData) => ({
+            ...prevData,
+            restImg: [...prevData.restImg, ...files],
+          }));
+          setRestImgPreviews((prevPreviews) => [
+            ...prevPreviews,
+            ...newPreviews,
+          ]);
+        }
       };
 
       reader.readAsDataURL(file);
-    }
+    });
   };
 
   const handleAdd = async (e) => {
@@ -160,6 +172,10 @@ const AddRealizationD = () => {
       });
       setImagePreview(null);
       setRestImgPreviews([]);
+
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
     } catch (error) {
       setSuccessMessage("Wystąpił błąd podczas dodawania realizacji.");
     } finally {
@@ -169,85 +185,93 @@ const AddRealizationD = () => {
 
   return (
     <div className={style.container}>
-      <div className={style.content}>
-        <h1>Dodaj nową realizację</h1>
-        <h2>
-          <i>"Detailing"</i>
-        </h2>
-        <form onSubmit={handleAdd}>
-          <div className={style.carMark}>
-            <span>Marka samochodu</span>
-            <input
-              type="text"
-              name="carMark"
-              value={formData.carMark}
-              onChange={handleChange}
-            />
-            {errors.carMark && <p className={style.error}>{errors.carMark}</p>}
-          </div>
-          <div className={style.mainImg}>
-            <span>Główne zdjęcie (miniaturka)</span>
-            {imagePreview && (
-              <img
-                src={imagePreview}
-                alt="Main"
-                className={style.imagePreview}
+      {user === "ADMIN" ? (
+        <div className={style.content}>
+          <h1>Dodaj nową realizację</h1>
+          <h2>
+            <i>"Detailing"</i>
+          </h2>
+          <form onSubmit={handleAdd}>
+            <div className={style.carMark}>
+              <span>Marka samochodu</span>
+              <input
+                type="text"
+                name="carMark"
+                value={formData.carMark}
+                onChange={handleChange}
               />
-            )}
-            <span>Wybierz miniaturkę</span>
-            <input type="file" name="img" onChange={handleMainFileChange} />
-            {errors.img && <p className={style.error}>{errors.img}</p>}
-          </div>
-          <span>Zdjęcia dodatkowe</span>
-          <div className={style.restImgs}>
-            {restImgPreviews.map((preview, index) => (
-              <div key={index} className={style.restImgContainer}>
+              {errors.carMark && (
+                <p className={style.error}>{errors.carMark}</p>
+              )}
+            </div>
+            <div className={style.mainImg}>
+              <span>Główne zdjęcie (miniaturka)</span>
+              {imagePreview && (
                 <img
-                  src={preview}
-                  alt={`Rest ${index}`}
+                  src={imagePreview}
+                  alt="Main"
                   className={style.imagePreview}
                 />
-                <input
-                  type="file"
-                  name="restImg"
-                  onChange={(e) => handleFileChange(e, index)}
-                />
-                <button
-                  className={style.btnDelete}
-                  onClick={() => handleDelete(index)}
-                >
-                  Usuń
-                </button>
-              </div>
-            ))}
-          </div>
-          <div className={style.addRestImg}>
-            <span>Dodaj nowe zdjęcie</span>
-            <input type="file" name="restImg" onChange={handleAddRestImg} />
-          </div>
-          <span>
-            Aby dodać więcej usług detalingowych wpisuj je po znaku "/" <br />
-            np. Pranie tapicerki / Regeneracja reflektorów / Korekta lakieru
-            itd.
-          </span>
-          <textarea
-            type="text"
-            name="description"
-            value={formData.description}
-            onChange={handleChange}
-          />
-          {errors.description && (
-            <p className={style.error}>{errors.description}</p>
-          )}
+              )}
+              <span>Wybierz miniaturkę</span>
+              <input type="file" name="img" onChange={handleMainFileChange} />
+              {errors.img && <p className={style.error}>{errors.img}</p>}
+            </div>
+            <span>Zdjęcia dodatkowe</span>
+            <div className={style.restImgs}>
+              {restImgPreviews.map((preview, index) => (
+                <div key={index} className={style.restImgContainer}>
+                  <img
+                    src={preview}
+                    alt={`Rest ${index}`}
+                    className={style.imagePreview}
+                  />
 
-          <button className={style.submit} type="submit" disabled={isLoading}>
-            {isLoading ? <Loading /> : "Dodaj realizację"}
-          </button>
-          {successMessage && (
-            <h2 className={style.successMessage}>{successMessage}</h2>
-          )}
-        </form>
-      </div>
+                  <button
+                    className={style.btnDelete}
+                    onClick={() => handleDelete(index)}
+                    type="button"
+                  >
+                    Usuń
+                  </button>
+                </div>
+              ))}
+            </div>
+            <div className={style.addRestImg}>
+              <span>Dodaj nowe zdjęcie</span>
+              <input
+                type="file"
+                name="restImg"
+                multiple
+                onChange={handleAddRestImg}
+              />
+            </div>
+            <span>
+              Aby dodać więcej usług detalingowych wpisuj je po znaku "/" <br />
+              np. Pranie tapicerki / Regeneracja reflektorów / Korekta lakieru
+              itd.
+            </span>
+            <textarea
+              type="text"
+              name="description"
+              value={formData.description}
+              onChange={handleChange}
+            />
+            {errors.description && (
+              <p className={style.error}>{errors.description}</p>
+            )}
+
+            <button className={style.submit} type="submit" disabled={isLoading}>
+              {isLoading ? <Loading /> : "Dodaj realizację"}
+            </button>
+            {successMessage && (
+              <h2 className={style.successMessage}>{successMessage}</h2>
+            )}
+          </form>
+        </div>
+      ) : (
+        <p>Nie masz uprawnień</p>
+      )}
     </div>
   );
 };

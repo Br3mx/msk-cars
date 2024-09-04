@@ -91,7 +91,7 @@ const LoginForm = () => {
               onClick={togglePasswordVisibility}
               className={style.showPassword}
             >
-              {showPassword ? <FaEye /> : <FaEyeSlash />}
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
             </span>
           </div>
           {errorMessage && <p className={style.error}>{errorMessage}</p>}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import style from "./EditSingleRealizationC.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -7,6 +7,8 @@ import {
   editRealizationExport,
   getCarById2,
 } from "../../../../redux/CarsExport/carsexportReducer";
+import Success from "../../../../components/common/Success/Success";
+import Loading from "../../../../components/common/Preloader for button/Loading";
 
 const EditSingleRealizationC = () => {
   const { id } = useParams();
@@ -15,7 +17,18 @@ const EditSingleRealizationC = () => {
   const dispatch = useDispatch();
   const [restImgToDelete, setRestImgToDelete] = useState([]);
   const [newRestImgFiles, setNewRestImgFiles] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
 
+  useEffect(() => {
+    if (successMessage) {
+      console.log("Success Message:", successMessage); // Debugging line
+      const timer = setTimeout(() => {
+        setSuccessMessage("");
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [successMessage]);
   const parseJSON = (data) => {
     if (!data) return [];
 
@@ -67,8 +80,6 @@ const EditSingleRealizationC = () => {
   };
 
   const handleDelete = (index) => {
-    if (!window.confirm("Czy na pewno chcesz usunąć te zdjęcie?")) return;
-
     const imageToDelete = formData.restImg[index];
 
     if (newRestImgFiles.some((file) => file.name === imageToDelete)) {
@@ -124,8 +135,10 @@ const EditSingleRealizationC = () => {
         .split("/")
         .map((item) => item.trim());
 
-  const handleUpdate = (e) => {
+  const handleUpdate = async (e) => {
     e.preventDefault();
+
+    setIsLoading(true);
 
     const existingRestImg = Array.isArray(formData.restImg)
       ? formData.restImg.filter((img) => !restImgToDelete.includes(img))
@@ -139,7 +152,20 @@ const EditSingleRealizationC = () => {
       description: JSON.stringify(descriptionArray),
     };
     console.log(updatedData);
-    dispatch(editRealizationExport(id, updatedData));
+
+    try {
+      await dispatch(editRealizationExport(id, updatedData));
+      setSuccessMessage("Realizacja została zedytowana pomyślnie!");
+
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
+    } catch (error) {
+      console.error("Błąd podczas edytowania:", error);
+      setSuccessMessage("Wystąpił błąd podczas edycji");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -181,6 +207,7 @@ const EditSingleRealizationC = () => {
                   <button
                     className={style.btnDelete}
                     onClick={() => handleDelete(index)}
+                    type="button"
                   >
                     Usuń
                   </button>
@@ -207,9 +234,10 @@ const EditSingleRealizationC = () => {
               value={formData.description}
               onChange={handleChange}
             />
-            <button className={style.submit} type="submit">
-              Zapisz zmiany
+            <button className={style.submit} type="submit" disabled={isLoading}>
+              {isLoading ? <Loading /> : "Zapisz zmiany"}
             </button>
+            {successMessage && <Success>{successMessage}</Success>}
           </form>
         </div>
       ) : (

@@ -80,10 +80,7 @@ const EditSingleRealizationD = () => {
     }
   };
 
-  // When deleting an image, check if it's a new image or an existing one
   const handleDelete = (index) => {
-    if (!window.confirm("Czy na pewno chcesz usunąć te zdjęcie?")) return;
-
     const imageToDelete = formData.restImg[index];
 
     if (newRestImgFiles.some((file) => file.name === imageToDelete)) {
@@ -160,6 +157,10 @@ const EditSingleRealizationD = () => {
     try {
       await dispatch(editRealizationD(id, updatedData));
       setSuccessMessage("Realizacja została zedytowana pomyślnie!");
+
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
     } catch (error) {
       console.error("Błąd podczas edytowania:", error);
       setSuccessMessage("Wystąpił błąd podczas edycji");
@@ -207,6 +208,7 @@ const EditSingleRealizationD = () => {
                   <button
                     className={style.btnDelete}
                     onClick={() => handleDelete(index)}
+                    type="button"
                   >
                     Usuń
                   </button>

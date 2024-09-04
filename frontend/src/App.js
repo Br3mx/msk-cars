@@ -29,115 +29,114 @@ import { loginUser } from "./redux/commonRedux.js";
 import EditSingleRealizationC from "./Admin/Pages/CarsToOrder/EditSingleRealizationC/EditSingleRealizationC.js";
 import { loadExpRequest } from "./redux/CarsExport/carsexportReducer.js";
 import Promotion from "./components/pages/Detaling/Promotion/Promotion.js";
+import Logout from "./Admin/features/logout/Logout.js";
 
 const App = () => {
   const dispatch = useDispatch();
   const adminUrl = REACT_APP_START_URL;
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    dispatch(loadDetRequest());
-    dispatch(loadExpRequest());
+    const fetchData = async () => {
+      try {
+        await dispatch(loadDetRequest());
+        await dispatch(loadExpRequest());
+      } catch (e) {
+        console.error(e.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
   }, [dispatch]);
 
   const location = useLocation();
-  const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-    }, 1500);
-  }, []);
+
+  if (loading) {
+    return <Preloader />;
+  }
 
   if (location.pathname.startsWith(adminUrl)) {
     return (
       <SectionProvider>
-        {loading ? (
-          <Preloader />
-        ) : (
-          <ScrollToTop>
-            <Routes>
-              <Route path={`${adminUrl}/login`} element={<Login />} />
-              <Route path={`${adminUrl}/home`} element={<AdminHome />} />
-              {/* DETAILING */}
-              <Route
-                path={`${adminUrl}/detaling/add-realization`}
-                element={<AddRealizationD />}
-              />
-              <Route
-                path={`${adminUrl}/detaling/edit-realization`}
-                element={<EditRealizationD />}
-              />
-              <Route
-                path={`${adminUrl}/edit/single-detailing/:id`}
-                element={<EditSingleRealizationD />}
-              />
-              {/* SAMOCHODY NA ZAMÓWIENIE */}
-              <Route
-                path={`${adminUrl}/cars-to-order/add-realization`}
-                element={<AddRealizationC />}
-              />
-              <Route
-                path={`${adminUrl}/cars-to-order/edit-realization`}
-                element={<EditRealizationC />}
-              />
-              <Route
-                path={`${adminUrl}/edit/single-export/:id`}
-                element={<EditSingleRealizationC />}
-              />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </ScrollToTop>
-        )}
+        <ScrollToTop>
+          <Logout />
+          <Routes>
+            <Route path={`${adminUrl}/login`} element={<Login />} />
+            <Route path={`${adminUrl}/home`} element={<AdminHome />} />
+            {/* DETAILING */}
+            <Route
+              path={`${adminUrl}/detaling/add-realization`}
+              element={<AddRealizationD />}
+            />
+            <Route
+              path={`${adminUrl}/detaling/edit-realization`}
+              element={<EditRealizationD />}
+            />
+            <Route
+              path={`${adminUrl}/edit/single-detailing/:id`}
+              element={<EditSingleRealizationD />}
+            />
+            {/* SAMOCHODY NA ZAMÓWIENIE */}
+            <Route
+              path={`${adminUrl}/cars-to-order/add-realization`}
+              element={<AddRealizationC />}
+            />
+            <Route
+              path={`${adminUrl}/cars-to-order/edit-realization`}
+              element={<EditRealizationC />}
+            />
+            <Route
+              path={`${adminUrl}/edit/single-export/:id`}
+              element={<EditSingleRealizationC />}
+            />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </ScrollToTop>
       </SectionProvider>
     );
   }
   return (
     <SectionProvider>
-      {loading ? (
-        <Preloader />
-      ) : (
-        <ScrollToTop>
-          <>
-            {location.pathname === "/" ? (
+      <ScrollToTop>
+        <>
+          {location.pathname === "/" ? (
+            <Routes>
+              <Route path="/" element={<WelcomePages />} />
+            </Routes>
+          ) : (
+            <MainLayout>
               <Routes>
-                <Route path="/" element={<WelcomePages />} />
-              </Routes>
-            ) : (
-              <MainLayout>
-                <Routes>
-                  {/* Detaling */}
-                  <Route path="/home-detaling" element={<Home />} />
-                  <Route
-                    path="/realization-detaling"
-                    element={<Realization />}
-                  />
-                  <Route
-                    path="/realization-detaling/:id"
-                    element={<SingleRealization />}
-                  />
-                  <Route path="/promotion-detailing" element={<Promotion />} />
-                  {/* Wspólne */}
-                  <Route path="/about" element={<About />} />
-                  <Route path="/contact" element={<Contact />} />
-                  <Route path="/offer" element={<Offer />} />
-                  <Route path="*" element={<NotFound />} />
+                {/* Detaling */}
+                <Route path="/home-detaling" element={<Home />} />
+                <Route path="/realization-detaling" element={<Realization />} />
+                <Route
+                  path="/realization-detaling/:id"
+                  element={<SingleRealization />}
+                />
+                <Route path="/promotion-detailing" element={<Promotion />} />
+                {/* Wspólne */}
+                <Route path="/about" element={<About />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/offer" element={<Offer />} />
+                <Route path="*" element={<NotFound />} />
 
-                  {/* SPROWADZANIE SAMOCHODÓW */}
-                  <Route path="/home-cars-to-order" element={<Home2 />} />
-                  <Route
-                    path="/realization-cars-to-order"
-                    element={<Realization2 />}
-                  />
-                  <Route
-                    path="/realization-cars-to-order/:id"
-                    element={<SingleRealization2 />}
-                  />
-                </Routes>
-              </MainLayout>
-            )}
-          </>
-        </ScrollToTop>
-      )}
+                {/* SPROWADZANIE SAMOCHODÓW */}
+                <Route path="/home-cars-to-order" element={<Home2 />} />
+                <Route
+                  path="/realization-cars-to-order"
+                  element={<Realization2 />}
+                />
+                <Route
+                  path="/realization-cars-to-order/:id"
+                  element={<SingleRealization2 />}
+                />
+              </Routes>
+            </MainLayout>
+          )}
+        </>
+      </ScrollToTop>
     </SectionProvider>
   );
 };

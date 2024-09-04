@@ -6,11 +6,11 @@ import { IMGS_URL } from "../../../../config";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import { REACT_APP_START_URL } from "../../../../environmentVariables";
-import { getRole } from "../../../../redux/commonRedux";
 import {
   deleteRealizationExp,
   getRealization2,
 } from "../../../../redux/CarsExport/carsexportReducer";
+import ConfirmButton from "../../../../components/common/ConfirmButton/ConfirmButton";
 
 const EditRealizationC = () => {
   const realization = useSelector(getRealization2);
@@ -18,8 +18,6 @@ const EditRealizationC = () => {
   const user = localStorage.getItem("role");
 
   const handleDelete = (id) => {
-    if (!window.confirm("Czy na pewno chcesz usunąć tą realizacje?")) return;
-
     dispatch(deleteRealizationExp(id));
   };
 
@@ -44,9 +42,9 @@ const EditRealizationC = () => {
                     <Button>Edytuj realizację</Button>
                   </Link>
                   <span className={style.x}>
-                    <Button onClick={() => handleDelete(item.id)}>
+                    <ConfirmButton onConfirm={() => handleDelete(item.id)}>
                       Usuń realizację
-                    </Button>
+                    </ConfirmButton>
                   </span>
                 </div>
               </div>
