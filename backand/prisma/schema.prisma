@@ -24,6 +24,12 @@ model CarsExport {
   restImg     Json    
   description Json
 }
+model Promotion {
+  id        String  @id @default(uuid())
+  promotion String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
 
 model Mail {
   id        String  @id @default(uuid())
