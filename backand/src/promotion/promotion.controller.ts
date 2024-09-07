@@ -7,6 +7,7 @@ import {
   Param,
   HttpStatus,
   HttpException,
+  Get,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
@@ -16,6 +17,11 @@ import { extname } from 'path';
 @Controller('promotions')
 export class PromotionController {
   constructor(private readonly promotionService: PromotionService) {}
+
+  @Get('/')
+  getAll(): any {
+    return this.promotionService.getAll();
+  }
 
   @Post('upload')
   @UseInterceptors(

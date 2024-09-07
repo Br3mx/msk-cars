@@ -8,6 +8,10 @@ import * as path from 'path';
 export class PromotionService {
   constructor(private prisma: PrismaService) {}
 
+  public getAll(): Promise<Promotion> {
+    return this.prisma.promotion.findFirst();
+  }
+
   // Method to create/upload a new promotion with an image
   async createPromotion(imagePath: string): Promise<Promotion> {
     return await this.prisma.promotion.create({
@@ -29,8 +33,9 @@ export class PromotionService {
 
     // Delete the image file from the server
     const fullImagePath = path.join(
-      __dirname,
-      './public/promotion',
+      process.cwd(),
+      'public',
+      'promotion',
       promotion.promotionImg,
     );
     if (fs.existsSync(fullImagePath)) {

@@ -5,7 +5,7 @@ import { Container } from "react-bootstrap";
 import BtnScroll from "../../../common/BtnScroll/BtnScroll";
 import { useSelector } from "react-redux";
 import { getFirstSection } from "../../../../redux/Detailing/detailingReducer";
-import { getPhone } from "../../../../redux/commonRedux";
+import { getPhone, getPromotion } from "../../../../redux/commonRedux";
 import Button from "../../../common/Button/Button";
 import { motion, useInView } from "framer-motion";
 import { Link } from "react-scroll";
@@ -13,6 +13,7 @@ import { Link as Link1 } from "react-router-dom";
 
 const FirstSection = () => {
   const firstSection = useSelector(getFirstSection);
+  const prom = useSelector(getPromotion);
   const phoneNumber = useSelector(getPhone);
   const ref = React.useRef(null);
   const inView = useInView(ref, { once: true });
@@ -96,7 +97,14 @@ const FirstSection = () => {
             transition={{ duration: 1, delay: 1.5 }}
           >
             <Link1 to="/promotion-detailing" className={style.linkPromotion}>
-              <Button>SPRAWDŹ NASZE AKTUALNE PROMOCJE</Button>
+              <Button>
+                SPRAWDŹ NASZE AKTUALNE PROMOCJE
+                {prom.length === 0 ? (
+                  ""
+                ) : (
+                  <h3 className={style.promotion}>NOWA PROMOCJA !</h3>
+                )}
+              </Button>
             </Link1>
           </motion.div>
           <motion.div
