@@ -18,6 +18,7 @@ import { UsersService } from './users/users.service';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { ExportModule } from './cars/cars-exports/export.module';
+import { PromotionModule } from './promotion/promotion.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { ExportModule } from './cars/cars-exports/export.module';
     ExportModule,
     MailModule,
     PrismaModule,
+    PromotionModule,
     ConfigModule.forRoot({
       load: [configuration],
       isGlobal: true,
