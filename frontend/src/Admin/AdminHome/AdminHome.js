@@ -46,6 +46,14 @@ const AdminHome = () => {
                 </Link>
               </div>
             </div>
+            <div className={style.prom}>
+              <div className={style.card}>
+                <h3>Promocja</h3>
+                <Link to={`${REACT_APP_START_URL}/promotion`}>
+                  <button className={style.btn}>Dodaj lub usuń promocję</button>
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       ) : (

@@ -30,6 +30,7 @@ import EditSingleRealizationC from "./Admin/Pages/CarsToOrder/EditSingleRealizat
 import { loadExpRequest } from "./redux/CarsExport/carsexportReducer.js";
 import Promotion from "./components/pages/Detaling/Promotion/Promotion.js";
 import Logout from "./Admin/features/logout/Logout.js";
+import PromotionAdmin from "./Admin/Pages/Promotion/PromotionAdmin.js";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -92,7 +93,12 @@ const App = () => {
               path={`${adminUrl}/edit/single-export/:id`}
               element={<EditSingleRealizationC />}
             />
+            {/* Wspólne */}
             <Route path="*" element={<NotFound />} />
+            <Route
+              path={`${adminUrl}/promotion`}
+              element={<PromotionAdmin />}
+            />
           </Routes>
         </ScrollToTop>
       </SectionProvider>
