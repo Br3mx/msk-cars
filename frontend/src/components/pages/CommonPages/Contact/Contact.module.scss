@@ -1,7 +1,7 @@
 @import "../../../../style/settings.scss";
 @import "../../../../style/config.scss";
 .container {
-  height: 100vh;
+  min-height: 100vh;
   padding-top: 6.8rem;
   position: relative;
   width: 100vw;
