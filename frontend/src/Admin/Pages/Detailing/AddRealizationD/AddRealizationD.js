@@ -74,29 +74,6 @@ const AddRealizationD = () => {
     }
   };
 
-  const handleFileChange = (e, index) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-
-      reader.onloadend = () => {
-        const updatedRestImg = [...formData.restImg];
-        const updatedRestImgPreviews = [...restImgPreviews];
-
-        updatedRestImg[index] = file;
-        updatedRestImgPreviews[index] = reader.result;
-
-        setFormData((prevData) => ({
-          ...prevData,
-          restImg: updatedRestImg,
-        }));
-        setRestImgPreviews(updatedRestImgPreviews);
-      };
-
-      reader.readAsDataURL(file);
-    }
-  };
-
   const handleDelete = (index) => {
     const updatedRestImg = formData.restImg.filter((_, i) => i !== index);
     const updatedRestImgPreviews = restImgPreviews.filter(
