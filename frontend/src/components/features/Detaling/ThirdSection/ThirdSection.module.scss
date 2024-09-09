@@ -27,6 +27,12 @@
     position: relative;
     place-items: center;
     margin: 0 15px;
+    .background {
+      border: 2px solid rgba($color-main-font, 0.5);
+      border-radius: 10px;
+      background-color: transparent;
+      backdrop-filter: blur(5px);
+    }
     .realization {
       display: flex;
       flex-wrap: wrap;
@@ -35,10 +41,6 @@
       margin-top: 1rem;
       padding: 30px 30px 0 30px;
       gap: 5rem;
-      border: 2px solid rgba($color-main-font, 0.5);
-      border-radius: 10px;
-      background-color: transparent;
-      backdrop-filter: blur(5px);
       @media only screen and (max-width: 768px) {
         flex-direction: column;
         gap: 7rem;
@@ -56,7 +58,7 @@
         z-index: 1;
       }
       .card {
-        margin-bottom: 20px;
+        margin-bottom: 6rem;
         position: relative;
         border-radius: 10px;
         z-index: 2;
@@ -126,11 +128,14 @@
   }
 }
 .contButton {
-  margin-top: -3rem;
+  margin-top: -4rem;
   margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   @media only screen and (max-width: 768px) {
-    margin-top: 0rem;
-    margin-bottom: 2rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
     Button {
       font-size: 15px;
     }

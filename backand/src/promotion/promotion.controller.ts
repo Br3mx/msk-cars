@@ -8,11 +8,14 @@ import {
   HttpStatus,
   HttpException,
   Get,
+  UseGuards,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { PromotionService } from './promotion.service';
 import { extname } from 'path';
+import { JwtAdminAuthGuard } from 'src/auth/admin-auth.guard';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @Controller('promotions')
 export class PromotionController {
@@ -24,6 +27,8 @@ export class PromotionController {
   }
 
   @Post('upload')
+  @UseGuards(JwtAdminAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @UseInterceptors(
     FileInterceptor('file', {
       storage: diskStorage({
@@ -63,6 +68,8 @@ export class PromotionController {
 
   // DELETE: Delete promotion by ID
   @Delete(':id')
+  @UseGuards(JwtAdminAuthGuard)
+  @UseGuards(JwtAuthGuard)
   async deletePromotion(@Param('id') id: string) {
     await this.promotionService.deletePromotion(id);
     return { message: 'Promotion deleted successfully' };

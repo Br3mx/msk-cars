@@ -126,9 +126,11 @@
   }
 }
 .textBtn {
-  position: relative;
-  z-index: 2;
-  text-align: center;
+  position: absolute;
+  bottom: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999;
   @media only screen and (max-width: 768px) {
     margin-top: 5rem;
     font-size: 14px;

@@ -64,36 +64,38 @@ const ThirdSection = () => {
         >
           {thirdSection.title}
         </motion.h1>
-        <div className={style.realization}>
-          {realization.slice(0, itemsToShow).map((item, index) => (
-            <motion.div
-              key={index}
-              className={style.card}
-              initial={{ scale: 0.5, opacity: 0 }}
-              animate={
-                inView ? { scale: 1, opacity: 1 } : { scale: 0.5, opacity: 0 }
-              }
-              transition={{ duration: 1, delay: 0.5 + index * 0.2 }}
-            >
-              <img
-                src={`${IMGS_URL}/export/cars/${item.img}`}
-                alt={item.carMark}
-              />
+        <div className={style.background}>
+          <div className={style.realization}>
+            {realization.slice(0, itemsToShow).map((item, index) => (
+              <motion.div
+                key={index}
+                className={style.card}
+                initial={{ scale: 0.5, opacity: 0 }}
+                animate={
+                  inView ? { scale: 1, opacity: 1 } : { scale: 0.5, opacity: 0 }
+                }
+                transition={{ duration: 1, delay: 0.5 + index * 0.2 }}
+              >
+                <img
+                  src={`${IMGS_URL}/export/cars/${item.img}`}
+                  alt={item.carMark}
+                />
 
-              <div className={style.contDesc}>
-                <div className={style.contText}>{item.carMark}</div>
-                <div className={style.btn}>
-                  <Link
-                    to={`/realization-cars-to-order/${item.id}`}
-                    style={{ textDecoration: "none" }}
-                    className={style.link}
-                  >
-                    <Button>Zobacz realizację</Button>
-                  </Link>
+                <div className={style.contDesc}>
+                  <div className={style.contText}>{item.carMark}</div>
+                  <div className={style.btn}>
+                    <Link
+                      to={`/realization-cars-to-order/${item.id}`}
+                      style={{ textDecoration: "none" }}
+                      className={style.link}
+                    >
+                      <Button>Zobacz realizację</Button>
+                    </Link>
+                  </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            ))}
+          </div>
           <motion.span
             className={style.contButton}
             initial={{ opacity: 0 }}

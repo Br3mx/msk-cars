@@ -23,7 +23,7 @@ import { extname } from 'path';
 import * as dotenv from 'dotenv';
 import { UpdateDetailingDTO } from './dto/update-detailing.dto';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-import { AdminAuthGuard } from 'src/auth/admin-auth.guard';
+import { JwtAdminAuthGuard } from 'src/auth/admin-auth.guard';
 
 @Controller('detailing')
 export class DetailingController {
@@ -42,8 +42,8 @@ export class DetailingController {
     return det;
   }
   @Delete(process.env.DELETE_DETAILING_URL)
-  //@UseGuards(AdminAuthGuard)
-  //@UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAdminAuthGuard)
+  @UseGuards(JwtAuthGuard)
   async deleteDet(@Param('id', new ParseUUIDPipe()) id: string) {
     if (!(await this.detailingService.getById(id)))
       throw new NotFoundException('Product not found');
@@ -52,8 +52,8 @@ export class DetailingController {
   }
 
   @Post(process.env.POST_DETAILING_URL)
-  //@UseGuards(AdminAuthGuard)
-  //@UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAdminAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @UseInterceptors(
     FileFieldsInterceptor(
       [
