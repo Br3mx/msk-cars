@@ -8,6 +8,7 @@ import { motion, useInView } from "framer-motion";
 import axios from "axios";
 import { API_URL } from "../../../../config";
 import Loading from "../../../common/Preloader for button/Loading";
+import CustomModal from "../../../common/CustomModal/CustomModal";
 
 const Contact = () => {
   const phoneNumber = useSelector(getPhone);
@@ -21,6 +22,9 @@ const Contact = () => {
     message: "",
   });
 
+  const [modalMessage, setModalMessage] = useState("");
+  const [showModal, setShowModal] = useState(false);
+
   const [formErrors, setFormErrors] = useState({
     name: false,
     surname: false,
@@ -30,6 +34,8 @@ const Contact = () => {
     message: false,
   });
   const [isLoading, setIsLoading] = useState(false);
+
+  const handleCloseModal = () => setShowModal(false);
 
   const handleChangePhone = (e) => {
     const { name, value } = e.target;
@@ -78,6 +84,7 @@ const Contact = () => {
 
     if (hasErrors) {
       setFormErrors(errors);
+      setIsLoading(false);
       return;
     }
     try {
@@ -90,18 +97,23 @@ const Contact = () => {
         message: formData.message,
       };
       if (formData.phone.length < 9) {
-        alert(
-          "Proszę wpisać poprawny numer telefonu składający się z 9 cyfr !. Poprawny przykład: 123456789 "
+        setModalMessage(
+          "Proszę wpisać poprawny numer telefonu składający się z 9 cyfr! Poprawny przykład: 123456789"
         );
+        setShowModal(true);
+        setIsLoading(false);
       } else {
         const response = await axios.post(`${API_URL}/mail/send`, mailData);
         console.log("Email submitted:", response.data);
-        alert("Email został pomyślnie wysłany 😀");
+
+        setModalMessage("Email został pomyślnie wysłany 😀");
+        setShowModal(true);
       }
     } catch (error) {
-      alert(
-        "Wystąpił błąd podczas wysyłki formularza. Upewnij się że wszystkie pola zostały poprawnie wypełnione !"
+      setModalMessage(
+        "Wystąpił błąd podczas wysyłki formularza. Upewnij się że wszystkie pola zostały poprawnie wypełnione!"
       );
+      setShowModal(true);
       console.error("Error submitting mail:", error);
       console.error("Response from server:", error.response);
     } finally {
@@ -115,6 +127,12 @@ const Contact = () => {
   return (
     <motion.div className={style.container}>
       <Container>
+        {/* Custom modal */}
+        <CustomModal
+          message={modalMessage}
+          showModal={showModal}
+          onClose={handleCloseModal}
+        />
         <motion.div
           className={style.content}
           ref={ref}
