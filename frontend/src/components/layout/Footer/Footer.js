@@ -2,7 +2,7 @@ import React from "react";
 import style from "./Footer.module.scss";
 import { useSection } from "../../common/SectionContext";
 import { Link } from "react-router-dom";
-import { FaFacebook } from "react-icons/fa";
+import { FaFacebook, FaInstagram } from "react-icons/fa";
 const Footer = () => {
   const { section } = useSection();
   return (
@@ -47,6 +47,14 @@ const Footer = () => {
               rel="noopener noreferrer"
             >
               <FaFacebook className={style.icon} />
+            </a>
+            <a
+              href="https://www.instagram.com/mskcars_/"
+              target="_blank"
+              className={style.link}
+              rel="noopener noreferrer"
+            >
+              <FaInstagram className={style.icon1} />
             </a>
           </div>
         </div>
