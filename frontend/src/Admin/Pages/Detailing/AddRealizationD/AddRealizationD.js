@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import style from "./AddRealizationD.module.scss";
 import { useDispatch } from "react-redux";
 import { addRealizationD } from "../../../../redux/Detailing/detailingReducer";
-import Preloader from "../../../../components/common/Preloader/Preloader";
 import Loading from "../../../../components/common/Preloader for button/Loading";
 
 const AddRealizationD = () => {

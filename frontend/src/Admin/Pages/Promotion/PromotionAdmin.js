@@ -18,7 +18,6 @@ const PromotionAdmin = () => {
   const [formData, setFormData] = useState({
     promotionImg: prom.promotionImg,
   });
-  const [isLoading, setIsLoading] = useState(false);
 
   const [imagePreview, setImagePreview] = useState(
     prom.promotionImg ? `${IMGS_URL}/promotion/${prom.promotionImg}` : null

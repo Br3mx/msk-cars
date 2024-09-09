@@ -25,7 +25,7 @@ import EditRealizationD from "./Admin/Pages/Detailing/EditRealizationD/EditReali
 import AddRealizationC from "./Admin/Pages/CarsToOrder/AddRealizationC/AddRealizationC.js";
 import EditRealizationC from "./Admin/Pages/CarsToOrder/EditRealizationC/EditRealizationC.js";
 import EditSingleRealizationD from "./Admin/Pages/Detailing/EditSingleRealizationD/EditSingleRealizationD.js";
-import { loadPromotionRequest, loginUser } from "./redux/commonRedux.js";
+import { loadPromotionRequest } from "./redux/commonRedux.js";
 import EditSingleRealizationC from "./Admin/Pages/CarsToOrder/EditSingleRealizationC/EditSingleRealizationC.js";
 import { loadExpRequest } from "./redux/CarsExport/carsexportReducer.js";
 import Promotion from "./components/pages/Detaling/Promotion/Promotion.js";

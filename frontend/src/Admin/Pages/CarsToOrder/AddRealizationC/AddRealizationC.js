@@ -1,12 +1,8 @@
 import React, { useEffect, useState } from "react";
 import style from "./AddRealizationC.module.scss";
 import { useDispatch } from "react-redux";
-import {
-  addRealizationExp,
-  addRealizationExport,
-} from "../../../../redux/CarsExport/carsexportReducer";
-import { IMGS_URL } from "../../../../config";
-import Preloader from "../../../../components/common/Preloader/Preloader";
+import { addRealizationExport } from "../../../../redux/CarsExport/carsexportReducer";
+
 import Loading from "../../../../components/common/Preloader for button/Loading";
 import Success from "../../../../components/common/Success/Success";
 
