@@ -37,7 +37,7 @@
     margin-bottom: 0;
     padding: 10px;
     gap: 10px;
-    margin-top: -20px;
+    margin-top: 4rem;
     flex-direction: column;
   }
 
@@ -95,7 +95,9 @@
   text-align: center;
   position: relative;
   padding-top: 1.5rem;
-
+  @media only screen and (max-width: 768px) {
+    padding-top: 4rem;
+  }
   z-index: 2;
   .list {
     text-align: left;
@@ -109,7 +111,7 @@
   }
   @media only screen and (max-width: 768px) {
     h1 {
-      font-size: 25px;
+      font-size: 40px;
     }
     .list {
       font-size: 15px;

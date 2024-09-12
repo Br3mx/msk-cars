@@ -47,8 +47,8 @@
     iframe {
       border-radius: 10px !important;
       @media only screen and (max-width: 768px) {
-        height: 100px;
-        width: 200px;
+        height: 200px;
+        width: 300px;
       }
     }
   }
@@ -88,7 +88,7 @@
     font-size: 30px;
     color: $color-main-font;
     @media only screen and (max-width: 768px) {
-      font-size: 15px;
+      font-size: 20px;
     }
   }
 }
@@ -109,7 +109,7 @@
       font-size: 25px;
     }
     .list {
-      font-size: 15px;
+      font-size: 20px;
       line-height: 22px;
       padding-bottom: 2rem;
     }
@@ -132,7 +132,7 @@
   transition: all 0.2s ease-in-out;
   @media only screen and (max-width: 768px) {
     font-size: 15px;
-    gap: 0px;
+    gap: 5px;
     margin-top: 0px;
     flex-direction: column;
     padding: 1px 0px;

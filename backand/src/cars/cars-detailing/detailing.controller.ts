@@ -42,8 +42,8 @@ export class DetailingController {
     return det;
   }
   @Delete(process.env.DELETE_DETAILING_URL)
-  @UseGuards(JwtAdminAuthGuard)
-  @UseGuards(JwtAuthGuard)
+  //@UseGuards(JwtAdminAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   async deleteDet(@Param('id', new ParseUUIDPipe()) id: string) {
     if (!(await this.detailingService.getById(id)))
       throw new NotFoundException('Product not found');
@@ -52,8 +52,8 @@ export class DetailingController {
   }
 
   @Post(process.env.POST_DETAILING_URL)
-  @UseGuards(JwtAdminAuthGuard)
-  @UseGuards(JwtAuthGuard)
+  //@UseGuards(JwtAdminAuthGuard)
+  //@UseGuards(JwtAuthGuard)
   @UseInterceptors(
     FileFieldsInterceptor(
       [

@@ -42,8 +42,8 @@ export class CarsExportController {
     return det;
   }
   @Delete(process.env.DELETE_EXPORT_URL)
-  @UseGuards(JwtAdminAuthGuard)
-  @UseGuards(JwtAuthGuard)
+  //@UseGuards(JwtAdminAuthGuard)
+  //@UseGuards(JwtAuthGuard)
   async deleteExp(@Param('id', new ParseUUIDPipe()) id: string) {
     if (!(await this.exportService.getByIdExp(id)))
       throw new NotFoundException('Product not found');
@@ -52,8 +52,8 @@ export class CarsExportController {
   }
 
   @Post(process.env.POST_EXPORT_URL)
-  @UseGuards(JwtAdminAuthGuard)
-  @UseGuards(JwtAuthGuard)
+  //@UseGuards(JwtAdminAuthGuard)
+  //@UseGuards(JwtAuthGuard)
   @UseInterceptors(
     FileFieldsInterceptor(
       [
@@ -97,8 +97,8 @@ export class CarsExportController {
   }
 
   @Put(process.env.PUT_EXPORT_URL)
-  @UseGuards(JwtAdminAuthGuard)
-  @UseGuards(JwtAuthGuard)
+  //@UseGuards(JwtAdminAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   @UseInterceptors(
     FileFieldsInterceptor(
       [

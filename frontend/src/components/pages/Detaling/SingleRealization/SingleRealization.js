@@ -15,6 +15,8 @@ const SingleRealization = () => {
   const inView = useInView(ref, { once: true });
   const [selectedImage, setSelectedImage] = useState(null);
   const [isDragging, setIsDragging] = useState(false);
+  const modalRef = useRef(null);
+
   const dragRef = useRef(null);
   const [wrapperStyle, setWrapperStyle] = useState({
     height: "35rem",
@@ -37,6 +39,16 @@ const SingleRealization = () => {
       dragRef.current.classList.remove(style.grabbing);
     }
   };
+
+  useEffect(() => {
+    if (selectedImage && modalRef.current) {
+      // Gdy modal jest aktywny, przewiń do jego pozycji
+      modalRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+    }
+  }, [selectedImage]);
 
   useEffect(() => {
     const updateWrapperStyle = () => {
@@ -130,36 +142,39 @@ const SingleRealization = () => {
         </div>
       </div>
       {selectedImage && (
-        <motion.div
-          className={style.modal}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          onMouseDown={handleMouseDown}
-          onMouseUp={handleMouseUp}
-        >
-          <TransformWrapper
-            defaultScale={1}
-            defaultPositionX={200}
-            defaultPositionY={100}
+        <div className={style.overlay}>
+          <motion.div
+            className={style.modal}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onMouseDown={handleMouseDown}
+            onMouseUp={handleMouseUp}
           >
-            <span
-              className={style.border}
-              ref={dragRef}
-              onMouseDown={handleMouseDown}
-              onMouseUp={handleMouseUp}
+            <TransformWrapper
+              defaultScale={1}
+              defaultPositionX={200}
+              defaultPositionY={100}
             >
-              <TransformComponent wrapperStyle={wrapperStyle}>
-                <img
-                  src={selectedImage}
-                  alt="Selected Car"
-                  className={style.modalImage}
-                />
-              </TransformComponent>
-            </span>
-            <Controls closeFunction={handleCloseModal} />
-          </TransformWrapper>
-        </motion.div>
+              <span
+                className={style.border}
+                ref={dragRef}
+                onMouseDown={handleMouseDown}
+                onMouseUp={handleMouseUp}
+              >
+                <TransformComponent wrapperStyle={wrapperStyle}>
+                  <img
+                    src={selectedImage}
+                    alt="Selected Car"
+                    ref={modalRef}
+                    className={style.modalImage}
+                  />
+                </TransformComponent>
+              </span>
+              <Controls closeFunction={handleCloseModal} />
+            </TransformWrapper>
+          </motion.div>
+        </div>
       )}
     </motion.div>
   );

@@ -33,7 +33,10 @@ nav {
   @media only screen and (max-width: 768px) {
     display: none;
     flex-direction: column;
-    background-color: $color-dark-blue;
+    background-color: transparent;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba($color-main-font, 0.7);
+    border-radius: 100px;
     position: absolute;
     top: 50px;
     width: 100vw; /* Pełna szerokość ekranu */
@@ -57,10 +60,11 @@ nav {
   cursor: pointer;
   @media only screen and (max-width: 768px) {
     display: block;
-    top: 35vh;
-    left: -30px;
+    top: 10px;
+    right: 0;
     z-index: 1100;
     background-color: rgba($color-dark-blue, 0.8);
+    border: 2px solid rgba($color-main-font, 1);
     border-radius: 50%;
     padding: 10px 7px;
     transition: all 0.4s ease-in-out;
@@ -75,8 +79,6 @@ nav {
   }
 
   &.open {
-    left: 20px;
-    top: 30px;
     div:nth-child(1) {
       transform: rotate(-45deg) translate(-5px, 6px);
     }

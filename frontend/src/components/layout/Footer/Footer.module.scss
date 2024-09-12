@@ -14,23 +14,25 @@
     text-align: center;
     padding: 0 10rem;
     flex-wrap: wrap;
-    gap: 2rem; /* Zmniejszenie odstępów */
+    gap: 2rem;
 
     @media only screen and (max-width: 768px) {
       flex-direction: column;
       justify-content: center;
       gap: 1rem;
-      padding: 1rem 0;
+      padding: 1rem 0rem;
     }
 
     .nav {
       display: flex;
       flex-direction: row;
-      gap: 1rem; /* Dodanie odstępów między linkami */
+      gap: 1rem;
       align-items: flex-start;
 
       @media only screen and (max-width: 768px) {
-        align-items: center;
+        flex-wrap: wrap;
+        align-items: center !important;
+        justify-content: center;
       }
 
       .link {

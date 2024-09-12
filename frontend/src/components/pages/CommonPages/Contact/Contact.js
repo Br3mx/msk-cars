@@ -203,6 +203,7 @@ const Contact = () => {
             <motion.form
               onSubmit={handleSubmit}
               initial={{ y: -100, opacity: 0 }}
+              className={style.Form}
               animate={inView ? { y: 0, opacity: 1 } : { y: -100, opacity: 0 }}
               transition={{ duration: 1, delay: 0.7 }}
             >

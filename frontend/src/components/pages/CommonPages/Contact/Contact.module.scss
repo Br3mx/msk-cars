@@ -34,7 +34,7 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      gap: 10px;
+      gap: 30px;
     }
     .contContact {
       display: grid;
@@ -69,7 +69,7 @@
           flex-direction: column;
           font-size: 20px;
           @media only screen and (max-width: 768px) {
-            font-size: 15px;
+            font-size: 20px;
           }
 
           span {
@@ -136,9 +136,6 @@
 
         input {
           width: 360px;
-          @media only screen and (max-width: 768px) {
-            width: 100%;
-          }
         }
       }
       form {
@@ -149,6 +146,8 @@
         gap: 15px;
         @media only screen and (max-width: 768px) {
           justify-content: center;
+          width: 90%;
+          margin-bottom: 2rem;
         }
 
         .contButton {
@@ -174,7 +173,7 @@
             background-color: rgba($color-light-blue, 1);
             @media only screen and (max-width: 768px) {
               width: 100%;
-              font-size: 13px;
+              font-size: 15px;
               padding: 5px;
             }
           }
@@ -182,7 +181,9 @@
         span {
           @media only screen and (max-width: 768px) {
             h6 {
-              font-size: 13px;
+              font-size: 14px;
+              margin: 0.5rem;
+              text-align: center;
             }
           }
 
@@ -195,7 +196,7 @@
             font-size: 18px;
             color: rgba($color-light-blue, 1);
             @media only screen and (max-width: 768px) {
-              width: 100%;
+              width: 100% !important;
               height: 2rem;
               font-size: 15px;
             }
@@ -214,7 +215,7 @@
             padding: 10px 20px;
             @media only screen and (max-width: 768px) {
               width: 100%;
-              height: 3.5rem;
+              height: 10rem;
             }
           }
           select {
@@ -255,5 +256,11 @@
   margin-bottom: -15px;
   @media only screen and (max-width: 768px) {
     display: none;
+  }
+}
+
+input {
+  @media only screen and (max-width: 768px) {
+    width: 100% !important;
   }
 }

@@ -62,13 +62,6 @@
           padding: 10px;
         }
 
-        h2 {
-          font-weight: 900;
-          font-size: 33px;
-          @media only screen and (max-width: 768px) {
-            font-size: 20px;
-          }
-        }
         ul {
           padding: 0;
           display: flex;
@@ -79,7 +72,7 @@
             font-size: 25px;
             margin: 10px;
             @media only screen and (max-width: 768px) {
-              font-size: 20px;
+              font-size: 23px;
               &:nth-last-of-type(1) {
                 margin-bottom: 0;
               }
@@ -128,5 +121,13 @@
         }
       }
     }
+  }
+}
+
+h2 {
+  font-weight: 900;
+  font-size: 33px;
+  @media only screen and (max-width: 768px) {
+    font-size: 25px;
   }
 }
