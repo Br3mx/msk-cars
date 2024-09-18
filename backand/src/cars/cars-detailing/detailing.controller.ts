@@ -24,6 +24,7 @@ import * as dotenv from 'dotenv';
 import { UpdateDetailingDTO } from './dto/update-detailing.dto';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { JwtAdminAuthGuard } from 'src/auth/admin-auth.guard';
+import { JwtRoleGuard } from 'src/auth/jwt-role.guard';
 
 @Controller('detailing')
 export class DetailingController {
@@ -42,7 +43,7 @@ export class DetailingController {
     return det;
   }
   @Delete(process.env.DELETE_DETAILING_URL)
-  //@UseGuards(JwtAdminAuthGuard)
+  @UseGuards(JwtRoleGuard)
   // @UseGuards(JwtAuthGuard)
   async deleteDet(@Param('id', new ParseUUIDPipe()) id: string) {
     if (!(await this.detailingService.getById(id)))
@@ -52,7 +53,7 @@ export class DetailingController {
   }
 
   @Post(process.env.POST_DETAILING_URL)
-  //@UseGuards(JwtAdminAuthGuard)
+  @UseGuards(JwtRoleGuard)
   //@UseGuards(JwtAuthGuard)
   @UseInterceptors(
     FileFieldsInterceptor(
@@ -97,7 +98,7 @@ export class DetailingController {
   }
 
   @Put(process.env.PUT_DETAILING_URL)
-  //@UseGuards(AdminAuthGuard)
+  @UseGuards(JwtRoleGuard)
   //@UseGuards(JwtAuthGuard)
   @UseInterceptors(
     FileFieldsInterceptor(
