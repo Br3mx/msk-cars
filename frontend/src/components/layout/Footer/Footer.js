@@ -59,6 +59,18 @@ const Footer = () => {
           </div>
         </div>
       </div>
+      <div className={style.polrel}>
+        <span>
+          <Link to={"/policy"} className={style.link}>
+            Polityka Prywatności
+          </Link>
+        </span>
+        <span>
+          <Link to={"/regulations"} className={style.link}>
+            Regulamin
+          </Link>
+        </span>
+      </div>
     </div>
   );
 };

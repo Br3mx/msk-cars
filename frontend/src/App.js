@@ -31,6 +31,8 @@ import { loadExpRequest } from "./redux/CarsExport/carsexportReducer.js";
 import Promotion from "./components/pages/Detaling/Promotion/Promotion.js";
 import Logout from "./Admin/features/logout/Logout.js";
 import PromotionAdmin from "./Admin/Pages/Promotion/PromotionAdmin.js";
+import Policy from "./components/pages/CommonPages/Policy/Policy.js";
+import Regulations from "./components/pages/CommonPages/Regulations/Regulations.js";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -128,6 +130,8 @@ const App = () => {
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/offer" element={<Offer />} />
                 <Route path="*" element={<NotFound />} />
+                <Route path="/policy" element={<Policy />} />
+                <Route path="/regulations" element={<Regulations />} />
 
                 {/* SPROWADZANIE SAMOCHODÓW */}
                 <Route path="/home-cars-to-order" element={<Home2 />} />

@@ -264,3 +264,29 @@ input {
     width: 100% !important;
   }
 }
+
+.zgoda {
+  display: flex !important;
+  height: 100% !important;
+  width: 70% !important;
+}
+.checkbox {
+  height: fit-content !important;
+  width: fit-content !important;
+  margin-top: 0.3rem !important;
+  margin-right: 0.5rem;
+  @media only screen and (max-width: 768px) {
+    margin-right: -10%;
+  }
+}
+.parentCheck {
+  display: flex;
+  justify-content: space-between;
+  gap: 10rem;
+  @media only screen and (max-width: 768px) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+  }
+}

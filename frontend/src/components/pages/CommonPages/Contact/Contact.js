@@ -271,7 +271,7 @@ const Contact = () => {
                   )}
                 </span>
               </motion.div>
-              <span>
+              <span className={style.parentCheck}>
                 <select
                   id="title"
                   name="title"
@@ -301,6 +301,24 @@ const Contact = () => {
                 {formErrors.title && (
                   <p className={style.errorMessage}>To pole jest wymagane.</p>
                 )}
+                <span className={style.zgoda}>
+                  <input
+                    className={style.checkbox}
+                    type="checkbox"
+                    name="zgoda"
+                    id="zgoda"
+                    required
+                  />
+                  <label htmlFor="zgoda">
+                    Wyrażam zgodę na przetwarzanie moich danych osobowych
+                    zgodnie z
+                    <a href="/polityka-prywatnosci" target="_blank">
+                      {" "}
+                      Polityką Prywatności
+                    </a>
+                    *
+                  </label>
+                </span>
               </span>
               <span>
                 <h6>Dodatkowe informacje i pytania (obowiązkowe)</h6>
