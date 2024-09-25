@@ -9,6 +9,7 @@ import axios from "axios";
 import { API_URL } from "../../../../config";
 import Loading from "../../../common/Preloader for button/Loading";
 import CustomModal from "../../../common/CustomModal/CustomModal";
+import { Link } from "react-router-dom";
 
 const Contact = () => {
   const phoneNumber = useSelector(getPhone);
@@ -34,7 +35,8 @@ const Contact = () => {
     message: false,
   });
   const [isLoading, setIsLoading] = useState(false);
-
+  const [isChecked, setIsChecked] = useState(false);
+  const [hasError, setHasError] = useState(false);
   const handleCloseModal = () => setShowModal(false);
 
   const handleChangePhone = (e) => {
@@ -67,9 +69,23 @@ const Contact = () => {
       [name]: !isValid,
     });
   };
-
+  const handleCheckboxChange = (event) => {
+    setIsChecked(event.target.checked);
+    if (event.target.checked) {
+      setHasError(false);
+    }
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!isChecked) {
+      setHasError(true);
+      setIsLoading(false);
+      return;
+    }
+
+    setHasError(false);
+
     let errors = {};
     let hasErrors = false;
     setIsLoading(true);
@@ -272,6 +288,9 @@ const Contact = () => {
                 </span>
               </motion.div>
               <span className={style.parentCheck}>
+                {formErrors.title && (
+                  <p className={style.errorMessage}>To pole jest wymagane.</p>
+                )}
                 <select
                   id="title"
                   name="title"
@@ -298,25 +317,18 @@ const Contact = () => {
                   </option>
                   <option value="Inne">Inne</option>
                 </select>
-                {formErrors.title && (
-                  <p className={style.errorMessage}>To pole jest wymagane.</p>
-                )}
                 <span className={style.zgoda}>
                   <input
-                    className={style.checkbox}
+                    className={hasError ? style.errorCheckbox : style.checkbox}
                     type="checkbox"
+                    checked={isChecked}
+                    onChange={handleCheckboxChange}
                     name="zgoda"
                     id="zgoda"
-                    required
                   />
                   <label htmlFor="zgoda">
                     Wyrażam zgodę na przetwarzanie moich danych osobowych
-                    zgodnie z
-                    <a href="/polityka-prywatnosci" target="_blank">
-                      {" "}
-                      Polityką Prywatności
-                    </a>
-                    *
+                    zgodnie z <Link to={"/policy"}> Polityką Prywatności</Link>*
                   </label>
                 </span>
               </span>

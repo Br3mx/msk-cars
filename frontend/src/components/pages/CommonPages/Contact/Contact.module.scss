@@ -283,10 +283,62 @@ input {
   display: flex;
   justify-content: space-between;
   gap: 10rem;
+  position: relative;
+  .errorMessage {
+    position: absolute;
+    bottom: 0;
+  }
   @media only screen and (max-width: 768px) {
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 2rem;
   }
+}
+
+.zgoda input[type="checkbox"] {
+  display: none;
+}
+
+/* Stylizacja niestandardowego checkboxa (koło) */
+label {
+  position: relative;
+  padding-left: 30px;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Kółko, które zastąpi checkbox */
+label:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%; /* Zmiana kształtu na kółko */
+  border: 2px solid rgba($color-main-font, 1); /* Początkowo czerwony */
+  background-color: transparent;
+  transition: all 0.2s ease;
+}
+
+/* Styl dla zaznaczonego checkboxa */
+input[type="checkbox"]:checked + label:before {
+  background-color: rgba(
+    $color-main-font,
+    1
+  ); /* Kolor wypełnienia po zaznaczeniu */
+  border-color: transparent; /* Zielona obramówka po zaznaczeniu */
+}
+
+/* Styl dla etykiety, gdy checkbox jest zaznaczony */
+input[type="checkbox"]:checked + label {
+  color: rgba(rgba($color-main-font, 0.5), 0.5);
+}
+.errorCheckbox + label:before {
+  border-color: red; /* Czerwona ramka w stanie błędu */
+  background-color: rgba(red, 0.5); /* Opcjonalne tło */
+}
+.errorCheckbox + label {
+  color: red; /* Czerwona ramka w stanie błędu */
 }
