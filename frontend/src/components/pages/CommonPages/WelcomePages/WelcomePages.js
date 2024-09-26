@@ -1,11 +1,21 @@
 import React from "react";
 import style from "./WelcomePages.module.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSection } from "../../../common/SectionContext"; // Import kontekstu
 import { motion, useInView } from "framer-motion";
 
 const WelcomePages = () => {
   const { setSection } = useSection();
+  const navigate = useNavigate();
+
+  const handleNavigateD = () => {
+    navigate("/home-detaling");
+    selectSection("detailing");
+  };
+  const handleNavigateC = () => {
+    navigate("/home-cars-to-order");
+    selectSection("carorders");
+  };
 
   const selectSection = (section) => {
     setSection(section);
@@ -51,13 +61,9 @@ const WelcomePages = () => {
             >
               <motion.div className={style.contText}>
                 <h2>Auto Detaling</h2>
-                <Link
-                  to={"/home-detaling"}
-                  className={style.btn}
-                  onClick={() => selectSection("detailing")}
-                >
+                <button className={style.btn} onClick={handleNavigateD}>
                   SPRAWDŹ
-                </Link>
+                </button>
               </motion.div>
             </motion.div>
           </Link>
@@ -78,13 +84,9 @@ const WelcomePages = () => {
             >
               <motion.div className={style.contText}>
                 <h2>Samochody na zamównienie</h2>
-                <Link
-                  to={"/home-cars-to-order"}
-                  className={style.btn}
-                  onClick={() => selectSection("carorders")}
-                >
+                <button className={style.btn} onClick={handleNavigateC}>
                   SPRAWDŹ
-                </Link>
+                </button>
               </motion.div>
             </motion.div>
           </Link>

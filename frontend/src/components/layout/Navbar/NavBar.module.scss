@@ -7,7 +7,7 @@
   backdrop-filter: blur(10px);
   box-shadow: 0px 5px 20px rgba($color-main-font, 0.3);
   background-color: transparent;
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 896px) {
     position: fixed;
   }
 
@@ -15,7 +15,7 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    @media only screen and (max-width: 768px) {
+    @media only screen and (max-width: 896px) {
       justify-content: space-between;
       padding: 0 10px;
     }
@@ -30,16 +30,16 @@ nav {
   width: fit-content;
   transform: translateX(-6.7%);
 
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 896px) {
     display: none;
     flex-direction: column;
-    background-color: transparent;
+    background-color: rgba($color-dark-blue, 0.8);
     backdrop-filter: blur(10px);
     border: 2px solid rgba($color-main-font, 0.7);
     border-radius: 100px;
     position: absolute;
     top: 50px;
-    width: 100vw; /* Pełna szerokość ekranu */
+    width: 86vw; /* Pełna szerokość ekranu */
     gap: 20px;
     left: 50%;
     transform: translateX(-50%);
@@ -58,10 +58,10 @@ nav {
   position: fixed !important;
 
   cursor: pointer;
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 896px) {
     display: block;
     top: 10px;
-    right: 0;
+    right: 0.5rem;
     z-index: 1100;
     background-color: rgba($color-dark-blue, 0.8);
     border: 2px solid rgba($color-main-font, 1);
@@ -153,7 +153,7 @@ nav {
   }
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 896px) {
   .contLogo {
     img {
       width: 70px;

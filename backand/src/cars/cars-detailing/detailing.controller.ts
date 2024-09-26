@@ -23,7 +23,6 @@ import { extname } from 'path';
 import * as dotenv from 'dotenv';
 import { UpdateDetailingDTO } from './dto/update-detailing.dto';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-import { JwtAdminAuthGuard } from 'src/auth/admin-auth.guard';
 import { JwtRoleGuard } from 'src/auth/jwt-role.guard';
 
 @Controller('detailing')
@@ -44,7 +43,6 @@ export class DetailingController {
   }
   @Delete(process.env.DELETE_DETAILING_URL)
   @UseGuards(JwtRoleGuard)
-  // @UseGuards(JwtAuthGuard)
   async deleteDet(@Param('id', new ParseUUIDPipe()) id: string) {
     if (!(await this.detailingService.getById(id)))
       throw new NotFoundException('Product not found');
@@ -54,7 +52,6 @@ export class DetailingController {
 
   @Post(process.env.POST_DETAILING_URL)
   @UseGuards(JwtRoleGuard)
-  //@UseGuards(JwtAuthGuard)
   @UseInterceptors(
     FileFieldsInterceptor(
       [

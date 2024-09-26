@@ -8,7 +8,7 @@
       position: absolute;
       img {
         width: 10rem;
-        @media only screen and (max-width: 768px) {
+        @media only screen and (max-width: 896px) {
           display: none;
         }
       }
@@ -18,7 +18,7 @@
       justify-content: space-around;
       align-items: center;
       min-height: 100vh;
-      @media only screen and (max-width: 768px) {
+      @media only screen and (max-width: 896px) {
         flex-direction: column;
         justify-content: center;
         gap: 1rem;
@@ -27,7 +27,7 @@
       h3 {
         text-align: center;
         margin-bottom: 2rem;
-        @media only screen and (max-width: 768px) {
+        @media only screen and (max-width: 896px) {
           font-size: 15px;
         }
       }
@@ -38,7 +38,7 @@
         text-align: center;
         gap: 30px;
         font-size: 25px;
-        @media only screen and (max-width: 768px) {
+        @media only screen and (max-width: 896px) {
           font-size: 20px;
           gap: 10px;
         }
@@ -51,7 +51,7 @@
           border-radius: 5px;
           cursor: pointer;
           transition: background-color 0.3s ease;
-          @media only screen and (max-width: 768px) {
+          @media only screen and (max-width: 896px) {
             width: 100%;
             font-size: 15px;
           }

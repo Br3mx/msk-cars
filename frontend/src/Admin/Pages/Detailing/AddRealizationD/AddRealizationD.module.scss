@@ -39,7 +39,7 @@
       }
       textarea {
         width: 30rem;
-        @media only screen and (max-width: 768px) {
+        @media only screen and (max-width: 896px) {
           width: 25rem;
         }
       }
@@ -120,7 +120,7 @@ input {
   height: 100%;
   padding: 20px;
   width: 30rem;
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 896px) {
     width: 20rem !important;
     height: 4rem !important;
   }

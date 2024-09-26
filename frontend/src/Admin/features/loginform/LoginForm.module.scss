@@ -14,14 +14,14 @@
     img {
       width: 10rem;
       align-items: center;
-      @media only screen and (max-width: 768px) {
+      @media only screen and (max-width: 896px) {
         width: 7rem;
       }
     }
   }
   .content {
     padding: 0 5rem 5rem 5rem;
-    @media only screen and (max-width: 768px) {
+    @media only screen and (max-width: 896px) {
       padding: 0 1rem 4rem 1rem;
     }
   }
@@ -51,7 +51,7 @@
       height: 3rem;
       padding: 0 20px;
       width: 25rem;
-      @media only screen and (max-width: 768px) {
+      @media only screen and (max-width: 896px) {
         width: 15rem;
       }
     }

@@ -14,7 +14,7 @@ const SingleRealization = () => {
   const ref = React.useRef(null);
   const inView = useInView(ref, { once: true });
   const [selectedImage, setSelectedImage] = useState(null);
-  const [isDragging, setIsDragging] = useState(false);
+  const [, setIsDragging] = useState(false);
   const modalRef = useRef(null);
 
   const dragRef = useRef(null);
@@ -90,7 +90,6 @@ const SingleRealization = () => {
     setSelectedImage(null);
   };
   const description = JSON.parse(car.description);
-  console.log(description);
   return (
     <motion.div className={style.container}>
       <div className={style.content}>
@@ -112,7 +111,7 @@ const SingleRealization = () => {
             transition={{ duration: 1, delay: 0.2 }}
           >
             {description.map((item, index) => (
-              <div>
+              <div key={index}>
                 <ul>
                   <li key={index}>{item}</li>
                 </ul>

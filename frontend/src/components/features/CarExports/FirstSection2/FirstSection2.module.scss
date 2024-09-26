@@ -12,7 +12,7 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 896px) {
     padding-top: 2rem;
   }
 
@@ -31,7 +31,7 @@
   display: flex;
   justify-content: end;
   margin-top: 20rem;
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 896px) {
     justify-content: center;
     margin-top: 8rem;
   }
@@ -41,7 +41,7 @@
   }
   Button {
     font-size: 20px;
-    @media only screen and (max-width: 768px) {
+    @media only screen and (max-width: 896px) {
       font-size: 20px;
     }
 
@@ -60,7 +60,7 @@
   .wrapper {
     display: flex;
     justify-content: space-between;
-    @media only screen and (max-width: 768px) {
+    @media only screen and (max-width: 896px) {
       justify-content: center;
       flex-direction: column;
       padding: 0 0.5rem;
@@ -72,20 +72,20 @@
     border-bottom: 5px double $color-light-blue;
     padding-bottom: 10px;
     border-radius: 10px;
-    @media only screen and (max-width: 768px) {
+    @media only screen and (max-width: 896px) {
       font-size: 30px;
     }
   }
   p {
     font-size: 25px;
     line-height: 1.6;
-    @media only screen and (max-width: 768px) {
+    @media only screen and (max-width: 896px) {
       font-size: 20px;
     }
   }
 }
 .contPhones {
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 896px) {
     margin-top: 3rem;
   }
 }
@@ -93,7 +93,7 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 896px) {
     display: flex;
     gap: 15px;
     align-items: center;
@@ -101,7 +101,7 @@
 
   span {
     font-size: 25px;
-    @media only screen and (max-width: 768px) {
+    @media only screen and (max-width: 896px) {
       font-size: 20px;
     }
 

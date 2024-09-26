@@ -20,7 +20,6 @@ const Realization2 = () => {
   const handleClick = () => {
     setView((prevView) => !prevView);
   };
-  console.log(view);
   const settings = {
     dots: false,
     infinite: true,
@@ -38,7 +37,7 @@ const Realization2 = () => {
         },
       },
       {
-        breakpoint: 768,
+        breakpoint: 896,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,

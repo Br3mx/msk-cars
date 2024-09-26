@@ -1,0 +1,118 @@
+@import "../../../style/settings.scss";
+.cookieBanner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  @media only screen and (max-width: 896px) {
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+}
+
+.buttonGroup {
+  display: flex;
+  gap: 10px;
+  @media only screen and (max-width: 896px) {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+
+  button:hover {
+    background-color: #45a049;
+  }
+}
+
+.preferencesModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1001;
+}
+
+.modalContent {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  color: black;
+  max-width: 35rem;
+  @media only screen and (max-width: 896px) {
+    max-width: 15rem;
+    height: 30rem;
+    overflow-y: scroll;
+    text-align: center;
+  }
+
+  width: 100%;
+  text-align: left;
+  position: relative;
+  .x {
+    position: absolute;
+    top: 0.5rem;
+    right: 1rem;
+    color: rgba(red, 0.8) !important;
+    font-size: 1.2rem;
+    font-weight: 900;
+    cursor: pointer;
+  }
+}
+
+.preferences {
+  margin: 20px 0;
+
+  label {
+    display: flex !important;
+    margin-bottom: 10px;
+    justify-content: space-between !important;
+    border: 2px solid rgba(black, 0.5);
+    border-radius: 10px;
+    padding: 1rem;
+    align-items: center;
+    height: 100%;
+    @media only screen and (max-width: 896px) {
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    input {
+      height: 1.2rem;
+      width: 1.2rem;
+      margin-right: 8rem !important;
+      transform: translateY(-37%);
+      top: 50%;
+      @media only screen and (max-width: 896px) {
+        height: 1.2rem !important;
+        width: 1.2rem !important;
+        margin: 1rem auto 0 !important;
+      }
+    }
+  }
+
+  input[type="checkbox"] {
+    margin-right: 10px;
+  }
+}

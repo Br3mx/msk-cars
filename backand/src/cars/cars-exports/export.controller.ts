@@ -24,6 +24,7 @@ import * as dotenv from 'dotenv';
 import { UpdateExportDTO } from './dto/update-caresxport.dto';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { JwtAdminAuthGuard } from 'src/auth/admin-auth.guard';
+import { JwtRoleGuard } from 'src/auth/jwt-role.guard';
 
 @Controller('export')
 export class CarsExportController {
@@ -42,8 +43,7 @@ export class CarsExportController {
     return det;
   }
   @Delete(process.env.DELETE_EXPORT_URL)
-  //@UseGuards(JwtAdminAuthGuard)
-  //@UseGuards(JwtAuthGuard)
+  @UseGuards(JwtRoleGuard)
   async deleteExp(@Param('id', new ParseUUIDPipe()) id: string) {
     if (!(await this.exportService.getByIdExp(id)))
       throw new NotFoundException('Product not found');
@@ -52,8 +52,7 @@ export class CarsExportController {
   }
 
   @Post(process.env.POST_EXPORT_URL)
-  //@UseGuards(JwtAdminAuthGuard)
-  //@UseGuards(JwtAuthGuard)
+  @UseGuards(JwtRoleGuard)
   @UseInterceptors(
     FileFieldsInterceptor(
       [
@@ -97,8 +96,7 @@ export class CarsExportController {
   }
 
   @Put(process.env.PUT_EXPORT_URL)
-  //@UseGuards(JwtAdminAuthGuard)
-  // @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtRoleGuard)
   @UseInterceptors(
     FileFieldsInterceptor(
       [

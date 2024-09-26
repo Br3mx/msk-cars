@@ -101,7 +101,6 @@ export const editRealizationD = (id, newData) => async (dispatch) => {
         },
       }
     );
-    console.log("Response from server:", response.data);
     dispatch(editRealization(id, newData));
   } catch (e) {
     console.error("Error updating:", e);

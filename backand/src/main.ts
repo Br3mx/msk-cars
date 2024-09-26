@@ -7,6 +7,14 @@ import * as express from 'express';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  app.use((req, res, next) => {
+    res.setHeader(
+      'Content-Security-Policy',
+      "default-src 'self'; script-src 'self' https://maps.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https://maps.gstatic.com; frame-src 'self' https://www.google.com/maps;",
+    );
+    next();
+  });
+
   const configService = app.get(ConfigService);
   app.useGlobalPipes(new ValidationPipe({ transform: true }));
   app.use(cookieParser());

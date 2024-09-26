@@ -120,7 +120,6 @@ const Contact = () => {
         setIsLoading(false);
       } else {
         const response = await axios.post(`${API_URL}/mail/send`, mailData);
-        console.log("Email submitted:", response.data);
 
         setModalMessage("Email został pomyślnie wysłany 😀");
         setShowModal(true);
@@ -206,6 +205,7 @@ const Contact = () => {
                     width="350"
                     height="300"
                     className={style.map}
+                    sandbox="allow-scripts allow-same-origin"
                     allowFullScreen=""
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"

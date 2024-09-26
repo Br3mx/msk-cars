@@ -14,7 +14,7 @@
   align-items: center; /* Centrowanie zawartości w poziomie */
   left: 50%;
   transform: translateX(-50%);
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 896px) {
     padding-top: 0.5rem;
   }
 
@@ -40,7 +40,7 @@
     border-radius: 10px;
     width: 100%;
     margin: 0 auto;
-    @media only screen and (max-width: 768px) {
+    @media only screen and (max-width: 896px) {
       width: 100%;
       line-height: 30px;
       max-width: auto;
@@ -49,7 +49,7 @@
     .contText {
       display: flex;
       justify-content: space-around;
-      @media only screen and (max-width: 768px) {
+      @media only screen and (max-width: 896px) {
         flex-direction: column;
       }
 
@@ -57,7 +57,7 @@
         position: relative;
         width: 30vw;
         padding: 10px 0;
-        @media only screen and (max-width: 768px) {
+        @media only screen and (max-width: 896px) {
           width: 100%;
           padding: 10px;
         }
@@ -71,7 +71,7 @@
           li {
             font-size: 25px;
             margin: 10px;
-            @media only screen and (max-width: 768px) {
+            @media only screen and (max-width: 896px) {
               font-size: 23px;
               &:nth-last-of-type(1) {
                 margin-bottom: 0;
@@ -85,7 +85,7 @@
             color: $color-light-blue;
             font-size: 50px;
             padding-top: 12px;
-            @media only screen and (max-width: 768px) {
+            @media only screen and (max-width: 896px) {
               font-size: 30px;
               padding-top: 8px;
               left: 3.5%;
@@ -100,7 +100,7 @@
           width: 100%;
           height: 3px;
           background-color: rgba($color-light-blue, 0.7);
-          @media only screen and (max-width: 768px) {
+          @media only screen and (max-width: 896px) {
             width: 70%;
             left: 50%;
             transform: translateX(-50%);
@@ -116,7 +116,7 @@
     &:nth-last-of-type(4) {
       &::after {
         display: none !important;
-        @media only screen and (max-width: 768px) {
+        @media only screen and (max-width: 896px) {
           display: block !important;
         }
       }
@@ -127,7 +127,7 @@
 h2 {
   font-weight: 900;
   font-size: 33px;
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 896px) {
     font-size: 25px;
   }
 }

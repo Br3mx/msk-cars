@@ -33,6 +33,7 @@ import Logout from "./Admin/features/logout/Logout.js";
 import PromotionAdmin from "./Admin/Pages/Promotion/PromotionAdmin.js";
 import Policy from "./components/pages/CommonPages/Policy/Policy.js";
 import Regulations from "./components/pages/CommonPages/Regulations/Regulations.js";
+import CookieBanner from "./components/features/CokkieBaner/CokkieBaner.js";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -110,6 +111,7 @@ const App = () => {
     <SectionProvider>
       <ScrollToTop>
         <>
+          <CookieBanner />
           {location.pathname === "/" ? (
             <Routes>
               <Route path="/" element={<WelcomePages />} />

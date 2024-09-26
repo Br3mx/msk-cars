@@ -10,7 +10,7 @@
   background-size: cover;
   left: 50%;
   transform: translateX(-50%);
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 896px) {
     padding-top: 1.5rem;
   }
 
@@ -30,7 +30,7 @@
     justify-content: space-between; // Wyrównanie do końca
     align-items: flex-start;
     gap: 70px;
-    @media only screen and (max-width: 768px) {
+    @media only screen and (max-width: 896px) {
       flex-direction: column;
       justify-content: center;
       align-items: center;
@@ -52,7 +52,7 @@
       border-radius: 10px;
       border: 2px solid $color-main-font;
       padding: 2rem;
-      @media only screen and (max-width: 768px) {
+      @media only screen and (max-width: 896px) {
         padding: 1rem;
         align-items: center;
       }
@@ -61,14 +61,14 @@
         display: grid;
         place-items: center;
         width: 400px;
-        @media only screen and (max-width: 768px) {
+        @media only screen and (max-width: 896px) {
           width: 100%;
         }
 
         .phoneNumber {
           flex-direction: column;
           font-size: 20px;
-          @media only screen and (max-width: 768px) {
+          @media only screen and (max-width: 896px) {
             font-size: 20px;
           }
 
@@ -94,7 +94,7 @@
       padding: 0 20px 20px 20px;
       border-radius: 10px;
       border: 2px solid $color-main-font;
-      @media only screen and (max-width: 768px) {
+      @media only screen and (max-width: 896px) {
         display: none;
       }
 
@@ -107,7 +107,7 @@
       }
       .map {
         border-radius: 10px;
-        @media only screen and (max-width: 768px) {
+        @media only screen and (max-width: 896px) {
           display: none;
         }
       }
@@ -117,7 +117,7 @@
       place-items: end;
       width: 100%;
       flex-wrap: wrap;
-      @media only screen and (max-width: 768px) {
+      @media only screen and (max-width: 896px) {
         display: grid;
         place-items: center;
         font-size: 15px;
@@ -129,7 +129,7 @@
       .mailPhone {
         display: flex;
         justify-content: space-between;
-        @media only screen and (max-width: 768px) {
+        @media only screen and (max-width: 896px) {
           flex-direction: column;
           justify-content: center;
         }
@@ -144,7 +144,7 @@
         flex-direction: column;
 
         gap: 15px;
-        @media only screen and (max-width: 768px) {
+        @media only screen and (max-width: 896px) {
           justify-content: center;
           width: 90%;
           margin-bottom: 2rem;
@@ -153,7 +153,7 @@
         .contButton {
           display: grid;
           place-items: center;
-          @media only screen and (max-width: 768px) {
+          @media only screen and (max-width: 896px) {
             margin-top: -5px;
           }
 
@@ -171,7 +171,7 @@
               color: rgba($color-light-blue, 1);
             }
             background-color: rgba($color-light-blue, 1);
-            @media only screen and (max-width: 768px) {
+            @media only screen and (max-width: 896px) {
               width: 100%;
               font-size: 15px;
               padding: 5px;
@@ -179,7 +179,7 @@
           }
         }
         span {
-          @media only screen and (max-width: 768px) {
+          @media only screen and (max-width: 896px) {
             h6 {
               font-size: 14px;
               margin: 0.5rem;
@@ -195,7 +195,7 @@
             border: none;
             font-size: 18px;
             color: rgba($color-light-blue, 1);
-            @media only screen and (max-width: 768px) {
+            @media only screen and (max-width: 896px) {
               width: 100% !important;
               height: 2rem;
               font-size: 15px;
@@ -213,7 +213,7 @@
             color: rgba($color-light-blue, 1);
             font-weight: 500;
             padding: 10px 20px;
-            @media only screen and (max-width: 768px) {
+            @media only screen and (max-width: 896px) {
               width: 100%;
               height: 10rem;
             }
@@ -230,7 +230,7 @@
             &:hover {
               transform: scale(1.1);
             }
-            @media only screen and (max-width: 768px) {
+            @media only screen and (max-width: 896px) {
               font-size: 15px;
               height: 40px;
               width: 100%;
@@ -248,19 +248,20 @@
 }
 .error {
   box-shadow: 0px 0px 20px rgba(red, 0.8);
+  border: 2px solid rgba(red, 0.8) !important;
 }
 
 .errorMessage {
   color: red;
   font-size: 15px;
   margin-bottom: -15px;
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 896px) {
     display: none;
   }
 }
 
 input {
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 896px) {
     width: 100% !important;
   }
 }
@@ -275,7 +276,7 @@ input {
   width: fit-content !important;
   margin-top: 0.3rem !important;
   margin-right: 0.5rem;
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 896px) {
     margin-right: -10%;
   }
 }
@@ -288,7 +289,7 @@ input {
     position: absolute;
     bottom: 0;
   }
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 896px) {
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -309,7 +310,7 @@ label {
 }
 
 /* Kółko, które zastąpi checkbox */
-label:before {
+.parentCheck label:before {
   content: "";
   position: absolute;
   top: 0;

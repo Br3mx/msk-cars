@@ -102,6 +102,7 @@ const FourthSection = () => {
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 title="Google Maps"
+                sandbox="allow-scripts allow-same-origin"
               ></iframe>
             </motion.div>
           </motion.div>

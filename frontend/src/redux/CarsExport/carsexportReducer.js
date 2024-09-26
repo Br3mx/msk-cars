@@ -107,7 +107,6 @@ export const editRealizationExport = (id, newDataExp) => async (dispatch) => {
         },
       }
     );
-    console.log("Response from server:", response.data);
     dispatch(editRealizationExp(id, newDataExp));
   } catch (e) {
     console.error("Error updating:", e);
@@ -151,7 +150,6 @@ export const addRealizationExport =
         }
       );
 
-      console.log("Response from server:", response.data);
       dispatch(addRealizationExp(response.data)); // Dispatch the action with the new realization data
     } catch (e) {
       console.error("Error adding realization:", e);

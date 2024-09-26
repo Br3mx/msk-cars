@@ -7,7 +7,6 @@ import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch";
 import { Controls } from "../../Detaling/SingleRealization/utils/Controls";
 import { IMGS_URL } from "../../../../config";
 import { getCarById2 } from "../../../../redux/CarsExport/carsexportReducer";
-import { Element, scroller } from "react-scroll";
 
 const SingleRealization2 = () => {
   const { id } = useParams();
@@ -15,7 +14,7 @@ const SingleRealization2 = () => {
   const ref = React.useRef(null);
   const inView = useInView(ref, { once: true });
   const [selectedImage, setSelectedImage] = useState(null);
-  const [isDragging, setIsDragging] = useState(false);
+  const [, setIsDragging] = useState(false);
   const dragRef = useRef(null);
   const modalRef = useRef(null);
   const [wrapperStyle, setWrapperStyle] = useState({
@@ -88,7 +87,6 @@ const SingleRealization2 = () => {
     setSelectedImage(null);
   };
   const description = JSON.parse(car.description);
-  console.log(description);
   return (
     <motion.div className={style.container}>
       <div className={style.content}>
@@ -110,7 +108,7 @@ const SingleRealization2 = () => {
             transition={{ duration: 1, delay: 0.2 }}
           >
             {description.map((item, index) => (
-              <div>
+              <div key={index}>
                 <ul>
                   <li key={index}>{item}</li>
                 </ul>
