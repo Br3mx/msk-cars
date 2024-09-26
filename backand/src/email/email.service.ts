@@ -93,6 +93,52 @@ export class MailService {
         },
       });
 
+      const confirmationMailOptions = {
+        from: process.env.MAIL_MSK_USER,
+        to: email,
+        subject: 'Potwierdzenie otrzymania wiadomości - MSK-CARS',
+        html: `
+          <html>
+            <head>
+              <style>
+                @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;700&display=swap');
+              </style>
+            </head>
+            <body style="font-family: 'Chakra Petch', sans-serif; margin: 0; padding: 0;">
+              <table width="100%" cellspacing="0" cellpadding="0" border="0" style="height: 100%; text-align: center; background-color: #f0f0f0;">
+                <tr>
+                  <td align="center" style="padding: 20px 0;">
+                    <table width="600px" cellpadding="0" cellspacing="0" border="0" style="border-radius: 10px; overflow: hidden; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); background-color: #ffffff;">
+                      <tr>
+                        <td align="center" style="padding: 20px 0; background-color: #005fa9; color: #ffffff;">
+                          <h1>Dziękujemy za wiadomość!</h1>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td align="center" style="padding: 20px;">
+                          <p>Szanowny/a ${name} ${surname},</p>
+                          <p>Otrzymaliśmy Twoją wiadomość w sprawie "<strong>${title}</strong>".</p>
+                          <p>Skontaktujemy się z Tobą wkrótce w odpowiedzi na Twoje zapytanie.</p>
+                          <br/>
+                          <p><strong>Treść Twojej wiadomości:</strong></p>
+                          <p style="border: 2.5px solid #005fa9; border-radius: 10px; padding: 10px; width: 80%; margin: 0 auto;">${message}</p>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td align="center" style="padding: 20px; font-size: 12px; color: #999999;">
+                          <p>MSK-CARS</p>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </body>
+          </html>
+        `,
+      };
+
+      await this.transporter.sendMail(confirmationMailOptions);
       return { message: 'Email został pomyślnie wysłany.' };
     } catch (error) {
       console.error('Szczegóły błędu:', error);

@@ -119,7 +119,7 @@ const Contact = () => {
         setShowModal(true);
         setIsLoading(false);
       } else {
-        const response = await axios.post(`${API_URL}/mail/send`, mailData);
+        await axios.post(`${API_URL}/mail/send`, mailData);
 
         setModalMessage("Email został pomyślnie wysłany 😀");
         setShowModal(true);
@@ -130,7 +130,6 @@ const Contact = () => {
       );
       setShowModal(true);
       console.error("Error submitting mail:", error);
-      console.error("Response from server:", error.response);
     } finally {
       setIsLoading(false);
     }
@@ -299,18 +298,21 @@ const Contact = () => {
                   onChange={handleChange}
                 >
                   <option value="">Wybierz Tytuł</option>
-                  <option value="Powłoki ceramiczne">Powłoki ceramiczne</option>
-                  <option value="Korekta lakieru">Korekta lakieru</option>
-                  <option value="Czyszczenie wnętrza">
-                    Czyszczenie wnętrza
+                  <option value="Polerowanie lakieru">
+                    Polerowanie lakieru
                   </option>
+                  <option value="Mycie zewnętrzne">Mycie zewnętrzne</option>
+                  <option value="Powłoka ceramiczna">Powłoka ceramiczna</option>
+                  <option value="Detailing wnętrza">Detailing wnętrza</option>
                   <option value="Pranie tapicerki">Pranie tapicerki</option>
-                  <option value="Regeneracja Reflektorów">
-                    Regeneracja Reflektorów
+                  <option value="Przygotowanie auta do sprzedaży">
+                    Przygotowanie auta do sprzedaży
                   </option>
-                  <option value="Folie ochronne">Folie ochronne</option>
-                  <option value="Przyciemnianie szyb i lamp">
-                    Przyciemnianie szyb i lamp
+                  <option value="Przyciemnianie szyb">
+                    Przyciemnianie szyb
+                  </option>
+                  <option value="Regeneracja reflektorów">
+                    Regeneracja reflektorów
                   </option>
                   <option value="Samochody na zamówienie">
                     Samochody na zamówienie

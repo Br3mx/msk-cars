@@ -1,7 +1,7 @@
 @import "../../../../style/settings.scss";
 @import "../../../../style/config.scss";
 .container {
-  height: 100vh;
+  min-height: 100vh;
   padding-top: 6.3rem;
   position: relative;
   width: 100vw;
@@ -38,7 +38,7 @@
     line-height: 40px;
     box-shadow: 0px 0px 50px rgba($color-main-font, 0.5);
     border-radius: 10px;
-    width: 100%;
+    width: 80%;
     margin: 0 auto;
     @media only screen and (max-width: 896px) {
       width: 100%;
@@ -48,15 +48,15 @@
 
     .contText {
       display: flex;
-      justify-content: space-around;
+      flex-direction: column;
       @media only screen and (max-width: 896px) {
         flex-direction: column;
       }
 
       .card {
         position: relative;
-        width: 30vw;
         padding: 10px 0;
+
         @media only screen and (max-width: 896px) {
           width: 100%;
           padding: 10px;

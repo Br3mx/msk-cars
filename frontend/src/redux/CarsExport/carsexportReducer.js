@@ -98,15 +98,11 @@ export const editRealizationExport = (id, newDataExp) => async (dispatch) => {
       }
     });
 
-    const response = await axios.put(
-      `${API_URL}/export/update-export/${id}`,
-      formData,
-      {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      }
-    );
+    await axios.put(`${API_URL}/export/update-export/${id}`, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
     dispatch(editRealizationExp(id, newDataExp));
   } catch (e) {
     console.error("Error updating:", e);

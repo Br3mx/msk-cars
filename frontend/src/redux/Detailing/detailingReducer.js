@@ -92,15 +92,11 @@ export const editRealizationD = (id, newData) => async (dispatch) => {
       }
     });
 
-    const response = await axios.put(
-      `${API_URL}/detailing/update-detailing/${id}`,
-      formData,
-      {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      }
-    );
+    await axios.put(`${API_URL}/detailing/update-detailing/${id}`, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
     dispatch(editRealization(id, newData));
   } catch (e) {
     console.error("Error updating:", e);
@@ -143,7 +139,6 @@ export const addRealizationD = (newRealizationData) => async (dispatch) => {
       }
     );
 
-    console.log("Response from server:", response.data);
     dispatch(addRealization(response.data)); // Dispatch the action with the new realization data
   } catch (e) {
     console.error("Error adding realization:", e);

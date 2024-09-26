@@ -44,36 +44,6 @@ const Offer = () => {
                   <strong>{offer.title2}</strong>
                 </h2>
               </motion.div>
-              <motion.div
-                className={style.card}
-                initial={{ y: 50, opacity: 0 }}
-                animate={inView ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }}
-                transition={{ duration: 1, delay: 0.6 }}
-              >
-                <h2>
-                  <strong>{offer.title3}</strong>
-                </h2>
-              </motion.div>
-              <motion.div
-                className={style.card}
-                initial={{ y: 50, opacity: 0 }}
-                animate={inView ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }}
-                transition={{ duration: 1, delay: 0.8 }}
-              >
-                <h2>
-                  <strong>{offer.title4}</strong>
-                </h2>
-              </motion.div>
-              <motion.div
-                className={style.card}
-                initial={{ y: 50, opacity: 0 }}
-                animate={inView ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }}
-                transition={{ duration: 1, delay: 0.8 }}
-              >
-                <h2>
-                  <strong>{offer.title5}</strong>
-                </h2>
-              </motion.div>
             </div>
           </div>
         </motion.div>

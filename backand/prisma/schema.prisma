@@ -39,7 +39,7 @@ model Mail {
   email String
   phone String
   title String
-  message String
+  message String @db.LongText
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

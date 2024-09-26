@@ -48,17 +48,18 @@ const initialState = {
       title3: "Umów Wizytę",
     },
     offer: {
-      title: "Auto Detailing",
+      title: "CENNIK USŁUG",
       list: [
-        "Powłoki ceramiczne - od 900 zł",
-        "Korekta lakieru - 200 zł",
+        "Polerowanie lakieru - od 500 zł",
+        "Mycie zewnętrzne - 200 zł",
+        "Powłoka ceramiczna - od 900 zł",
         "Detailing wnętrza - od 300 zł",
         "Pranie tapicerki - od 250 zł",
+        "Przygotowanie auta do sprzedaży - od 500 zł",
+        "Przyciemnianie szyb - od 400 zł",
+        "Regeneracja reflektorów - 150 zł",
       ],
-      title2: "Regeneracja reflektorów - 150 zł",
-      title3: "Folie ochronne",
-      title4: "Przyciemnianie szyb i lamp - od 400 zł",
-      title5: "Samochody na zamówienie",
+      title2: "Samochody na zamówienie - do ustalenia",
     },
     realization: {
       carsDetailing: {
