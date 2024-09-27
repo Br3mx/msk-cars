@@ -298,6 +298,9 @@ const Contact = () => {
                   onChange={handleChange}
                 >
                   <option value="">Wybierz Tytuł</option>
+                  <option value="Samochody na zamówienie">
+                    Samochody na zamówienie
+                  </option>
                   <option value="Polerowanie lakieru">
                     Polerowanie lakieru
                   </option>
@@ -313,9 +316,6 @@ const Contact = () => {
                   </option>
                   <option value="Regeneracja reflektorów">
                     Regeneracja reflektorów
-                  </option>
-                  <option value="Samochody na zamówienie">
-                    Samochody na zamówienie
                   </option>
                   <option value="Inne">Inne</option>
                 </select>
