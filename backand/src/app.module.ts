@@ -19,9 +19,14 @@ import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { ExportModule } from './cars/cars-exports/export.module';
 import { PromotionModule } from './promotion/promotion.module';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 
 @Module({
   imports: [
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '../../../', 'frontend', 'build'),
+    }),
     DetailingModule,
     ExportModule,
     MailModule,

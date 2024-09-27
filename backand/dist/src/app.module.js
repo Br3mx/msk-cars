@@ -23,6 +23,8 @@ const users_module_1 = require("./users/users.module");
 const auth_module_1 = require("./auth/auth.module");
 const export_module_1 = require("./cars/cars-exports/export.module");
 const promotion_module_1 = require("./promotion/promotion.module");
+const serve_static_1 = require("@nestjs/serve-static");
+const path_1 = require("path");
 let AppModule = class AppModule {
     configure(consumer) {
         consumer
@@ -34,6 +36,9 @@ exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
+            serve_static_1.ServeStaticModule.forRoot({
+                rootPath: (0, path_1.join)(__dirname, '../../../', 'frontend', 'build'),
+            }),
             detailing_module_1.DetailingModule,
             export_module_1.ExportModule,
             email_module_1.MailModule,

@@ -16,6 +16,8 @@ model CarsDetailing {
   carMark   String
   restImg     Json    
   description Json
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 model CarsExport {
   id        String  @id @default(uuid())
@@ -23,6 +25,8 @@ model CarsExport {
   carMark   String
   restImg     Json    
   description Json
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 model Promotion {
   id        String  @id @default(uuid())

@@ -9,7 +9,12 @@ const express = require("express");
 async function bootstrap() {
     const app = await core_1.NestFactory.create(app_module_1.AppModule);
     app.use((req, res, next) => {
-        res.setHeader('Content-Security-Policy', "default-src 'self'; script-src 'self' https://maps.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https://maps.gstatic.com; frame-src 'self' https://www.google.com/maps;");
+        res.setHeader('Content-Security-Policy', "default-src 'self'; " +
+            "script-src 'self' 'unsafe-inline' https://maps.googleapis.com; " +
+            "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; " +
+            "img-src 'self' data: https://maps.gstatic.com; " +
+            "font-src 'self' https://fonts.gstatic.com; " +
+            "frame-src 'self' https://www.google.com https://maps.google.com;");
         next();
     });
     const configService = app.get(config_1.ConfigService);

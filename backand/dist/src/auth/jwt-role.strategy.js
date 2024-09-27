@@ -20,12 +20,11 @@ let JwtRoleStrategy = class JwtRoleStrategy extends (0, passport_1.PassportStrat
         super({
             jwtFromRequest: passport_jwt_1.ExtractJwt.fromExtractors([
                 (request) => {
-                    const data = request === null || request === void 0 ? void 0 : request.cookies['auth'];
-                    console.log('JWT from cookies:', data);
-                    if (!data) {
+                    const token = request === null || request === void 0 ? void 0 : request.cookies['auth'];
+                    if (!token) {
                         return null;
                     }
-                    return data.access_token;
+                    return token;
                 },
             ]),
             ignoreExpiration: false,
@@ -35,18 +34,13 @@ let JwtRoleStrategy = class JwtRoleStrategy extends (0, passport_1.PassportStrat
         this.usersService = usersService;
     }
     async validate(payload) {
-        console.log('Received payload:', payload);
         const user = await this.usersService.getUsersById(payload.sub);
         if (!user) {
-            console.log('User not found for ID:', payload.sub);
             throw new common_1.UnauthorizedException('User not found');
         }
-        console.log('Found user:', user);
-        if (user.role !== 'ADMIN') {
-            console.log('Insufficient permissions for user:', user.id);
+        if (user.role.toUpperCase() !== 'ADMIN') {
             throw new common_1.UnauthorizedException('Insufficient permissions');
         }
-        console.log('User validated successfully:', user);
         return user;
     }
 };

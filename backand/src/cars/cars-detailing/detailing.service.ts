@@ -8,7 +8,11 @@ import * as path from 'path';
 export class DetailingService {
   constructor(private prismaService: PrismaService) {}
   public getAll(): Promise<CarsDetailing[]> {
-    return this.prismaService.carsDetailing.findMany();
+    return this.prismaService.carsDetailing.findMany({
+      orderBy: {
+        createdAt: 'desc',
+      },
+    });
   }
   public getById(id: CarsDetailing['id']): Promise<CarsDetailing | null> {
     return this.prismaService.carsDetailing.findUnique({

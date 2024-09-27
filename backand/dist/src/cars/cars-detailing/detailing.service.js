@@ -19,7 +19,11 @@ let DetailingService = class DetailingService {
         this.prismaService = prismaService;
     }
     getAll() {
-        return this.prismaService.carsDetailing.findMany();
+        return this.prismaService.carsDetailing.findMany({
+            orderBy: {
+                createdAt: 'desc',
+            },
+        });
     }
     getById(id) {
         return this.prismaService.carsDetailing.findUnique({

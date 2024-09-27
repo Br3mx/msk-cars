@@ -19,7 +19,11 @@ let CarsExportService = class CarsExportService {
         this.prismaService = prismaService;
     }
     getAllExp() {
-        return this.prismaService.carsExport.findMany();
+        return this.prismaService.carsExport.findMany({
+            orderBy: {
+                createdAt: 'desc',
+            },
+        });
     }
     getByIdExp(id) {
         return this.prismaService.carsExport.findUnique({
