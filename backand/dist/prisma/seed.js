@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const client_1 = require("@prisma/client");
+const bcrypt = require("bcryptjs");
 const db = new client_1.PrismaClient();
 function getCarsExports() {
     return [];
@@ -11,7 +12,8 @@ function getCarsDetailing() {
 function getMail() {
     return [];
 }
-function getUser() {
+async function getUser() {
+    const hashedPassword = await bcrypt.hash('mskAdmin', 10);
     return [
         {
             id: '5f8d0c9b-bf21-4f2c-8c8d-6c5d8e6dbe7b',
@@ -19,7 +21,7 @@ function getUser() {
             role: client_1.Role.ADMIN,
             password: {
                 create: {
-                    hashedPassword: '$10$pNlcRy4eTREv4urj3rN9Ceg4ziQUj3NxPQrLeYdyxgV0cP9Yhhq9G$2a$10$pNlcRy4eTREv4urj3rN9Ceg4ziQUj3NxPQrLeYdyxgV0cP9Yhhq9G',
+                    hashedPassword: hashedPassword,
                 },
             },
         },
@@ -39,7 +41,8 @@ async function seed() {
     await Promise.all(getMail().map((mail) => {
         return db.mail.create({ data: mail });
     }));
-    await Promise.all(getUser().map((user) => {
+    const users = await getUser();
+    await Promise.all(users.map((user) => {
         return db.user.create({ data: user });
     }));
 }
