@@ -1,0 +1,33 @@
+@import "../../../../style/settings.scss";
+
+.container {
+  background-color: $color-dark-blue;
+  width: 100vw;
+  min-height: 100vh;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cardWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 8rem;
+  padding-bottom: 3rem;
+  .card {
+    img {
+      border: 10px double $color-light-blue;
+      border-radius: 20px;
+      width: 40rem;
+      height: 40rem;
+      object-fit: cover;
+      @media only screen and (max-width: 896px) {
+        width: 25rem;
+        height: 30rem;
+      }
+    }
+  }
+}

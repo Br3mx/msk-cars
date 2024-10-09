@@ -1,0 +1,29 @@
+@import "./settings.scss";
+@import "./config.scss";
+html,
+body {
+  min-height: 100vh;
+}
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  color: $color-main-font !important;
+  font-family: $font-basic !important;
+  background: rgb(0, 0, 47);
+  background: linear-gradient(
+    140deg,
+    rgba($color-dark-blue, 1),
+    rgba($color-light-blue, 0.9)
+  );
+  ::selection {
+    background-color: $color-main-font !important;
+    color: $color-light-blue;
+  }
+}
+
+@media only screen and (max-width: 896px) {
+  body {
+    overflow-x: hidden;
+  }
+}

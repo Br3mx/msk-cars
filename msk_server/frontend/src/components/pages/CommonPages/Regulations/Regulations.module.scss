@@ -1,0 +1,31 @@
+@import "../../../../style/settings.scss";
+.container {
+  min-height: 100vh;
+  padding-top: 8rem;
+  h1 {
+    text-align: center;
+  }
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  gap: 1.5rem;
+  ul {
+    li {
+      list-style-type: decimal;
+      margin-bottom: 2rem;
+      font-size: 1.4rem !important;
+    }
+  }
+}
+
+.link {
+  color: rgba(red, 1);
+  &:hover {
+    color: rgba(red, 0.8);
+  }
+}

@@ -1,0 +1,345 @@
+@import "../../../../style/settings.scss";
+@import "../../../../style/config.scss";
+.container {
+  min-height: 100vh;
+  padding-top: 6.8rem;
+  position: relative;
+  width: 100vw;
+  background-image: url(#{$IMGS_URL}/detailing/another-photo/warsztat2.jpg);
+  background-position: center calc(40%);
+  background-size: cover;
+  left: 50%;
+  transform: translateX(-50%);
+  @media only screen and (max-width: 896px) {
+    padding-top: 1.5rem;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba($color-dark-blue, 0.8);
+  }
+  .content {
+    z-index: 2;
+    position: relative;
+    display: flex;
+    justify-content: space-between; // Wyrównanie do końca
+    align-items: flex-start;
+    gap: 70px;
+    @media only screen and (max-width: 896px) {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+    }
+    .contContact {
+      display: grid;
+      place-items: center;
+    }
+    .contact {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: center;
+      width: 100%;
+      background-color: transparent;
+      backdrop-filter: blur(10px);
+      flex: 1;
+      border-radius: 10px;
+      border: 2px solid $color-main-font;
+      padding: 2rem;
+      @media only screen and (max-width: 896px) {
+        padding: 1rem;
+        align-items: center;
+      }
+
+      .phone {
+        display: grid;
+        place-items: center;
+        width: 400px;
+        @media only screen and (max-width: 896px) {
+          width: 100%;
+        }
+
+        .phoneNumber {
+          flex-direction: column;
+          font-size: 20px;
+          @media only screen and (max-width: 896px) {
+            font-size: 20px;
+          }
+
+          span {
+            align-items: center;
+            a {
+              display: flex;
+              gap: 20px;
+              text-decoration: none;
+              color: $color-main-font;
+              transition: all 0.2s ease-in-out;
+              &:hover {
+                color: rgba($color-light-blue, 1);
+                scale: (1.1);
+              }
+            }
+          }
+        }
+      }
+    }
+    .address {
+      background-color: rgba($color-dark-blue, 0.5);
+      padding: 0 20px 20px 20px;
+      border-radius: 10px;
+      border: 2px solid $color-main-font;
+      @media only screen and (max-width: 896px) {
+        display: none;
+      }
+
+      .contLok {
+        display: grid;
+        place-items: center;
+        font-size: 19px;
+        color: rgba($color-light-blue, 1);
+        height: 50px;
+      }
+      .map {
+        border-radius: 10px;
+        @media only screen and (max-width: 896px) {
+          display: none;
+        }
+      }
+    }
+    .mailForm {
+      display: grid;
+      place-items: end;
+      width: 100%;
+      flex-wrap: wrap;
+      @media only screen and (max-width: 896px) {
+        display: grid;
+        place-items: center;
+        font-size: 15px;
+        .mainTitle {
+          display: none;
+        }
+      }
+
+      .mailPhone {
+        display: flex;
+        justify-content: space-between;
+        @media only screen and (max-width: 896px) {
+          flex-direction: column;
+          justify-content: center;
+        }
+
+        input {
+          width: 360px;
+        }
+      }
+      form {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+
+        gap: 15px;
+        @media only screen and (max-width: 896px) {
+          justify-content: center;
+          width: 90%;
+          margin-bottom: 2rem;
+        }
+
+        .contButton {
+          display: grid;
+          place-items: center;
+          @media only screen and (max-width: 896px) {
+            margin-top: -5px;
+          }
+
+          button {
+            display: inherit;
+            width: 30%;
+            border: none;
+            border-radius: 10px;
+            color: $color-main-font;
+            transition: all 0.2s ease-in-out;
+            &:hover {
+              border-radius: 0px;
+              scale: 1.1;
+              background-color: rgba($color-main-font, 1);
+              color: rgba($color-light-blue, 1);
+            }
+            background-color: rgba($color-light-blue, 1);
+            @media only screen and (max-width: 896px) {
+              width: 100%;
+              font-size: 15px;
+              padding: 5px;
+            }
+          }
+        }
+        span {
+          @media only screen and (max-width: 896px) {
+            h6 {
+              font-size: 14px;
+              margin: 0.5rem;
+              text-align: center;
+            }
+          }
+
+          input {
+            width: 750px;
+            height: 3rem;
+            padding: 0 20px;
+            border-radius: 5px;
+            border: none;
+            font-size: 18px;
+            color: rgba($color-light-blue, 1);
+            @media only screen and (max-width: 896px) {
+              width: 100% !important;
+              height: 2rem;
+              font-size: 15px;
+            }
+
+            &:focus {
+              color: rgba($color-light-blue, 1);
+            }
+          }
+          textarea {
+            width: 750px;
+            height: 150px;
+            resize: none;
+            border-radius: 5px;
+            color: rgba($color-light-blue, 1);
+            font-weight: 500;
+            padding: 10px 20px;
+            @media only screen and (max-width: 896px) {
+              width: 100%;
+              height: 10rem;
+            }
+          }
+          select {
+            height: 40px;
+            text-align: center;
+            color: $color-main-font;
+            border: none;
+            border-radius: 10px;
+            background-color: rgba($color-light-blue, 1);
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            &:hover {
+              transform: scale(1.1);
+            }
+            @media only screen and (max-width: 896px) {
+              font-size: 15px;
+              height: 40px;
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.mainTitle {
+  text-align: center;
+  margin-bottom: -20px;
+}
+.error {
+  box-shadow: 0px 0px 20px rgba(red, 0.8);
+  border: 2px solid rgba(red, 0.8) !important;
+}
+
+.errorMessage {
+  color: red;
+  font-size: 15px;
+  margin-bottom: -15px;
+  @media only screen and (max-width: 896px) {
+    display: none;
+  }
+}
+
+input {
+  @media only screen and (max-width: 896px) {
+    width: 100% !important;
+  }
+}
+
+.zgoda {
+  display: flex !important;
+  height: 100% !important;
+  width: 70% !important;
+}
+.checkbox {
+  height: fit-content !important;
+  width: fit-content !important;
+  margin-top: 0.3rem !important;
+  margin-right: 0.5rem;
+  @media only screen and (max-width: 896px) {
+    margin-right: -10%;
+  }
+}
+.parentCheck {
+  display: flex;
+  justify-content: space-between;
+  gap: 10rem;
+  position: relative;
+  .errorMessage {
+    position: absolute;
+    bottom: 0;
+  }
+  @media only screen and (max-width: 896px) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+  }
+}
+
+.zgoda input[type="checkbox"] {
+  display: none;
+}
+
+/* Stylizacja niestandardowego checkboxa (koło) */
+label {
+  position: relative;
+  padding-left: 30px;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Kółko, które zastąpi checkbox */
+.parentCheck label:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%; /* Zmiana kształtu na kółko */
+  border: 2px solid rgba($color-main-font, 1); /* Początkowo czerwony */
+  background-color: transparent;
+  transition: all 0.2s ease;
+}
+
+/* Styl dla zaznaczonego checkboxa */
+input[type="checkbox"]:checked + label:before {
+  background-color: rgba(
+    $color-main-font,
+    1
+  ); /* Kolor wypełnienia po zaznaczeniu */
+  border-color: transparent; /* Zielona obramówka po zaznaczeniu */
+}
+
+/* Styl dla etykiety, gdy checkbox jest zaznaczony */
+input[type="checkbox"]:checked + label {
+  color: rgba(rgba($color-main-font, 0.5), 0.5);
+}
+.errorCheckbox + label:before {
+  border-color: red; /* Czerwona ramka w stanie błędu */
+  background-color: rgba(red, 0.5); /* Opcjonalne tło */
+}
+.errorCheckbox + label {
+  color: red; /* Czerwona ramka w stanie błędu */
+}

@@ -1,0 +1,68 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model CarsDetailing {
+  id        String  @id @default(uuid())
+  img       String
+  carMark   String
+  restImg     Json    
+  description Json
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+model CarsExport {
+  id        String  @id @default(uuid())
+  img       String
+  carMark   String
+  restImg     Json    
+  description Json
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+model Promotion {
+  id        String  @id @default(uuid())
+  promotionImg String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Mail {
+  id        String  @id @default(uuid())
+ 
+  name String
+  surname String
+  email String
+  phone String
+  title String
+  message String @db.LongText
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model User {
+  id       String    @id @default(uuid())
+  email    String    @unique
+  role     Role      @default(USER)
+  password Password?
+}
+
+model Password {
+  id       String @id @default(uuid())
+  hashedPassword String
+  user     User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId   String @unique
+}

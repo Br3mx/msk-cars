@@ -1,0 +1,31 @@
+@import "../../../../../style/settings.scss";
+.wrapper {
+  display: flex;
+  width: 300px;
+  gap: 40px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+  margin-bottom: -100px;
+  border: 2px solid $color-main-font;
+  border-radius: 10px;
+  padding: 5px 0px;
+  background: transparent;
+  backdrop-filter: blur(20px);
+
+  button {
+    border: none;
+    background: transparent;
+    color: white;
+    &:hover {
+      scale: 1.1;
+      color: $color-light-blue;
+    }
+    &:nth-of-type(1) {
+      cursor: zoom-in;
+    }
+    &:nth-of-type(2) {
+      cursor: zoom-out;
+    }
+  }
+}

@@ -1,0 +1,190 @@
+@import "../../../../style/settings.scss";
+
+.container {
+  padding-top: 6.2rem;
+  min-height: 100vh;
+  position: relative;
+  width: 100vw;
+  left: 50%;
+  padding-bottom: 2rem;
+  transform: translateX(-50%);
+  @media only screen and (max-width: 896px) {
+    padding-top: 1.5rem;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1;
+  }
+  .content {
+    position: relative;
+    z-index: 2;
+  }
+}
+.title {
+  text-align: center;
+  position: relative;
+  padding: 20px 0;
+  box-shadow: 0px 250px 100px rgba($color-light-blue, 0.8);
+  margin-bottom: 1%;
+  @media only screen and (max-width: 896px) {
+    box-shadow: 0px 300px 100px rgba($color-light-blue, 0.8);
+  }
+}
+
+.hidden {
+  transition: all 0.3s;
+  height: 0;
+  opacity: 0;
+  position: relative;
+  z-index: -999;
+  overflow: hidden;
+}
+
+.show {
+  height: auto;
+  transition: all 0.3s;
+  opacity: 1;
+}
+.realization {
+  width: 100%;
+  background-color: transparent;
+  @media only screen and (max-width: 896px) {
+    width: 16rem;
+    margin: 0 auto;
+    margin-top: 5.5rem;
+  }
+  .cardWrapper {
+    padding: 0 30px;
+    @media only screen and (max-width: 896px) {
+      padding: 0 auto;
+      margin: 0 auto;
+    }
+  }
+  .card {
+    margin: 20px 0;
+    border-radius: 10px;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    @media only screen and (max-width: 896px) {
+      width: 200px;
+      height: 300px;
+    }
+
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: 0px 0px 10px rgba($color-light-blue, 0.8);
+    }
+
+    img {
+      height: 300px;
+      width: 100%;
+      object-fit: cover;
+      border-top-right-radius: 10px;
+      border-top-left-radius: 10px;
+      @media only screen and (max-width: 896px) {
+        height: 200px;
+        width: 200px;
+      }
+    }
+
+    .contDesc {
+      background-color: $color-dark-blue;
+      border-bottom-right-radius: 10px;
+      border-bottom-left-radius: 10px;
+      padding: 10px;
+
+      .contText {
+        color: rgba($color-main-font, 1);
+        position: relative;
+        padding-bottom: 15px;
+
+        &::after {
+          content: "";
+          width: 100%;
+          height: 2px;
+          background-color: $color-light-blue;
+          position: absolute;
+          left: 0;
+          bottom: 0.3rem;
+        }
+      }
+    }
+
+    .btn {
+      display: grid;
+      place-items: center;
+      padding: 10px 0;
+
+      Button {
+        font-size: 15px;
+        padding: 5px 30px;
+      }
+    }
+  }
+}
+
+.contBtn {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.3rem;
+  transition: all 0.5s ease-in-out;
+  @media only screen and (max-width: 896px) {
+    margin-top: 1rem;
+  }
+
+  button {
+    font-size: 18px;
+    padding: 10px 30px;
+    background-color: $color-light-blue;
+    border-radius: 10px;
+    border: none;
+    color: rgba($color-main-font, 1);
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      background-color: rgba($color-main-font, 0.8);
+      border-radius: 0px;
+      color: rgba($color-light-blue, 0.8);
+    }
+  }
+}
+
+.allRealization {
+  margin-top: 20px;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  .card {
+    border: 2px solid rgba($color-light-blue, 1);
+    padding-bottom: 20px;
+    border-radius: 10px;
+    .contDesc {
+      text-align: center;
+      .btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 10px;
+        Button {
+          padding: 5px 50px;
+        }
+      }
+    }
+  }
+  img {
+    height: 300px;
+    width: 300px;
+    object-fit: cover;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+  }
+}
