@@ -1,0 +1,13 @@
+export PATH=~/.npm-global/bin:~/bin:$PATH 
+export DATABASE_URL="mysql://m1080_bremx:A123456b@mysql68.mydevil.net/m1080_mskcar"
+export MAIL_TEST_PASS="opnn zmcs vout czzg"
+export MAIL_TEST_USER="devprzemas@gmail.com"
+export MAIL_MSK_USER="mskcars0@gmail.com"
+export MAIL_MSK_PASS="ytyo boov seiz ubfr"
+export JWT_SECRET = "brimula4543534"
+export PRISMA_QUERY_ENGINE_BINARY="/home/bremX/domains/prisma_engines/query-engine"
+export PRISMA_QUERY_ENGINE_LIBRARY="/home/bremX/domains/prisma_engines/libquery_engine.so.node"
+export PRISMA_SCHEMA_ENGINE_BINARY="/home/bremX/domains/prisma_engines/schema-engine"
+export PRISMA_CLI_QUERY_ENGINE_TYPE="library"
+export PRISMA_CLIENT_ENGINE_TYPE="library"
+export dd="mysql://root:P03230803696b@localhost:3306/mskcardb"

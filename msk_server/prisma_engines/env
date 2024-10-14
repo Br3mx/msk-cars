@@ -1,0 +1,5 @@
+PRISMA_QUERY_ENGINE_BINARY="~/prisma_engines/query-engine"
+PRISMA_QUERY_ENGINE_LIBRARY="~/prisma_engines/libquery_engine.so.node"
+PRISMA_SCHEMA_ENGINE_BINARY="~/prisma_engines/schema-engine"
+PRISMA_CLI_QUERY_ENGINE_TYPE="library"
+PRISMA_CLIENT_ENGINE_TYPE="library"

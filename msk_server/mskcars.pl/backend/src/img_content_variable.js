@@ -1,0 +1,1 @@
+export const IMG_CONTENT_URL = "../img_content/detailing/cars";
