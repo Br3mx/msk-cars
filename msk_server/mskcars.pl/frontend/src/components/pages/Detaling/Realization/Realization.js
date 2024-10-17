@@ -107,24 +107,29 @@ const Realization = () => {
                   }
                   transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
                 >
-                  <div key={index} className={style.card}>
-                    <img
-                      src={`${IMGS_URL}/detailing/cars/${item.img}`}
-                      alt={item.img}
-                    />
-                    <div className={style.contDesc}>
-                      <div className={style.contText}>{item.carMark}</div>
-                      <div className={style.btn}>
-                        <Link
-                          to={`/realization-detaling/${item.id}`}
-                          style={{ textDecoration: "none" }}
-                          className={style.link}
-                        >
-                          <Button>Zobacz realizację</Button>
-                        </Link>
+                  <Link
+                    to={`/realization-detaling/${item.id}`}
+                    style={{ textDecoration: "none" }}
+                  >
+                    <div key={index} className={style.card}>
+                      <img
+                        src={`${IMGS_URL}/detailing/cars/${item.img}`}
+                        alt={item.img}
+                      />
+                      <div className={style.contDesc}>
+                        <div className={style.contText}>{item.carMark}</div>
+                        <div className={style.btn}>
+                          <Link
+                            to={`/realization-detaling/${item.id}`}
+                            style={{ textDecoration: "none" }}
+                            className={style.link}
+                          >
+                            <Button>Zobacz realizację</Button>
+                          </Link>
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  </Link>
                 </motion.div>
               ))}
             </Slider>
@@ -150,24 +155,29 @@ const Realization = () => {
                 }
                 transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
               >
-                <div className={style.card}>
-                  <img
-                    src={`${IMGS_URL}/detailing/cars/${item.img}`}
-                    alt={item.img}
-                  />
-                  <div className={style.contDesc}>
-                    <div className={style.contText}>{item.carMark}</div>
-                    <div className={style.btn}>
-                      <Link
-                        to={`/realization-detaling/${item.id}`}
-                        style={{ textDecoration: "none" }}
-                        className={style.link}
-                      >
-                        <Button>Zobacz realizację</Button>
-                      </Link>
+                <Link
+                  to={`/realization-detaling/${item.id}`}
+                  style={{ textDecoration: "none", color: "#cceeff" }}
+                >
+                  <div className={style.card}>
+                    <img
+                      src={`${IMGS_URL}/detailing/cars/${item.img}`}
+                      alt={item.img}
+                    />
+                    <div className={style.contDesc}>
+                      <div className={style.contText}>{item.carMark}</div>
+                      <div className={style.btn}>
+                        <Link
+                          to={`/realization-detaling/${item.id}`}
+                          style={{ textDecoration: "none" }}
+                          className={style.link}
+                        >
+                          <Button>Zobacz realizację</Button>
+                        </Link>
+                      </div>
                     </div>
                   </div>
-                </div>
+                </Link>
               </motion.div>
             ))}
           </div>

@@ -47,33 +47,40 @@ const SecondSection = () => {
           }
           transition={{ duration: 0.5, delay: 1 }}
         >
-          <div className={style.card}>
-            <div className={style.contTextCard}>
-              <motion.h2
-                initial={{ y: -50, opacity: 0 }}
-                animate={inView ? { y: 0, opacity: 1 } : { y: -50, opacity: 0 }}
-                transition={{ duration: 1, delay: 1.5 }}
-              >
-                SPRAWDŹ CENY NASZYCH OFERT
-              </motion.h2>
-              <Link
-                to={"/offer"}
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  textDecoration: "none",
-                }}
-              >
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={inView ? { opacity: 1 } : { opacity: 0 }}
-                  transition={{ duration: 1, delay: 2 }}
+          <Link
+            to={"/offer"}
+            style={{ textDecoration: "none", color: "#cceeff" }}
+          >
+            <div className={style.card}>
+              <div className={style.contTextCard}>
+                <motion.h2
+                  initial={{ y: -50, opacity: 0 }}
+                  animate={
+                    inView ? { y: 0, opacity: 1 } : { y: -50, opacity: 0 }
+                  }
+                  transition={{ duration: 1, delay: 1.5 }}
                 >
-                  <Button>Sprawdź</Button>
-                </motion.div>
-              </Link>
+                  SPRAWDŹ CENY NASZYCH OFERT
+                </motion.h2>
+                <Link
+                  to={"/offer"}
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    textDecoration: "none",
+                  }}
+                >
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={inView ? { opacity: 1 } : { opacity: 0 }}
+                    transition={{ duration: 1, delay: 2 }}
+                  >
+                    <Button>Sprawdź</Button>
+                  </motion.div>
+                </Link>
+              </div>
             </div>
-          </div>
+          </Link>
         </motion.div>
       </motion.div>
       <BtnScroll targetId="thirdsectiondetaling" />

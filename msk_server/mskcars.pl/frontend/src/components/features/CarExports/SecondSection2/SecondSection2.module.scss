@@ -12,6 +12,10 @@
   background-position: center calc(100% - 18%);
   background-repeat: no-repeat;
   background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   &::before {
     content: "";
     position: absolute;
@@ -23,39 +27,41 @@
     z-index: 1;
   }
 }
+
 .content {
   position: relative;
   z-index: 2;
-  padding: 0 0.5rem;
-  @media only screen and (max-width: 896px) {
-    padding-top: 2.5rem;
-  }
 }
+
 .contText {
   h5 {
-    font-size: 2rem;
+    font-size: 2rem; // 32px
     text-align: center;
     @media only screen and (max-width: 896px) {
-      font-size: 1.5rem;
+      // 896px -> 896px
+      font-size: 1.5rem; // 24px
     }
   }
 }
+
 .offer {
-  border: 2px solid $color-main-font;
+  border: 0.125rem solid $color-main-font; // 2px
   background-color: transparent;
-  backdrop-filter: blur(5px);
-  border-radius: 10px;
-  padding: 4rem;
-  margin-top: 3rem;
+  backdrop-filter: blur(0.3125rem); // 5px
+  border-radius: 0.625rem; // 10px
+  padding: 2.5rem; // 40px
+  margin-top: 3rem; // 48px
   @media only screen and (max-width: 896px) {
-    padding: 0.8rem 1rem;
-    margin-top: 2rem;
+    // 896px -> 896px
+    padding: 0.8rem 1rem; // 12.8px 16px
+    margin-top: 2rem; // 32px
   }
 
   h3 {
     text-align: center;
     @media only screen and (max-width: 896px) {
-      font-size: 17px;
+      // 896px -> 896px
+      font-size: 1.0625rem; // 17px
     }
   }
 }
@@ -63,22 +69,25 @@
 .contBtns {
   display: flex;
   justify-content: space-around;
-  margin-top: 3rem;
+  margin-top: 3rem; // 48px
   @media only screen and (max-width: 896px) {
+    // 896px -> 896px
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
-    margin-top: 1rem;
+    gap: 1rem; // 16px
+    margin-top: 1rem; // 16px
   }
 
   .link {
     text-decoration: none;
   }
+
   Button {
-    font-size: 20px;
+    font-size: 1.25rem; // 20px
     @media only screen and (max-width: 896px) {
-      font-size: 14px;
-      padding: 7px 20px;
+      // 896px -> 896px
+      font-size: 0.875rem; // 14px
+      padding: 0.4375rem 1.25rem; // 7px 20px
     }
   }
 }
