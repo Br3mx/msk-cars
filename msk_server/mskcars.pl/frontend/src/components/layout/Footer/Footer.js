@@ -49,7 +49,7 @@ const Footer = () => {
               <FaFacebook className={style.icon} />
             </a>
             <a
-              href="https://www.instagram.com/mskcars_/"
+              href="https://www.instagram.com/mskcars.pl/"
               target="_blank"
               className={style.link}
               rel="noopener noreferrer"

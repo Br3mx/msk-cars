@@ -19,7 +19,9 @@ let MailService = class MailService {
     constructor() {
         dotenv.config();
         this.transporter = nodemailer.createTransport({
-            service: 'Gmail',
+            host: 'serwer2488939.home.pl',
+            port: 587,
+            secure: false,
             auth: {
                 user: process.env.MAIL_MSK_USER,
                 pass: process.env.MAIL_MSK_PASS,
@@ -29,8 +31,9 @@ let MailService = class MailService {
     async sendMail({ name, surname, email, phone, title, message }) {
         try {
             const mailOptions = {
-                from: email,
+                from: process.env.MAIL_MSK_USER,
                 to: process.env.MAIL_MSK_USER,
+                replyTo: email,
                 subject: `MSK-CARS oto nowa wiadomość od ${name} ${surname}`,
                 html: `
         <html>
