@@ -61,7 +61,7 @@ export class CarsExportController {
       ],
       {
         storage: diskStorage({
-          destination: '../../img_content/export/cars',
+          destination: './img_content/export/cars',
           filename: (req, file, cb) => {
             const uniqueSuffix = `${uuidv4()}${extname(file.originalname)}`;
             cb(null, uniqueSuffix);
@@ -105,7 +105,7 @@ export class CarsExportController {
       ],
       {
         storage: diskStorage({
-          destination: '../../img_content/export/cars',
+          destination: './img_content/export/cars',
           filename: (req, file, cb) => {
             const uniqueSuffix = `${uuidv4()}${extname(file.originalname)}`;
             cb(null, uniqueSuffix);

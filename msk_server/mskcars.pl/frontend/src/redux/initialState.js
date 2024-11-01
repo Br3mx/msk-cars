@@ -59,8 +59,21 @@ const initialState = {
         "Przyciemnianie szyb - od 400 zł",
         "Regeneracja reflektorów - 150 zł",
       ],
+      vulcanization: {
+        title: "Wulkanizacja",
+        subtitle: "Usługi które oferujemy :",
+        listOffer: ["Wymiana opon", "Naprawa przebitych opon", "Wyważenie kół"],
+        subtitle2: "Cennik wymiany opon :",
+        list: [
+          "Felgi stalowe - 120 zł",
+          "Felgi Aluminiowe do 17 cali - 140 zł",
+          "Felgi Aluminiowe 17 - 24 cale - 180 zł",
+          "Wymiana opon w busie - 200 zł",
+        ],
+      },
       title2: "Samochody na zamówienie - do ustalenia",
     },
+
     realization: {
       carsDetailing: {
         data: [],

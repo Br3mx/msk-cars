@@ -72,6 +72,7 @@
         border-radius: 0.625rem; // 10px
         z-index: 2;
         transition: all 0.2s ease-in-out;
+        color: $color-main-font !important;
 
         @media only screen and (max-width: 896px) {
           width: 12.5rem; // 200px

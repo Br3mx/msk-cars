@@ -53,7 +53,7 @@ __decorate([
     (0, common_1.UseGuards)(jwt_role_guard_1.JwtRoleGuard),
     (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('file', {
         storage: (0, multer_1.diskStorage)({
-            destination: '../../img_content/promotion',
+            destination: './img_content/promotion',
             filename: (req, file, cb) => {
                 const randomName = Array(32)
                     .fill(null)

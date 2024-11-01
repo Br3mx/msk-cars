@@ -62,7 +62,7 @@ export class DetailingController {
       ],
       {
         storage: diskStorage({
-          destination: '../../img_content/detailing/cars',
+          destination: './img_content/detailing/cars',
           filename: (req, file, cb) => {
             const uniqueSuffix = `${uuidv4()}${extname(file.originalname)}`;
             cb(null, uniqueSuffix);
@@ -106,7 +106,7 @@ export class DetailingController {
       ],
       {
         storage: diskStorage({
-          destination: '../../img_content/detailing/cars',
+          destination: './img_content/detailing/cars',
           filename: (req, file, cb) => {
             const uniqueSuffix = `${uuidv4()}${extname(file.originalname)}`;
             cb(null, uniqueSuffix);
@@ -132,20 +132,20 @@ export class DetailingController {
       ...updateDetailingDTO,
       img: img ? img[0].filename : existingDetailing.img,
       restImg: restImg
-  ? JSON.stringify(
-      [
-        ...(typeof existingDetailing.restImg === 'string'
-          ? JSON.parse(existingDetailing.restImg || '[]')
-          : []),
-        ...restImg.map((file) => file.filename),
-      ].filter((i) => !updateDetailingDTO.restImgToDelete.includes(i)) // Usuń przecinek tutaj
-    )
-  : JSON.stringify(
-      (typeof existingDetailing.restImg === 'string'
-        ? JSON.parse(existingDetailing.restImg || '[]')
-        : []
-      ).filter((i) => !updateDetailingDTO.restImgToDelete.includes(i)) // Usuń przecinek tutaj
-    ),
+        ? JSON.stringify(
+            [
+              ...(typeof existingDetailing.restImg === 'string'
+                ? JSON.parse(existingDetailing.restImg || '[]')
+                : []),
+              ...restImg.map((file) => file.filename),
+            ].filter((i) => !updateDetailingDTO.restImgToDelete.includes(i)), // Usuń przecinek tutaj
+          )
+        : JSON.stringify(
+            (typeof existingDetailing.restImg === 'string'
+              ? JSON.parse(existingDetailing.restImg || '[]')
+              : []
+            ).filter((i) => !updateDetailingDTO.restImgToDelete.includes(i)), // Usuń przecinek tutaj
+          ),
 
       description: updateDetailingDTO.description,
     };
@@ -153,5 +153,3 @@ export class DetailingController {
     return this.detailingService.updateDetailing(id, updatedDetailingData);
   }
 }
-
-

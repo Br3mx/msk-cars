@@ -19,39 +19,40 @@ export class CarsExportService {
       where: { id },
     });
   }
- public async deleteExp(id: CarsExport['id']): Promise<CarsExport> {
-  // Pobranie rekordu z bazy danych przed usunięciem
-  const existingExp = await this.prismaService.carsExport.findUnique({
-    where: { id },
-  });
+  public async deleteExp(id: CarsExport['id']): Promise<CarsExport> {
+    // Pobranie rekordu z bazy danych przed usunięciem
+    const existingExp = await this.prismaService.carsExport.findUnique({
+      where: { id },
+    });
 
-  if (!existingExp) {
-    throw new NotFoundException('Export not found');
+    if (!existingExp) {
+      throw new NotFoundException('Export not found');
+    }
+
+    // Usuwanie obrazów (jeśli istnieją)
+    const filesToDelete = [];
+
+    if (existingExp.img) {
+      filesToDelete.push(existingExp.img); // Główne zdjęcie
+    }
+
+    if (existingExp.restImg) {
+      const restImgArray =
+        typeof existingExp.restImg === 'string'
+          ? JSON.parse(existingExp.restImg)
+          : existingExp.restImg;
+      filesToDelete.push(...restImgArray); // Pozostałe zdjęcia
+    }
+
+    if (filesToDelete.length > 0) {
+      this.deleteImages(filesToDelete); // Usunięcie plików
+    }
+
+    // Usunięcie rekordu z bazy danych
+    return this.prismaService.carsExport.delete({
+      where: { id },
+    });
   }
-
-  // Usuwanie obrazów (jeśli istnieją)
-  const filesToDelete = [];
-
-  if (existingExp.img) {
-    filesToDelete.push(existingExp.img); // Główne zdjęcie
-  }
-
-  if (existingExp.restImg) {
-    const restImgArray = typeof existingExp.restImg === 'string'
-      ? JSON.parse(existingExp.restImg)
-      : existingExp.restImg;
-    filesToDelete.push(...restImgArray); // Pozostałe zdjęcia
-  }
-
-  if (filesToDelete.length > 0) {
-    this.deleteImages(filesToDelete); // Usunięcie plików
-  }
-
-  // Usunięcie rekordu z bazy danych
-  return this.prismaService.carsExport.delete({
-    where: { id },
-  });
-}
 
   async createExp(data: any): Promise<CarsExport> {
     try {
@@ -113,7 +114,10 @@ export class CarsExportService {
   private deleteImages(files: string[]) {
     try {
       files.forEach((file) => {
-        const filePath = path.join('/home/bremX/domains/mskcars.pl/img_content/export/cars', file);
+        const filePath = path.join(
+          /*'/home/bremX/domains/mskcars.pl/img_content/export/cars'*/ './img_content/export/cars',
+          file,
+        );
         fs.unlink(filePath, (err) => {
           if (err) {
             console.error(`Error while deleting file: ${file}`, err);

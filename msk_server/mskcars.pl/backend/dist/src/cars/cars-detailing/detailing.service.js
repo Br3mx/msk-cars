@@ -101,10 +101,10 @@ let DetailingService = class DetailingService {
         }
     }
     deleteImages(files) {
-        console.log("folder delete ", __dirname);
+        console.log('folder delete ', __dirname);
         try {
             files.forEach((file) => {
-                const filePath = path.join('/home/bremX/domains/mskcars.pl/img_content/detailing/cars', file);
+                const filePath = path.join('./img_content/detailing/cars', file);
                 fs.unlink(filePath, (err) => {
                     if (err) {
                         console.error(`Error while deleting file: ${file}`, err);

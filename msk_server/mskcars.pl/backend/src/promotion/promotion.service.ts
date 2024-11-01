@@ -34,8 +34,8 @@ export class PromotionService {
     // Delete the image file from the server
     const fullImagePath = path.join(
       process.cwd(),
-      '../',
-      '../',
+      // '../',
+      //'../',
       'img_content',
       'promotion',
       promotion.promotionImg,

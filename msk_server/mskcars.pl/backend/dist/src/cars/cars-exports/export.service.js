@@ -100,7 +100,7 @@ let CarsExportService = class CarsExportService {
     deleteImages(files) {
         try {
             files.forEach((file) => {
-                const filePath = path.join('/home/bremX/domains/mskcars.pl/img_content/export/cars', file);
+                const filePath = path.join('./img_content/export/cars', file);
                 fs.unlink(filePath, (err) => {
                     if (err) {
                         console.error(`Error while deleting file: ${file}`, err);

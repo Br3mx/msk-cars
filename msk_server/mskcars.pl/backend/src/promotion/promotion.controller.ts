@@ -32,7 +32,7 @@ export class PromotionController {
   @UseInterceptors(
     FileInterceptor('file', {
       storage: diskStorage({
-        destination: '../../img_content/promotion',
+        destination: './img_content/promotion',
         filename: (req, file, cb) => {
           const randomName = Array(32)
             .fill(null)

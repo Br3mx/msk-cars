@@ -101,7 +101,7 @@ __decorate([
         { name: 'restImg', maxCount: 10 },
     ], {
         storage: (0, multer_1.diskStorage)({
-            destination: '../../img_content/detailing/cars',
+            destination: './img_content/detailing/cars',
             filename: (req, file, cb) => {
                 const uniqueSuffix = `${(0, uuid_1.v4)()}${(0, path_1.extname)(file.originalname)}`;
                 cb(null, uniqueSuffix);
@@ -122,7 +122,7 @@ __decorate([
         { name: 'restImg', maxCount: 10 },
     ], {
         storage: (0, multer_1.diskStorage)({
-            destination: '../../img_content/detailing/cars',
+            destination: './img_content/detailing/cars',
             filename: (req, file, cb) => {
                 const uniqueSuffix = `${(0, uuid_1.v4)()}${(0, path_1.extname)(file.originalname)}`;
                 cb(null, uniqueSuffix);

@@ -25,9 +25,11 @@ export class DetailingService {
 
   public async deleteDet(id: CarsDetailing['id']): Promise<CarsDetailing> {
     // Pobranie rekordu z bazy danych przed usunięciem
-    const existingDetailing = await this.prismaService.carsDetailing.findUnique({
-      where: { id },
-    });
+    const existingDetailing = await this.prismaService.carsDetailing.findUnique(
+      {
+        where: { id },
+      },
+    );
 
     if (!existingDetailing) {
       throw new NotFoundException('Detailing not found');
@@ -41,9 +43,10 @@ export class DetailingService {
     }
 
     if (existingDetailing.restImg) {
-      const restImgArray = typeof existingDetailing.restImg === 'string'
-        ? JSON.parse(existingDetailing.restImg)
-        : existingDetailing.restImg;
+      const restImgArray =
+        typeof existingDetailing.restImg === 'string'
+          ? JSON.parse(existingDetailing.restImg)
+          : existingDetailing.restImg;
       filesToDelete.push(...restImgArray); // Pozostałe zdjęcia
     }
 
@@ -79,9 +82,11 @@ export class DetailingService {
     console.log('Updating detailing with ID:', id);
     console.log('Data to update:', data);
 
-    const existingDetailing = await this.prismaService.carsDetailing.findUnique({
-      where: { id },
-    });
+    const existingDetailing = await this.prismaService.carsDetailing.findUnique(
+      {
+        where: { id },
+      },
+    );
 
     console.log('Found existing detailing:', existingDetailing);
 
@@ -119,12 +124,13 @@ export class DetailingService {
   }
 
   private deleteImages(files: string[]) {
-    console.log("folder delete ", __dirname);
+    console.log('folder delete ', __dirname);
 
     try {
       files.forEach((file) => {
         const filePath = path.join(
-          '/home/bremX/domains/mskcars.pl/img_content/detailing/cars',
+          //'/home/bremX/domains/mskcars.pl/img_content/detailing/cars',
+          './img_content/detailing/cars',
           file,
         );
         fs.unlink(filePath, (err) => {
@@ -140,5 +146,3 @@ export class DetailingService {
     }
   }
 }
-
-

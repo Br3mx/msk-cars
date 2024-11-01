@@ -30,8 +30,6 @@ let AuthController = class AuthController {
         const isProduction = process.env.NODE_ENV === 'production';
         res.cookie('auth', tokens.access_token, {
             httpOnly: true,
-            sameSite: 'None',
-            secure: isProduction,
         });
         res.json({
             message: 'success',

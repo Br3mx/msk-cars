@@ -31,8 +31,8 @@ export class AuthController {
     // Zwróć token oraz rolę w odpowiedzi
     res.cookie('auth', tokens.access_token, {
       httpOnly: true,
-      sameSite: 'None',
-      secure: isProduction,
+      //sameSite: 'None',
+      //secure: isProduction,
     });
 
     res.json({

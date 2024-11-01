@@ -3,5 +3,6 @@ export const API_URL =
 
 export const IMGS_URL =
   process.env.NODE_ENV === "production"
-    ? "https://mskcars.pl/img_content"
+    ? //"https://mskcars.pl/img_content"
+      "http://localhost:64000/img_content"
     : "http://localhost:64000/img_content";

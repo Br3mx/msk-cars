@@ -35,7 +35,7 @@ let PromotionService = class PromotionService {
         if (!promotion) {
             throw new common_1.NotFoundException(`Promotion with ID ${id} not found`);
         }
-        const fullImagePath = path.join(process.cwd(), '../', '../', 'img_content', 'promotion', promotion.promotionImg);
+        const fullImagePath = path.join(process.cwd(), 'img_content', 'promotion', promotion.promotionImg);
         if (fs.existsSync(fullImagePath)) {
             fs.unlinkSync(fullImagePath);
         }
