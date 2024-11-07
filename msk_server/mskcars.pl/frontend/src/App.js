@@ -34,6 +34,7 @@ import PromotionAdmin from "./Admin/Pages/Promotion/PromotionAdmin.js";
 import Policy from "./components/pages/CommonPages/Policy/Policy.js";
 import Regulations from "./components/pages/CommonPages/Regulations/Regulations.js";
 import CookieBanner from "./components/features/CokkieBaner/CokkieBaner.js";
+import Vulcanization from "./components/pages/CommonPages/Vulcanization/Vulcanization.js";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -134,7 +135,8 @@ const App = () => {
                 <Route path="*" element={<NotFound />} />
                 <Route path="/policy" element={<Policy />} />
                 <Route path="/regulations" element={<Regulations />} />
-
+                {/* dodać */}
+                <Route path="/vulcanization" element={<Vulcanization />} />
                 {/* SPROWADZANIE SAMOCHODÓW */}
                 <Route path="/home-cars-to-order" element={<Home2 />} />
                 <Route

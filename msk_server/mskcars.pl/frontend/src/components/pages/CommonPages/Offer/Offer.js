@@ -4,6 +4,7 @@ import style from "./Offer.module.scss";
 import { useSelector } from "react-redux";
 import { getOffer } from "../../../../redux/Detailing/detailingReducer";
 import { motion, useInView } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const Offer = () => {
   const offer = useSelector(getOffer);
@@ -40,6 +41,11 @@ const Offer = () => {
               <h2>
                 <strong>{offer.vulcanization.title}</strong>
               </h2>
+              <span className={style.btnCont}>
+                <Link to={"/vulcanization"} className={style.btn}>
+                  Sprawdź
+                </Link>
+              </span>
               <h4>{offer.vulcanization.subtitle}</h4>
               <div className={style.card}>
                 <ul>

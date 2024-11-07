@@ -119,7 +119,7 @@
       }
     }
     .contCard {
-      margin-top: 4vh;
+      margin-top: 1rem;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -134,5 +134,69 @@
         border-radius: 50px;
       }
     }
+  }
+}
+
+/// dodać
+.wheel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @media only screen and (max-width: 896px) {
+    margin-top: 1rem;
+  }
+  .link3 {
+    background-color: rgba(red, 0.5);
+    text-decoration: none;
+    color: $color-main-font;
+    border-radius: 1rem;
+    padding: 0.5rem 1.5rem;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    transition: all 0.2s ease-in-out;
+    position: relative;
+    @media only screen and (max-width: 896px) {
+      font-size: 0.8rem;
+      padding: 0.5rem;
+    }
+
+    .new {
+      position: absolute;
+      top: -2rem;
+      left: -4rem;
+      transform: rotate(-15deg);
+      background-color: rgb(111, 95, 0);
+      border-radius: 10rem;
+      padding: 0.5rem 2rem;
+      @media only screen and (max-width: 896px) {
+        top: -1.5rem;
+        transform: rotate(0deg);
+        left: 0;
+        padding: 0.5rem;
+      }
+    }
+    .wheelI {
+      font-size: 2.5rem;
+      animation: rotationW 2s linear infinite;
+    }
+    &:hover {
+      background-color: rgba($color-dark-blue, 8);
+      scale: 1.05;
+      .wheelI {
+        animation: rotationW 0.5s linear infinite;
+      }
+    }
+  }
+}
+
+@keyframes rotationW {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }

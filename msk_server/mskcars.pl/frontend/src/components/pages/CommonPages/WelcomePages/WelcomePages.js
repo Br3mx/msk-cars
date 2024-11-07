@@ -3,7 +3,8 @@ import style from "./WelcomePages.module.scss";
 import { Link, useNavigate } from "react-router-dom";
 import { useSection } from "../../../common/SectionContext"; // Import kontekstu
 import { motion, useInView } from "framer-motion";
-
+import { GiCarWheel } from "react-icons/gi";
+import { FaArrowRight } from "react-icons/fa";
 const WelcomePages = () => {
   const { setSection } = useSection();
   const navigate = useNavigate();
@@ -22,6 +23,7 @@ const WelcomePages = () => {
   };
   const ref = React.useRef(null);
   const inView = useInView(ref, { once: true });
+
   return (
     <main className={style.container}>
       <motion.div
@@ -91,6 +93,30 @@ const WelcomePages = () => {
             </motion.div>
           </Link>
         </motion.div>
+        {/* dodać */}
+        <motion.div
+          className={style.wheel}
+          initial={{ x: -500, opacity: 0 }}
+          animate={inView ? { x: 0, opacity: 1 } : { x: -500, opacity: 0 }}
+          transition={{ duration: 1, delay: 0.8 }}
+        >
+          <Link to={"/vulcanization"} className={style.link3}>
+            <span>
+              <motion.span
+                initial={{ opacity: 0 }}
+                animate={inView ? { opacity: 1 } : { opacity: 0 }}
+                transition={{ duration: 1, delay: 2 }}
+                className={style.new}
+              >
+                NOWOŚĆ!
+              </motion.span>
+              SPRAWDŹ NASZE USŁUGI WULKANIZACYJNE{" "}
+            </span>
+            <FaArrowRight className={style.icon} />
+            <GiCarWheel className={style.wheelI} />
+          </Link>
+        </motion.div>
+        {/* dodać*/}
       </motion.div>
     </main>
   );

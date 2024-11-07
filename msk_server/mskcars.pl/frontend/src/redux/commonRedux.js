@@ -7,6 +7,9 @@ import { isUUID } from "validator";
 
 export const getPhone = (state) => state.common.phoneNumber;
 export const getAddress = (state) => state.common.address;
+///dodać
+export const getVulcanization = (state) => state.common.vulcanizationPage;
+///
 export const getRole = (state) => state.common.user;
 export const getPromotion = (state) => state.common.promotion.promotionImg.data;
 const createActionName = (name) => `app/login/${name}`;

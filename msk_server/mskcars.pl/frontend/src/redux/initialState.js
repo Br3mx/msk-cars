@@ -16,6 +16,33 @@ const initialState = {
         data: [],
       },
     },
+    ///dodać
+    vulcanizationPage: {
+      heading: "Wulkanizacja - MSK CARS",
+      subheading: "Kompleksowe usługi wulkanizacyjne",
+      text: (
+        <>
+          Firma <strong>MSK-Cars</strong> oferuje profesjonalne usługi
+          wulkanizacyjne, zapewniając najwyższy poziom obsługi i precyzję
+          wykonania. Dzięki zaawansowanemu sprzętowi oraz wykwalifikowanemu
+          zespołowi specjalistów, nasze usługi są skuteczne, trwałe i
+          bezpieczne.
+        </>
+      ),
+      subheading2: "Nasze usługi",
+      list: [
+        "Naprawa i regeneracja opon – usuwamy przebicia, pęknięcia oraz inne uszkodzenia, przywracając oponom pełną funkcjonalność.",
+        "Wyważanie kół – dzięki zaawansowanym maszynom zapewniamy optymalne wyważenie, co poprawia komfort jazdy i wydłuża żywotność opon.",
+        "Wymiana opon – oferujemy profesjonalną wymianę opon letnich,zimowych oraz całorocznych, niezależnie od rozmiaru i rodzaju pojazdu.",
+      ],
+      subheading3: "Nasza maszyna do wulkanizacji",
+      text2:
+        "Dysponujemy nowoczesną maszyną wulkanizacyjną, która umożliwia szybkie i precyzyjne wykonywanie napraw opon. Nasze urządzenie wyróżnia się zaawansowaną technologią, bezpiecznym i ekologicznym procesem oraz uniwersalnością, dzięki czemu może obsługiwać różne typy i rozmiary opon.",
+      subheading4: "Dlaczego warto wybrać MSK-Cars?",
+      text3:
+        " Decydując się na wulkanizację w MSK-Cars, zyskujesz gwarancję solidnego wykonania, fachowej obsługi oraz pełne wsparcie techniczne. Zapewniamy konkurencyjne ceny, dogodne terminy oraz indywidualne podejście do każdego klienta. Zapraszamy do kontaktu i skorzystania z naszych usług!",
+    },
+    ///
   },
   detailing: {
     firstSection: {

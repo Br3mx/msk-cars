@@ -301,6 +301,7 @@ const Contact = () => {
                   <option value="Samochody na zamówienie">
                     Samochody na zamówienie
                   </option>
+                  <option value="Wulkanizacja">Wulkanizacja</option>
                   <option value="Polerowanie lakieru">
                     Polerowanie lakieru
                   </option>
