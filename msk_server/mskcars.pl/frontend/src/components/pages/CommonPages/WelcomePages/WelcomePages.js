@@ -5,10 +5,13 @@ import { useSection } from "../../../common/SectionContext"; // Import kontekstu
 import { motion, useInView } from "framer-motion";
 import { GiCarWheel } from "react-icons/gi";
 import { FaArrowRight } from "react-icons/fa";
+import PromotionButt from "../../../common/PromotionButt/PromotionButt";
+import { getPromotion } from "../../../../redux/commonRedux";
+import { useSelector } from "react-redux";
 const WelcomePages = () => {
   const { setSection } = useSection();
   const navigate = useNavigate();
-
+  const prom = useSelector(getPromotion);
   const handleNavigateD = () => {
     navigate("/home-detaling");
     selectSection("detailing");
@@ -33,18 +36,45 @@ const WelcomePages = () => {
         animate={inView ? { y: 0, opacity: 1 } : { y: -50, opacity: 0 }}
         transition={{ duration: 1 }}
       >
-        <motion.div
-          className={style.contLogo}
-          initial={{ rotate: 180, y: 1000, opacity: 0 }}
-          animate={
-            inView
-              ? { rotate: 0, y: 0, opacity: 1 }
-              : { rotate: 180, y: 1000, opacity: 0 }
-          }
-          transition={{ duration: 1, delay: 0.2 }}
-        >
-          <img src="/img/logo.png" alt="Logo" />
-        </motion.div>
+        {prom.length === 0 ? (
+          <motion.div
+            className={style.contLogo}
+            initial={{ rotate: 180, y: 1000, opacity: 0 }}
+            animate={
+              inView
+                ? { rotate: 0, y: 0, opacity: 1 }
+                : { rotate: 180, y: 1000, opacity: 0 }
+            }
+            transition={{ duration: 1, delay: 0.2 }}
+          >
+            <img src="/img/logo.png" alt="Logo" />
+          </motion.div>
+        ) : (
+          <div className={style.logoPromConta}>
+            <motion.div
+              className={style.contLogo}
+              initial={{ rotate: 180, y: 1000, opacity: 0 }}
+              animate={
+                inView
+                  ? { rotate: 0, y: 0, opacity: 1 }
+                  : { rotate: 180, y: 1000, opacity: 0 }
+              }
+              transition={{ duration: 1, delay: 0.2 }}
+            >
+              <img src="/img/logo.png" alt="Logo" />
+            </motion.div>
+            {/*dodać */}
+            <motion.div
+              className={style.prom}
+              initial={{ y: -1000, opacity: 0 }}
+              animate={inView ? { y: 0, opacity: 1 } : { y: -1000, opacity: 0 }}
+              transition={{ duration: 1, delay: 0.9 }}
+            >
+              <PromotionButt />
+            </motion.div>
+            {/*dodać */}
+          </div>
+        )}
         <motion.div className={style.contCard}>
           <Link
             to={"/home-detaling"}
@@ -93,7 +123,6 @@ const WelcomePages = () => {
             </motion.div>
           </Link>
         </motion.div>
-        {/* dodać */}
         <motion.div
           className={style.wheel}
           initial={{ x: -500, opacity: 0 }}
@@ -116,7 +145,6 @@ const WelcomePages = () => {
             <GiCarWheel className={style.wheelI} />
           </Link>
         </motion.div>
-        {/* dodać*/}
       </motion.div>
     </main>
   );

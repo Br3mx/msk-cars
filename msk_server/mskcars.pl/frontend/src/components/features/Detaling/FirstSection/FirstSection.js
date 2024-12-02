@@ -9,7 +9,7 @@ import { getPhone, getPromotion } from "../../../../redux/commonRedux";
 import Button from "../../../common/Button/Button";
 import { motion, useInView } from "framer-motion";
 import { Link } from "react-scroll";
-import { Link as Link1 } from "react-router-dom";
+//import { Link as Link1 } from "react-router-dom";
 
 const FirstSection = () => {
   const firstSection = useSelector(getFirstSection);
@@ -90,23 +90,25 @@ const FirstSection = () => {
           </motion.div>
         </motion.div>
         <div className={style.btnWrapper}>
+          {/*
           <motion.div
-            className={style.contPromotion}
-            initial={{ y: 50, opacity: 0 }}
-            animate={inView ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }}
-            transition={{ duration: 1, delay: 1.5 }}
+          className={style.contPromotion}
+          initial={{ y: 50, opacity: 0 }}
+          animate={inView ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }}
+          transition={{ duration: 1, delay: 1.5 }}
           >
-            <Link1 to="/promotion-detailing" className={style.linkPromotion}>
-              <Button>
-                SPRAWDŹ NASZE AKTUALNE PROMOCJE
-                {prom.length === 0 ? (
-                  ""
-                ) : (
-                  <h3 className={style.promotion}>NOWA PROMOCJA !</h3>
-                )}
+          <Link1 to="/promotion-detailing" className={style.linkPromotion}>
+          <Button>
+          SPRAWDŹ NASZE AKTUALNE PROMOCJE
+          {prom.length === 0 ? (
+            ""
+            ) : (
+              <h3 className={style.promotion}>NOWA PROMOCJA !</h3>
+              )}
               </Button>
-            </Link1>
-          </motion.div>
+              </Link1>
+              </motion.div>
+              */}
           <motion.div
             className={style.contBtn}
             initial={{ y: 50, opacity: 0 }}

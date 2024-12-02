@@ -73,6 +73,7 @@
         z-index: 2;
         transition: all 0.2s ease-in-out;
         color: $color-main-font !important;
+        width: 18.75rem;
 
         @media only screen and (max-width: 896px) {
           width: 12.5rem; // 200px
@@ -86,7 +87,7 @@
 
         img {
           height: 18.75rem; // 300px
-          width: 18.75rem; // 300px
+          width: 100%; // 300px
           object-fit: cover;
           border-top-right-radius: 0.625rem; // 10px
           border-top-left-radius: 0.625rem; // 10px

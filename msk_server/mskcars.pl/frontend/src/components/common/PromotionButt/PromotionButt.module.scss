@@ -1,0 +1,55 @@
+@import "../../../style/settings.scss";
+.container2 {
+  position: relative;
+}
+
+.contPromotion {
+  animation: ScaleP 1.8s infinite;
+  transform: rotate(10deg);
+  @media only screen and (max-width: 896px) {
+    transform: rotate(0deg);
+  }
+
+  .linkPromotion {
+    text-decoration: none;
+
+    Button {
+      position: relative;
+      background-color: $color-main-font;
+      color: $color-light-blue;
+
+      .promotion {
+        color: white;
+        font-size: 0.9375rem; /* 15px */
+        position: absolute;
+        top: -1.5rem;
+        right: 0;
+        border-radius: 2rem;
+        background-color: red;
+        padding: 0.5rem 1.5rem;
+        @media only screen and (max-width: 896px) {
+          font-size: 0.6rem; /* 15px */
+        }
+      }
+
+      @media only screen and (max-width: 896px) {
+        font-size: 0.6rem; /* 15px */
+      }
+
+      &:hover {
+        background-color: rgb(255, 238, 142);
+      }
+    }
+  }
+}
+@keyframes ScaleP {
+  0% {
+    scale: 1;
+  }
+  50% {
+    scale: 1.1;
+  }
+  100% {
+    scale: 1;
+  }
+}

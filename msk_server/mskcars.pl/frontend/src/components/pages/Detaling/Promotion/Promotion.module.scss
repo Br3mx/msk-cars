@@ -18,12 +18,13 @@
   padding-top: 8rem;
   padding-bottom: 3rem;
   .card {
+    padding: 1rem;
     img {
       border: 10px double $color-light-blue;
       border-radius: 20px;
-      width: 40rem;
-      height: 40rem;
-      object-fit: cover;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
       @media only screen and (max-width: 896px) {
         width: 25rem;
         height: 30rem;
